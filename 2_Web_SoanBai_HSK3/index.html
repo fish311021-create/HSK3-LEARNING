@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSK 3 - Phòng Soạn & Ôn Trước Bài Học (Pre-Study Studio)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090e17;
+      --card-bg: rgba(22, 30, 48, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --purple: #a855f7;
+      --purple-glow: rgba(168, 85, 247, 0.3);
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #2e1065 0%, #0d1322 45%, #070b14 100%);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      line-height: 1.6;
+    }
+    .welcome-card {
+      max-width: 680px;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 24px;
+      padding: 36px 32px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: var(--purple);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    p {
+      color: var(--text-sub);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .feat-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 13.5px;
+    }
+    .feat-item strong {
+      color: var(--purple);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .btn-home:hover {
+      background: var(--purple);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-card">
+    <div class="badge">📝 PHÂN HỆ SOẠN & ÔN TRƯỚC BÀI HỌC</div>
+    <h1>Phòng Soạn Bài Trước HSK 3</h1>
+    <p>Thư mục độc lập <strong>2_Web_SoanBai_HSK3</strong> đã được thiết lập thành công và sẵn sàng triển khai.</p>
+    
+    <div class="features-grid">
+      <div class="feat-item">
+        <strong>🧩 Game Nối Từ 2 Cột</strong>
+        Rèn luyện phản xạ mặt chữ Hán và tiếng Việt.
+      </div>
+      <div class="feat-item">
+        <strong>✍️ Chiết Tự &amp; Bút Thuận</strong>
+        Mẹo nhớ chữ và video hướng dẫn từng nét viết.
+      </div>
+      <div class="feat-item">
+        <strong>📖 Phân Tích Bài Khóa</strong>
+        Bóc tách sâu 4 đoạn hội thoại SGK.
+      </div>
+      <div class="feat-item">
+        <strong>⚖️ Xưởng Ngữ Pháp</strong>
+        Công thức, ví dụ đời sống và bẫy đề thi.
+      </div>
+    </div>
+
+    <a href="../index.html" class="btn-home">
+      <span>🏠 Quay lại Trang Chủ Cổng Tổng</span>
+    </a>
+  </div>
+</body>
+</html>
