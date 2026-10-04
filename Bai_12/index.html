@@ -1085,6 +1085,84 @@
       text-overflow: ellipsis;
     }
 
+  
+    /* TOP LESSON NAVIGATION BAR */
+    .lesson-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(13, 19, 34, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      border-radius: 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    }
+    .lesson-nav-bar .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .lesson-nav-bar .nav-btn:hover:not(:disabled) {
+      background: var(--accent);
+      color: #04101e;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .lesson-nav-bar .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .lesson-nav-bar .drawer-btn {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.3), rgba(56, 189, 248, 0.15));
+      border-color: rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+    }
+    .lesson-nav-bar .drawer-btn:hover {
+      background: var(--accent);
+      color: #04101e;
+    }
+    .lesson-nav-bar .nav-select-box {
+      flex: 1;
+      max-width: 520px;
+      position: relative;
+    }
+    .lesson-nav-bar select {
+      width: 100%;
+      background: rgba(26, 34, 52, 0.95);
+      color: var(--text-main);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .lesson-nav-bar select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+    @media (max-width: 680px) {
+      .lesson-nav-bar { flex-wrap: wrap; padding: 10px 12px; gap: 8px; }
+      .lesson-nav-bar .nav-select-box { order: 1; width: 100%; max-width: 100%; }
+      .lesson-nav-bar .nav-btn { order: 2; flex: 1; justify-content: center; font-size: 12px; padding: 7px 6px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1114,6 +1192,40 @@
   </aside>
 
   <div class="container" id="app">
+    <!-- TOP LESSON NAVIGATION BAR -->
+    <div class="lesson-nav-bar">
+      <a href="../Bai_11/index.html" class="nav-btn prev-btn" title="Quay lại bài 11">◀ Bài trước</a>
+      <div class="nav-select-box">
+        <select id="lessonNavSelect" onchange="if(this.value) window.location.href=this.value;">
+        <option value="../Bai_01/index.html">Bài 01: 周末你有什么打算？ (Cuối tuần bạn có dự định gì?)</option>
+        <option value="../Bai_02/index.html">Bài 02: 他什么时候回来？ (Khi nào anh ấy về?)</option>
+        <option value="../Bai_03/index.html">Bài 03: 桌子上放着很多饮料 (Trên bàn để rất nhiều đồ uống)</option>
+        <option value="../Bai_04/index.html">Bài 04: 她总是笑着跟客人说话 (Cô ấy luôn cười nói với khách)</option>
+        <option value="../Bai_05/index.html">Bài 05: 我最近越来越胖了 (Dạo này em ngày càng béo ra)</option>
+        <option value="../Bai_06/index.html">Bài 06: 怎么突然找不到了 (Sao tự nhiên lại không tìm thấy)</option>
+        <option value="../Bai_07/index.html">Bài 07: 我跟他都认识五年了 (Tôi và anh ấy quen nhau 5 năm rồi)</option>
+        <option value="../Bai_08/index.html">Bài 08: 你去哪儿我就去哪儿 (Em đi đâu anh đi theo đó)</option>
+        <option value="../Bai_09/index.html">Bài 09: 她的汉语说得跟中国人一样好 (Tiếng Trung của cô ấy nói hay như người Trung Quốc)</option>
+        <option value="../Bai_10/index.html">Bài 10: 数学比历史难多了 (Toán khó hơn Lịch sử nhiều)</option>
+        <option value="../Bai_11/index.html">Bài 11: 别忘了把空调关了 (Đừng quên tắt máy điều hòa)</option>
+        <option value="index.html" selected>Bài 12: 把重要的事写在笔记本上 (Hãy viết việc quan trọng vào sổ tay)</option>
+        <option value="../Bai_13/index.html">Bài 13: 我是走回来的 (Tôi đi bộ về đấy)</option>
+        <option value="../Bai_14/index.html">Bài 14: 你把水果拿过来 (Em mang hoa quả qua đây)</option>
+        <option value="../Bai_15/index.html">Bài 15: 其他都没什么问题 (Những thứ khác đều không vấn đề gì)</option>
+        <option value="../Bai_16/index.html">Bài 16: 我现在累得想睡觉 (Bây giờ tôi mệt đến mức chỉ muốn ngủ)</option>
+        <option value="../Bai_17/index.html">Bài 17: 谁都有办法看好病 (Ai cũng có cách chữa khỏi bệnh)</option>
+        <option value="../Bai_18/index.html">Bài 18: 我相信他们会同意的 (Tôi tin rằng họ sẽ đồng ý)</option>
+        <option value="../Bai_19/index.html">Bài 19: 你没看出来吗？ (Bạn không nhận ra à?)</option>
+        <option value="../Bai_20/index.html">Bài 20: 我被他影响了 (Tôi bị anh ấy ảnh hưởng)</option>
+        </select>
+      </div>
+      <a href="../Bai_13/index.html" class="nav-btn next-btn" title="Chuyển sang bài 13">Bài tiếp ▶</a>
+      <button class="nav-btn drawer-btn" onclick="toggleDrawer()" title="Mở danh mục toàn bộ 20 bài">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <span>20 Bài học</span>
+      </button>
+    </div>
+
     <header>
       <div class="badge-course">Giáo trình chuẩn HSK 3 &bull; Bài 12</div>
       <h1>把重要的东西放在我这儿吧。</h1>
