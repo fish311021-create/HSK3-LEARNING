@@ -1,0 +1,3091 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSK 3 - Soạn Bài 03: 桌子上放着很多饮料 (Trên bàn để rất nhiều đồ uống)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #fffdf5;
+      --bg-ambient: radial-gradient(130% 110% at 50% -5%, #fef9c3 0%, #fefce8 30%, #fffdf7 70%, #ffffff 100%);
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-border: rgba(245, 158, 11, 0.28);
+      --card-border-glow: rgba(251, 191, 36, 0.55);
+      --card-hover: #ffffff;
+      --text-main: #0f172a;
+      --text-sub: #334155;
+      --text-muted: #64748b;
+      
+      /* VIBRANT SUNSHINE YELLOW PALETTE */
+      --primary: #f59e0b;
+      --primary-bright: #fbbf24;
+      --primary-yellow: #fde047;
+      --primary-vibrant: #eab308;
+      --primary-dark: #b45309;
+      --primary-glow: rgba(251, 191, 36, 0.35);
+      --primary-light: #fef9c3;
+      --primary-soft: #fefce8;
+      
+      /* HARMONIOUS COMPLEMENTARY ACCENTS */
+      --accent-blue: #0284c7;
+      --accent-blue-light: #f0f9ff;
+      --accent-teal: #0d9488;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #faf5ff;
+      --accent-coral: #ea580c;
+      --accent-coral-light: #fff7ed;
+      --success: #10b981;
+      --success-glow: rgba(16, 185, 129, 0.25);
+      --danger: #ef4444;
+      --chinese-font: "Noto Serif SC", "Songti SC", serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-ambient);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* TOPBAR NAVIGATION */
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      border-radius: 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.08);
+      flex-wrap: wrap;
+    }
+    .topbar-nav .nav-left, .topbar-nav .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .nav-btn.btn-exam {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+    .nav-btn.btn-exam:hover {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .nav-btn.btn-arena {
+      background: linear-gradient(135deg, #f59e0b, #eab308);
+      color: #000;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 34px 24px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 26px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 16px 40px rgba(217, 119, 6, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 200px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .badge-lesson {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--primary-dark);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: var(--chinese-font);
+      font-size: 38px;
+      font-weight: 900;
+      color: #1e293b;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .subtitle {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .header-desc {
+      font-size: 14.5px;
+      color: var(--text-sub);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* NAV TABS */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: transparent;
+      color: var(--text-sub);
+      border: 1px solid transparent;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-btn:hover {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--primary-dark);
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #000;
+      border-color: #d97706;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+    }
+
+    /* TAB CONTENT */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border-radius: 22px;
+      border: 1px solid var(--card-border);
+      padding: 28px 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.06);
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+      padding-bottom: 14px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .section-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-desc {
+      font-size: 14.5px;
+      color: var(--text-sub);
+      margin-bottom: 22px;
+    }
+
+    /* ==================== MODULE 1: VOCAB & CANVAS ==================== */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
+    }
+    .vocab-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .vocab-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 12px 30px rgba(245, 158, 11, 0.15);
+      transform: translateY(-2px);
+    }
+    .vocab-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .vocab-hanzi {
+      font-family: var(--chinese-font);
+      font-size: 32px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+    .vocab-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    .vocab-py {
+      font-size: 16px;
+      font-weight: 700;
+      color: #d97706;
+    }
+    .vocab-hv {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .vocab-pos {
+      font-size: 11.5px;
+      background: #fef3c7;
+      color: #b45309;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      align-self: flex-start;
+      margin-bottom: 8px;
+    }
+    .vocab-meaning {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed rgba(245, 158, 11, 0.25);
+    }
+    .vocab-breakdown {
+      font-size: 13px;
+      color: #475569;
+      background: #fffbeb;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+      border-left: 3px solid var(--primary);
+    }
+    .vocab-examples {
+      font-size: 13.5px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .example-line {
+      background: #f8fafc;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+    .example-zh {
+      font-family: var(--chinese-font);
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .example-vi {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* CANVAS MI ZI GE */
+    .canvas-container {
+      margin-top: auto;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px;
+      text-align: center;
+      position: relative;
+    }
+    .canvas-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hanzi-canvas {
+      background: #fffdf5;
+      border: 2px dashed #f59e0b;
+      border-radius: 10px;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    .canvas-tools {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .btn-tool {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-tool:hover {
+      background: #fef3c7;
+      border-color: #f59e0b;
+    }
+
+    /* ==================== MODULE 2: FLASHCARD 3D & GAME ==================== */
+    .subtabs-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .subtab-btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid var(--card-border);
+      background: #fff;
+      cursor: pointer;
+      color: var(--text-sub);
+      transition: all 0.2s;
+    }
+    .subtab-btn.active {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary-dark);
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    /* 3D FLASHCARD */
+    .flashcard-wrapper {
+      max-width: 480px;
+      margin: 0 auto 30px;
+      perspective: 1000px;
+    }
+    .flashcard {
+      width: 100%;
+      height: 320px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+    }
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 24px;
+      border: 2px solid rgba(245, 158, 11, 0.35);
+      background: #ffffff;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(217, 119, 6, 0.12);
+    }
+    .flashcard-back {
+      transform: rotateY(180deg);
+      background: #fffdf5;
+    }
+    .fc-hanzi {
+      font-family: var(--chinese-font);
+      font-size: 64px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+    .fc-py {
+      font-size: 22px;
+      font-weight: 800;
+      color: #d97706;
+      margin-bottom: 6px;
+    }
+    .fc-meaning {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 14px;
+    }
+    .fc-hint {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+    .flashcard-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* MATCHING GAME 2 COLUMNS */
+    .matching-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 12px 20px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .game-stat {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-sub);
+    }
+    .game-stat span {
+      color: var(--primary-dark);
+      font-size: 16px;
+    }
+    .matching-game-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .matching-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .match-item {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 58px;
+      user-select: none;
+    }
+    .match-item:hover {
+      border-color: var(--primary);
+      background: #fffdf5;
+      transform: translateY(-2px);
+    }
+    .match-item.selected {
+      border-color: #0284c7;
+      background: #f0f9ff;
+      box-shadow: 0 0 15px rgba(2, 132, 199, 0.25);
+    }
+    .match-item.matched {
+      border-color: var(--success);
+      background: #ecfdf5;
+      color: #065f46;
+      cursor: default;
+      opacity: 0.6;
+      transform: scale(0.98);
+      pointer-events: none;
+    }
+    .match-item.shake-error {
+      animation: shake 0.4s ease;
+      border-color: var(--danger);
+      background: #fef2f2;
+      color: var(--danger);
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .match-zh {
+      font-family: var(--chinese-font);
+      font-size: 20px;
+    }
+    .match-py {
+      font-size: 13px;
+      color: #d97706;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    /* ==================== MODULE 3: DIALOGUES & AI SHADOWING ==================== */
+    .dialogue-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+    }
+    .dialogue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .dialogue-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #1e293b;
+    }
+    .dialogue-audio-box {
+      width: 100%;
+      margin-bottom: 18px;
+      background: #fffdf5;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+    .dialogue-audio-box audio {
+      width: 100%;
+      height: 38px;
+    }
+    .dialogue-context {
+      font-size: 13.5px;
+      color: var(--text-sub);
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--accent-blue);
+    }
+    .dialogue-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .d-line {
+      background: #fafaf9;
+      border-radius: 12px;
+      padding: 12px 16px;
+      border: 1px solid #f5f5f4;
+    }
+    .d-speaker {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+    .d-zh {
+      font-family: var(--chinese-font);
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.6;
+    }
+    .d-py {
+      font-size: 14px;
+      color: #d97706;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .d-vi {
+      font-size: 13.5px;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+    .d-analysis {
+      font-size: 12.5px;
+      color: #0369a1;
+      background: #f0f9ff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* SHADOWING / REPEAT CONTROLS */
+    .shadowing-box {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-mic {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #f59e0b;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-mic:hover {
+      background: #fde68a;
+    }
+    .btn-mic.recording {
+      background: #fee2e2;
+      color: #991b1b;
+      border-color: #ef4444;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    .accuracy-badge {
+      font-size: 13px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      display: none;
+    }
+    .accuracy-badge.excellent {
+      background: #dcfce7;
+      color: #166534;
+      display: inline-block;
+    }
+    .accuracy-badge.good {
+      background: #fef9c3;
+      color: #854d0e;
+      display: inline-block;
+    }
+
+    /* ==================== MODULE 4: GRAMMAR & QUIZ ==================== */
+    .grammar-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .grammar-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .grammar-formula {
+      background: #fffbeb;
+      border: 2px dashed #f59e0b;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #92400e;
+      margin-bottom: 16px;
+    }
+    .grammar-traps {
+      background: #fff1f2;
+      border-left: 4px solid #f43f5e;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #9f1239;
+      margin-top: 14px;
+    }
+
+    /* MINI QUIZ */
+    .quiz-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .quiz-q {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .quiz-opt {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+    .quiz-opt:hover {
+      background: #fffdf5;
+      border-color: #f59e0b;
+    }
+    .quiz-opt.selected {
+      background: #fef3c7;
+      border-color: #d97706;
+      color: #92400e;
+    }
+    .quiz-explain {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #f0fdf4;
+      border-left: 4px solid #10b981;
+      font-size: 13.5px;
+      color: #166534;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- TOPBAR NAVIGATION -->
+    <div class="topbar-nav">
+      <div class="nav-left">
+        <a href="../../index.html" class="nav-btn" title="Về Cổng Học Tập Tổng Hợp">🏠 Cổng Tổng</a>
+        <a href="../index.html" class="nav-btn" title="Danh mục các bài soạn">📋 Danh mục Soạn Bài</a>
+        <select id="lessonSelectTop" class="nav-btn" onchange="if(this.value) window.location.href=this.value;" style="font-weight:700;">
+          <option value="../Bai_01/index.html">Bài 01: 周末你有什么打算？</option>
+          <option value="../Bai_02/index.html">Bài 02: 他什么时候回来？</option>
+          <option value="index.html" selected>Bài 03: 桌子上放着很多饮料</option>
+          <!-- Additional lessons -->
+        </select>
+      </div>
+      <div class="nav-right">
+        <a href="../kiem_tra_tu_vung.html" class="nav-btn btn-arena" title="Đấu trường kiểm tra từ vựng tích lũy">🎯 Đấu Trường Từ Vựng</a>
+        <a href="../../1_Web_LuyenThi_HSK3/Bai_03/index.html" class="nav-btn btn-exam" title="Chuyển sang làm bài tập đề thi HSK 3">🚀 Sang Luyện Đề Bài 03</a>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+      <div class="badge-lesson">✨ PHÒNG SOẠN BÀI HSK 3 &bull; BÀI 03</div>
+      <h1>桌子上放着很多饮料</h1>
+      <div class="subtitle">Trên bàn để rất nhiều đồ uống &bull; Zhuōzi shang fàngzhe hěnduō yǐnliào</div>
+      <p class="header-desc">Khai phá từ vựng, chiết tự, bút thuận, 4 bài khóa SGK & ngữ pháp câu chữ '着'</p>
+    </header>
+
+    <!-- NAV TABS -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('tab-vocab')">🗂️ TỪ VỰNG &amp; VẼ HÁN TỰ</button>
+      <button class="tab-btn" onclick="switchTab('tab-games')">🃏 FLASHCARD &amp; 🧩 NỐI TỪ</button>
+      <button class="tab-btn" onclick="switchTab('tab-dialogues')">📖 4 BÀI KHÓA &amp; 🎙️ AI SHADOWING</button>
+      <button class="tab-btn" onclick="switchTab('tab-grammar')">⚖️ XƯỞNG NGỮ PHÁP &amp; QUIZ</button>
+    </nav>
+
+    <!-- ==================== TAB 1: TỪ VỰNG & VẼ HÁN TỰ ==================== -->
+    <div id="tab-vocab" class="tab-content active">
+      <section class="section-card">
+        <div class="section-header">
+          <div class="section-title"><span>🗂️ Danh Sách Từ Vựng Mới &amp; Luyện Nét Hán Tự</span></div>
+          <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Trọn bộ từ vựng chuẩn SGK</span>
+        </div>
+        <p class="section-desc">Mỗi từ vựng được phân tích sâu: Pinyin, Âm Hán Việt, 2 Câu ví dụ thực chiến (Đời sống &amp; Đề thi HSK), Mẹo nhớ chiết tự và Khung Canvas ô mễ để bạn dùng ngón tay/chuột luyện viết ngay trên màn hình:</p>
+        
+        <div class="vocab-grid">
+
+          <div class="vocab-card" id="vocab-card-1">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">还是</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">háishì</span>
+                <span class="vocab-hv">Hoàn thị</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#fefce8; color:#854d0e; border:1px solid #fef08a;">Liên từ</span>
+              <button class="btn-tool" onclick="speakText('还是')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Hay là, hoặc là (dùng trong câu hỏi lựa chọn)</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bộ Nhật (日 - mặt trời) + Chữ Bất (不) trong '还'; Bộ Nhật (日) + Sơ (疋) trong '是'.</div>
+              <div><strong>✍️ Nét bút:</strong> 还 (7 nét), 是 (9 nét). Viết 还: ngang gập, phẩy, chấm, bộ quai xước sau cùng.</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 你喝咖啡还是喝茶？</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Nǐ hē kāfēi háishì hē chá?</div>
+                <div class="example-vi">👉 Bạn uống cà phê hay là uống trà?</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 我们今天去爬山还是明天去？</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Wǒmen jīntiān qù páshān háishì míngtiān qù?</div>
+                <div class="example-vi">👉 Chúng ta đi leo núi hôm nay hay là ngày mai đi?</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 还是...吧 (Hay là... đi - dùng để biểu thị quyết định sau khi cân nhắc).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>还是</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-1" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-1')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('还是')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-2">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">爬山</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">páshān</span>
+                <span class="vocab-hv">Bà sơn</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#fff7ed; color:#9a3412; border:1px solid #fed7aa;">Động từ ly hợp</span>
+              <button class="btn-tool" onclick="speakText('爬山')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Leo núi, đi bộ đường núi</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> 爬: Bộ Trảo (爪 - móng vuốt) + chữ Ba (巴); 山: Bộ Sơn (núi non).</div>
+              <div><strong>✍️ Nét bút:</strong> 爬 (8 nét), 山 (3 nét). Chữ 山: sổ giữa trước, sổ gập, sổ phải.</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 周末我们一起去爬山吧。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Zhōumò wǒmen yìqǐ qù páshān ba.</div>
+                <div class="example-vi">👉 Cuối tuần chúng mình cùng đi leo núi nhé.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 爬山不仅能锻炼身体，还能看风景。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Páshān bùjǐn néng duànliàn shēntǐ, hái néng kàn fēngjǐng.</div>
+                <div class="example-vi">👉 Leo núi không những rèn luyện sức khỏe mà còn ngắm được cảnh đẹp.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 去爬山 (đi leo núi), 爬上山顶 (leo lên đỉnh núi).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>爬山</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-2" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-2')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('爬山')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-3">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">小心</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">xiǎoxīn</span>
+                <span class="vocab-hv">Tiểu tâm</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#fff7ed; color:#9a3412; border:1px solid #fed7aa;">Tính từ / Động từ</span>
+              <button class="btn-tool" onclick="speakText('小心')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Cẩn thận, chú ý cẩn mật</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> 小: Bộ Tiểu (nhỏ bé); 心: Bộ Tâm (trái tim, tâm trí).</div>
+              <div><strong>✍️ Nét bút:</strong> 小 (3 nét: sổ móc giữa, 2 chấm hai bên); 心 (4 nét).</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 路上车多，要小心点儿。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Lùshang chē duō, yào xiǎoxīn diǎnr.</div>
+                <div class="example-vi">👉 Trên đường nhiều xe, phải cẩn thận một chút đấy.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 下雪了，小心路滑。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Xià xuě le, xiǎoxīn lù huá.</div>
+                <div class="example-vi">👉 Tuyết rơi rồi, cẩn thận đường trơn.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 小心一点儿 (cẩn thận một chút), 小心地 + Động từ (làm gì một cách cẩn thận).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>小心</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-3" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-3')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('小心')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-4">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">条</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">tiáo</span>
+                <span class="vocab-hv">Điều</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#fff1f2; color:#9f1239; border:1px solid #fecdd3;">Lượng từ</span>
+              <button class="btn-tool" onclick="speakText('条')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Chiếc, con, sợi, dải (vật dài, uốn lượn)</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bao gồm chữ Phách/Trĩ (夂) ở trên và Bộ Mộc (木) ở dưới.</div>
+              <div><strong>✍️ Nét bút:</strong> 7 nét: phẩy, ngang gập phẩy, mác, sổ, phẩy, chấm.</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 他买了一条新裤子。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Tā mǎi le yì tiáo xīn kùzi.</div>
+                <div class="example-vi">👉 Anh ấy đã mua một chiếc quần mới.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 河里有一条大鱼。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Hé lǐ yǒu yì tiáo dà yú.</div>
+                <div class="example-vi">👉 Dưới sông có một con cá lớn.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 一条裤子 (chiếc quần), 一条鱼 (con cá), 一条河 (dòng sông), 一条路 (con đường).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>条</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-4" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-4')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('条')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-5">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">裤子</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">kùzi</span>
+                <span class="vocab-hv">Khố tử</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0;">Danh từ</span>
+              <button class="btn-tool" onclick="speakText('裤子')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Quần</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bộ Y (衤 - trang phục quần áo) + Chữ Khố (库 - nhà kho).</div>
+              <div><strong>✍️ Nét bút:</strong> 裤 (12 nét): Bộ Y bên trái, bên phải là Quảng (广) và Xa (车).</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 这条裤子长短正合适。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Zhè tiáo kùzi chángduǎn zhèng héshì.</div>
+                <div class="example-vi">👉 Chiếc quần này độ dài vừa vặn luôn.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 服务员，请帮我拿一条黑色的裤子。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Fúwùyuán, qǐng bāng wǒ ná yì tiáo hēisè de kùzi.</div>
+                <div class="example-vi">👉 Phục vụ ơi, lấy giúp tôi một chiếc quần màu đen với.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 穿裤子 (mặc quần), 牛仔裤 (quần bò/jean), 短裤 (quần soóc/quần đùi).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>裤子</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-5" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-5')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('裤子')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-6">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">记得</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">jìde</span>
+                <span class="vocab-hv">Ký đắc</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#fff7ed; color:#9a3412; border:1px solid #fed7aa;">Động từ</span>
+              <button class="btn-tool" onclick="speakText('记得')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Nhớ, còn ghi nhớ trong đầu</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> 记: Bộ Ngôn (讠) + Chữ Kỷ (己); 得: Bộ Xích (彳) + Nhật (日) + Thốn (寸).</div>
+              <div><strong>✍️ Nét bút:</strong> 记 (5 nét), 得 (11 nét). Phân biệt 记得 (còn nhớ) với 想 (nhớ nhung/muốn).</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 我还记得我们第一次见面的地方。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Wǒ hái jìde wǒmen dì-yī cì jiànmiàn de dìfang.</div>
+                <div class="example-vi">👉 Tôi vẫn nhớ nơi lần đầu tiên chúng mình gặp nhau.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 你不记得他的电话号码了吗？</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Nǐ bù jìde tā de diànhuà hàomǎ le ma?</div>
+                <div class="example-vi">👉 Bạn không nhớ số điện thoại của anh ấy nữa à?</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 记不清 (nhớ không rõ), 记本 (sổ ghi chép).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>记得</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-6" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-6')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('记得')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-7">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">衬衫</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">chènshān</span>
+                <span class="vocab-hv">Sấn sam</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0;">Danh từ</span>
+              <button class="btn-tool" onclick="speakText('衬衫')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Áo sơ mi</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Cả hai chữ đều có Bộ Y (衤 - trang phục vải vóc).</div>
+              <div><strong>✍️ Nét bút:</strong> 衬 (8 nét: bộ Y + chữ Thốn 寸), 衫 (8 nét: bộ Y + 3 nét phẩy Sam 彡).</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 穿白衬衫看起来很精神。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Chuān bái chènshān kàn qǐlái hěn jīngshen.</div>
+                <div class="example-vi">👉 Mặc áo sơ mi trắng trông rất sáng sủa tinh anh.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 那件衬衫有点儿贵，但是质量很好。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Nà jiàn chènshān yǒudiǎnr guì, dànshì zhìliàng hěn hǎo.</div>
+                <div class="example-vi">👉 Chiếc áo sơ mi đó hơi đắt một chút nhưng chất lượng rất tốt.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 一件衬衫 (một chiếc áo sơ mi - dùng lượng từ 件 jiàn).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>衬衫</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-7" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-7')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('衬衫')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-8">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">元</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">yuán</span>
+                <span class="vocab-hv">Nguyên</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#fff1f2; color:#9f1239; border:1px solid #fecdd3;">Lượng từ tiền tệ</span>
+              <button class="btn-tool" onclick="speakText('元')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Đồng Nhân dân tệ (văn viết, bằng 块 kuài trong khẩu ngữ)</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bộ Nhất (一) ở trên + Chữ Nhi (儿) ở dưới.</div>
+              <div><strong>✍️ Nét bút:</strong> 4 nét: ngang trên, ngang dưới dài hơn, phẩy, sổ gập móc.</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 这本书一共三十元。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Zhè běn shū yígòng sānshí yuán.</div>
+                <div class="example-vi">👉 Cuốn sách này tổng cộng ba mươi tệ.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 这件衣服五十块（元）。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Zhè jiàn yīfu wǔshí kuài (yuán).</div>
+                <div class="example-vi">👉 Bộ quần áo này giá 50 tệ.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 一元钱 (1 tệ tiền), 美元 (đô la Mỹ), 欧元 (đồng Euro).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>元</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-8" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-8')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('元')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-9">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">新鲜</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">xīnxiān</span>
+                <span class="vocab-hv">Tân tiên</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#faf5ff; color:#6b21a8; border:1px solid #e9d5ff;">Tính từ</span>
+              <button class="btn-tool" onclick="speakText('新鲜')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Tươi ngon (hoa quả, thức ăn), trong lành (không khí)</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> 新: Thân (亲) + Cân (斤 - cái búa rìu); 鲜: Ngư (鱼 - cá) + Dương (羊 - cừu). Cá và dê kết hợp thành vị tươi ngon!</div>
+              <div><strong>✍️ Nét bút:</strong> 新 (13 nét), 鲜 (14 nét).</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 早晨山上的空气很新鲜。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Zǎochén shānshang de kōngqì hěn xīnxiān.</div>
+                <div class="example-vi">👉 Buổi sáng không khí trên núi rất trong lành.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 这些苹果是今天刚买的，非常新鲜。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Zhèxiē píngguǒ shì jīntiān gāng mǎi de, fēicháng xīnxiān.</div>
+                <div class="example-vi">👉 Mấy quả táo này vừa mua hôm nay, rất tươi ngon.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 新鲜水果 (hoa quả tươi), 新鲜空气 (không khí trong lành).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>新鲜</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-9" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-9')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('新鲜')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-10">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">甜</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">tián</span>
+                <span class="vocab-hv">Điềm</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#faf5ff; color:#6b21a8; border:1px solid #e9d5ff;">Tính từ</span>
+              <button class="btn-tool" onclick="speakText('甜')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Ngọt ngào, có vị ngọt</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bộ Thiệt (舌 - cái lưỡi) bên trái + Bộ Cam (甘 - vị ngọt) bên phải. Lưỡi nếm vị ngọt!</div>
+              <div><strong>✍️ Nét bút:</strong> 11 nét: Bộ Thiệt 6 nét + Bộ Cam 5 nét.</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 这个西瓜真甜。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Zhè ge xīguā zhēn tián.</div>
+                <div class="example-vi">👉 Quả dưa hấu này ngọt thật đấy.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 我不喜欢吃太甜的蛋糕。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Wǒ bù xǐhuan chī tài tián de dàngāo.</div>
+                <div class="example-vi">👉 Tôi không thích ăn bánh kem ngọt quá.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 甜品 (món tráng miệng ngọt), 甜言蜜语 (lời nói ngọt ngào mật ngọt).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>甜</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-10" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-10')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('甜')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-11">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">只</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">zhǐ</span>
+                <span class="vocab-hv">Chỉ</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#f0f9ff; color:#075985; border:1px solid #bae6fd;">Phó từ</span>
+              <button class="btn-tool" onclick="speakText('只')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Chỉ, duy chỉ có</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bộ Khẩu (口 - cái miệng) ở trên + Bộ Bát (八) ở dưới.</div>
+              <div><strong>✍️ Nét bút:</strong> 5 nét. Chú ý: Là chữ đa âm tự (Phó từ zhǐ: chỉ; Lượng từ zhī: con, chiếc).</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 我只有一个姐姐。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Wǒ zhǐ yǒu yí ge jiějie.</div>
+                <div class="example-vi">👉 Tôi chỉ có một người chị gái thôi.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 他只要了一杯水，什么也没吃。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Tā zhǐ yào le yì bēi shuǐ, shénme yě méi chī.</div>
+                <div class="example-vi">👉 Anh ấy chỉ gọi một cốc nước, chẳng ăn gì cả.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 只有 (chỉ có), 只要 (chỉ cần), 只能 (chỉ có thể).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>只</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-11" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-11')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('只')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-12">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">放</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">fàng</span>
+                <span class="vocab-hv">Phóng</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#fff7ed; color:#9a3412; border:1px solid #fed7aa;">Động từ</span>
+              <button class="btn-tool" onclick="speakText('放')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Đặt, để, đặt để tại chỗ</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bộ Phương (方 - phương hướng) bên trái + Bộ Phộc (攵 - đánh khẽ/động tác) bên phải.</div>
+              <div><strong>✍️ Nét bút:</strong> 8 nét: 方 (4 nét) + 攵 (4 nét).</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 请把手机放在桌子上。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Qǐng bǎ shǒujī fàng zài zhuōzi shang.</div>
+                <div class="example-vi">👉 Xin vui lòng đặt điện thoại lên bàn.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 桌子上放着很多书和饮料。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Zhuōzi shang fàngzhe hěnduō shū hé yǐnliào.</div>
+                <div class="example-vi">👉 Trên bàn đang để rất nhiều sách và đồ uống.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 放假 (nghỉ lễ/nghỉ phép), 放心 (yên tâm), 放下 (đặt xuống).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>放</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-12" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-12')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('放')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-13">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">饮料</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">yǐnliào</span>
+                <span class="vocab-hv">Ẩm liệu</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0;">Danh từ</span>
+              <button class="btn-tool" onclick="speakText('饮料')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Đồ uống, thức uống các loại</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> 饮: Bộ Thực (饣 - ăn uống) + Chữ Khiếm (欠); 料: Chữ Mễ (米) + Chữ Đẩu (斗).</div>
+              <div><strong>✍️ Nét bút:</strong> 饮 (7 nét), 料 (10 nét).</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 冰箱里有很多冷饮料。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Bīngxiāng lǐ yǒu hěnduō lěng yǐnliào.</div>
+                <div class="example-vi">👉 Trong tủ lạnh có rất nhiều đồ uống lạnh.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 你想喝点儿什么饮料？</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Nǐ xiǎng hē diǎnr shénme yǐnliào?</div>
+                <div class="example-vi">👉 Bạn muốn uống chút đồ uống gì nào?</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 热饮料 (đồ uống nóng), 碳酸饮料 (nước ngọt có ga).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>饮料</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-13" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-13')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('饮料')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-14">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">或者</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">huòzhě</span>
+                <span class="vocab-hv">Hoặc giả</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#fefce8; color:#854d0e; border:1px solid #fef08a;">Liên từ</span>
+              <button class="btn-tool" onclick="speakText('或者')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Hoặc, hoặc là (dùng trong câu khẳng định/trần thuật)</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> 或: Bộ Qua (戈 - vũ khí) bao bọc; 者: Bộ Lão (耂) + Bộ Nhật (日).</div>
+              <div><strong>✍️ Nét bút:</strong> 或 (8 nét), 者 (8 nét). Trọng tâm so sánh với 还是 háishì!</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 星期天我常看书或者听音乐。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Xīngqītiān wǒ cháng kànshū huòzhě tīng yīnyuè.</div>
+                <div class="example-vi">👉 Chủ nhật tôi thường đọc sách hoặc nghe nhạc.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 你明天或者后天来都可以。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Nǐ míngtiān huòzhě hòutiān lái dōu kěyǐ.</div>
+                <div class="example-vi">👉 Bạn ngày mai hoặc ngày kia đến đều được cả.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> A 或者 B 都行 (A hoặc B đều được).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>或者</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-14" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-14')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('或者')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-15">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">舒服</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">shūfu</span>
+                <span class="vocab-hv">Thư phục</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#faf5ff; color:#6b21a8; border:1px solid #e9d5ff;">Tính từ</span>
+              <button class="btn-tool" onclick="speakText('舒服')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Thoải mái, dễ chịu, khỏe khoắn</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> 舒: Chữ Xá (舍) + Chữ Dư (予); 服: Bộ Nguyệt (月) + Chữ Phục (𠬝).</div>
+              <div><strong>✍️ Nét bút:</strong> 舒 (12 nét), 服 (8 nét: đọc thanh nhẹ 'fu').</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 吹着凉风真舒服。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Chuīzhe liángfēng zhēn shūfu.</div>
+                <div class="example-vi">👉 Được gió mát thổi qua thật là dễ chịu.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 我今天身体有点儿不舒服，想请假。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Wǒ jīntiān shēntǐ yǒudiǎnr bù shūfu, xiǎng qǐngjià.</div>
+                <div class="example-vi">👉 Hôm nay người tôi hơi không được khỏe, muốn xin nghỉ phép.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 不舒服 (khó chịu, trong người thấy ốm).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>舒服</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-15" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-15')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('舒服')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-16">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">花</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">huā</span>
+                <span class="vocab-hv">Hoa</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0;">Danh từ / Động từ</span>
+              <button class="btn-tool" onclick="speakText('花')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Hoa, bông hoa (Danh từ); Tiêu xài thời gian/tiền bạc (Động từ)</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bộ Thảo đầu (艹 - cây cỏ hoa lá) ở trên + Chữ Hóa (化) ở dưới.</div>
+              <div><strong>✍️ Nét bút:</strong> 7 nét: ngang, 2 nét sổ của Thảo đầu, phẩy, sổ đứng, phẩy gập.</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 公园里的花开了，真漂亮。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Gōngyuán lǐ de huā kāi le, zhēn piàoliang.</div>
+                <div class="example-vi">👉 Hoa trong công viên đã nở rồi, đẹp thật đấy.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 买这件衣服花了我两百元。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Mǎi zhè jiàn yīfu huā le wǒ liǎng bǎi yuán.</div>
+                <div class="example-vi">👉 Mua bộ quần áo này tốn của tôi hai trăm tệ.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 开花 (nở hoa), 花钱 (tiêu tiền), 花时间 (tốn thời gian).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>花</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-16" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-16')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('花')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="vocab-card" id="vocab-card-17">
+            <div class="vocab-top">
+              <div>
+                <span class="vocab-hanzi">绿</span>
+              </div>
+              <div class="vocab-meta">
+                <span class="vocab-py">lǜ</span>
+                <span class="vocab-hv">Lục</span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+              <span class="vocab-pos" style="background:#faf5ff; color:#6b21a8; border:1px solid #e9d5ff;">Tính từ</span>
+              <button class="btn-tool" onclick="speakText('绿')" title="Nghe phát âm chuẩn">🔊 Phát âm</button>
+            </div>
+
+            <div class="vocab-meaning">🎯 Xanh lá cây, xanh lục</div>
+
+            <div class="vocab-breakdown">
+              <div style="margin-bottom:4px;"><strong>💡 Chiết tự:</strong> Bộ Mịch (纟 - sợi tơ) bên trái + Chữ Lục (录) bên phải. Nhuộm sợi tơ màu lục!</div>
+              <div><strong>✍️ Nét bút:</strong> 11 nét: 纟 (3 nét) + 录 (8 nét). Phát âm âm 'ü' tròn môi.</div>
+            </div>
+
+            <div class="vocab-examples">
+              <div class="example-line">
+                <div class="example-zh">1. 春天草地变得很绿。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Chūntiān cǎodì biàn de hěn lǜ.</div>
+                <div class="example-vi">👉 Mùa xuân bãi cỏ trở nên rất xanh tươi.</div>
+              </div>
+              <div class="example-line">
+                <div class="example-zh">2. 窗外是一片绿色的树林。</div>
+                <div style="font-size:12px; color:#d97706; font-weight:600;">Chuāngwài shì yí piàn lǜsè de shùlín.</div>
+                <div class="example-vi">👉 Ngoài cửa sổ là một rặng cây xanh mướt.</div>
+              </div>
+              <div style="font-size:12.5px; color:#4338ca; background:#eef2ff; padding:6px 10px; border-radius:8px; border-left:3px solid #6366f1;"><strong>⭐ Mở rộng:</strong> 绿茶 (trà xanh), 绿草 (cỏ xanh), 绿色 (màu xanh lá).</div>
+            </div>
+
+            <div class="canvas-container">
+              <div class="canvas-label">
+                <span>✍️ Ô mễ tập viết: <strong>绿</strong></span>
+                <span style="font-size:11px; color:#94a3b8;">Dùng chuột / tay để viết</span>
+              </div>
+              <canvas class="hanzi-canvas" id="canvas-vocab-17" width="160" height="160"></canvas>
+              <div class="canvas-tools">
+                <button class="btn-tool" onclick="clearCanvas('canvas-vocab-17')">🗑️ Xóa viết lại</button>
+                <button class="btn-tool" onclick="speakText('绿')">🔊 Nghe mẫu</button>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== TAB 2: FLASHCARD 3D & MINIGAME NỐI TỪ ==================== -->
+    <div id="tab-games" class="tab-content">
+      <section class="section-card">
+        <div class="subtabs-container">
+          <button class="subtab-btn active" id="btnSubtabFC" onclick="switchSubtab('subtab-flashcard')">🃏 Flashcard 3D Lật Thẻ</button>
+          <button class="subtab-btn" id="btnSubtabMatch" onclick="switchSubtab('subtab-matching')">🧩 Game Nối Từ 2 Cột</button>
+        </div>
+
+        <!-- 3D FLASHCARD -->
+        <div id="subtab-flashcard">
+          <p class="section-desc" style="text-align:center;">Click vào thẻ để lật mặt xem nghĩa, pinyin và ví dụ. Dùng phím Space để lật, mũi tên Trái/Phải để chuyển từ:</p>
+          <div class="flashcard-wrapper">
+            <div class="flashcard" id="flashcardElement" onclick="flipFlashcard()">
+              <div class="flashcard-front">
+                <span class="vocab-pos" id="fcPos">Từ loại</span>
+                <div class="fc-hanzi" id="fcHanzi">汉字</div>
+                <button class="btn-tool" onclick="event.stopPropagation(); playCurrentFCAudio();" style="margin-top:8px;">🔊 Nghe phát âm</button>
+                <div class="fc-hint">👆 Chạm hoặc click để lật mặt sau</div>
+              </div>
+              <div class="flashcard-back">
+                <div class="fc-py" id="fcPy">Pinyin</div>
+                <div class="vocab-hv" id="fcHv" style="margin-bottom:8px;">Hán Việt</div>
+                <div class="fc-meaning" id="fcMeaning">Ý nghĩa tiếng Việt</div>
+                <div style="font-size:13px; color:#475569; background:#fff; padding:6px 10px; border-radius:8px; margin-bottom:10px;" id="fcEg">Câu ví dụ</div>
+                <div class="fc-hint">👆 Click để lật lại mặt trước</div>
+              </div>
+            </div>
+          </div>
+          <div class="flashcard-controls">
+            <button class="nav-btn" onclick="prevFlashcard()">◀ Từ trước</button>
+            <span style="font-weight:800; font-size:15px;" id="fcProgress">1 / 17</span>
+            <button class="nav-btn" onclick="nextFlashcard()">Từ tiếp ▶</button>
+          </div>
+        </div>
+
+        <!-- GAME NỐI TỪ 2 CỘT -->
+        <div id="subtab-matching" style="display:none;">
+          <div class="matching-toolbar">
+            <div class="game-stat">⏱ Thời gian: <span id="gameTimer">00:00</span></div>
+            <div class="game-stat">🎯 Lượt chọn: <span id="gameMoves">0</span></div>
+            <div class="game-stat">✅ Đã ghép: <span id="gameMatches">0</span> / <span id="gameTotal">17</span></div>
+            <button class="btn-tool" id="btnToggleGamePinyin" onclick="toggleGamePinyin()">👁 Hiện Pinyin</button>
+            <button class="btn-tool" onclick="initMatchingGame()" style="background:#fef3c7; color:#92400e; font-weight:700;">🔄 Chơi Lại</button>
+          </div>
+          <p class="section-desc">Bấm chọn 1 từ tiếng Trung ở cột trái, sau đó bấm chọn nghĩa tiếng Việt tương ứng ở cột phải. Ghép đúng sẽ phát âm thanh và đổi màu xanh!</p>
+          <div class="matching-game-board">
+            <div class="matching-col" id="colChinese"></div>
+            <div class="matching-col" id="colVietnamese"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== TAB 3: 4 BÀI KHÓA & AI SHADOWING ==================== -->
+    <div id="tab-dialogues" class="tab-content">
+      <section class="section-card">
+        <div class="section-header">
+          <div class="section-title"><span>📖 4 Bài Khóa SGK &amp; 🎙️ Luyện Phát Âm AI Shadowing</span></div>
+          <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Audio gốc từ giáo trình</span>
+        </div>
+        <p class="section-desc">Nghe từng đoạn hội thoại theo phát âm chuẩn, bóc tách cấu trúc câu và luyện phát âm nhại giọng (Shadowing) bằng nút Micro để nhận diện giọng nói và chấm điểm % mức độ chính xác:</p>
+
+
+        <div class="dialogue-card" id="dialogue-1">
+          <div class="dialogue-header">
+            <div>
+              <span style="font-size:12px; font-weight:800; background:#fef3c7; color:#92400e; padding:3px 10px; border-radius:12px; text-transform:uppercase;">BÀI KHÓA 1</span>
+              <h3 class="dialogue-title" style="margin-top:4px;">在家喝茶 (Ở nhà uống trà)</h3>
+            </div>
+            <span style="font-size:12.5px; font-weight:700; background:#f1f5f9; color:#475569; padding:4px 12px; border-radius:10px;">📍 在家 (Tại nhà)</span>
+          </div>
+
+          <div class="dialogue-audio-box">
+            <div style="font-size:12px; font-weight:700; color:#b45309; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+              <span>🎧 Audio chuẩn Sách Giáo Khoa (03-1.mp3):</span>
+            </div>
+            <audio controls preload="none" src="../audio_textbook/Bai_03/03-1.mp3"></audio>
+          </div>
+
+          <div class="dialogue-context">
+            <strong>Ngữ cảnh hội thoại:</strong> Hai người bạn đang ở nhà trò chuyện về kế hoạch đi chơi cuối tuần và đồ uống giải khát.
+          </div>
+
+          <div class="dialogue-lines">
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小丽</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('明天是晴天还是阴天？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">明天是晴天还是阴天？</div>
+                <div class="d-py">Míngtiān shì qíngtiān háishì yīntiān?</div>
+                <div class="d-vi">Ngày mai là ngày nắng hay ngày âm u vậy?</div>
+                <div class="d-analysis">💡 Dùng liên từ '还是' để hỏi lựa chọn giữa hai khả năng: trời nắng (晴天) hay u ám (阴天).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('明天是晴天还是阴天？', 'acc-d1-l0', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d1-l0"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('阴天，电视上说多云。怎么了？有事？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">阴天，电视上说多云。怎么了？有事？</div>
+                <div class="d-py">Yīntiān, diànshì shang shuō duōyún. Zěnme le? Yǒu shì?</div>
+                <div class="d-vi">Trời âm u, trên tivi bảo nhiều mây. Sao thế? Có việc gì à?</div>
+                <div class="d-analysis">💡 Cụm từ '电视上' (trên tivi). Câu hỏi ngắn thân mật '怎么了？有事？'.</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('阴天，电视上说多云。怎么了？有事？', 'acc-d1-l1', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d1-l1"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小丽</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('没事，我们明天要去爬山。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">没事，我们明天要去爬山。</div>
+                <div class="d-py">Méi shì, wǒmen míngtiān yào qù páshān.</div>
+                <div class="d-vi">Không có gì, mai bọn mình định đi leo núi.</div>
+                <div class="d-analysis">💡 Động từ '要' biểu thị dự định sắp thực hiện; từ mới '爬山' (leo núi).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('没事，我们明天要去爬山。', 'acc-d1-l2', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d1-l2"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('爬山的时候要小心点儿。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">爬山的时候要小心点儿。</div>
+                <div class="d-py">Páshān de shíhou yào xiǎoxīn diǎnr.</div>
+                <div class="d-vi">Lúc leo núi thì phải cẩn thận một chút nhé.</div>
+                <div class="d-analysis">💡 Cấu trúc '...的时候' (lúc/khi...); tính từ '小心' làm vị ngữ có '点儿' làm bổ ngữ mức độ nhẹ nhàng khuyên nhủ.</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('爬山的时候要小心点儿。', 'acc-d1-l3', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d1-l3"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小丽</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('好，你也去吗？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">好，你也去吗？</div>
+                <div class="d-py">Hǎo, nǐ yě qù ma?</div>
+                <div class="d-vi">Được rồi, cậu cũng đi chứ?</div>
+                <div class="d-analysis">💡 </div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('好，你也去吗？', 'acc-d1-l4', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d1-l4"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('我不去，我有事。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">我不去，我有事。</div>
+                <div class="d-py">Wǒ bú qù, wǒ yǒu shì.</div>
+                <div class="d-vi">Tớ không đi đâu, tớ có việc bận rồi.</div>
+                <div class="d-analysis">💡 </div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('我不去，我有事。', 'acc-d1-l5', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d1-l5"></span>
+                </div>
+              </div>
+            
+          </div>
+
+          
+          <div style="margin-top:18px; background:#fffbeb; border:1px solid #fde68a; border-radius:14px; padding:16px;">
+            <div style="font-weight:800; font-size:14.5px; color:#92400e; margin-bottom:10px;">
+              ❓ Câu hỏi hiểu bài: 小丽明天打算做什么？ (Tiểu Lệ ngày mai dự định làm gì?)
+            </div>
+            <div class="quiz-options" style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              
+              <button class="quiz-opt" onclick="selectDialogueCheck('1', 'A', this)">
+                <strong>A.</strong> 在家看电视
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('1', 'B', this)">
+                <strong>B.</strong> 去爬山
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('1', 'C', this)">
+                <strong>C.</strong> 去买衣服
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('1', 'D', this)">
+                <strong>D.</strong> 去喝咖啡
+              </button>
+            
+            </div>
+            <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+              <button class="nav-btn btn-arena" style="padding:6px 14px; font-size:13px;" onclick="checkDialogueQuiz('1', 'B')">Kiểm tra đáp án</button>
+              <div id="d-exp-1" style="display:none; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px;">
+                💡 <strong>Giải thích:</strong> Trong bài tiểu Lệ nói: '我们明天要去爬山' (Ngày mai chúng tôi định đi leo núi).
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        
+
+        <div class="dialogue-card" id="dialogue-2">
+          <div class="dialogue-header">
+            <div>
+              <span style="font-size:12px; font-weight:800; background:#fef3c7; color:#92400e; padding:3px 10px; border-radius:12px; text-transform:uppercase;">BÀI KHÓA 2</span>
+              <h3 class="dialogue-title" style="margin-top:4px;">在商场买衣服 (Mua quần áo ở trung tâm thương mại)</h3>
+            </div>
+            <span style="font-size:12.5px; font-weight:700; background:#f1f5f9; color:#475569; padding:4px 12px; border-radius:10px;">📍 在商场 (Ở trung tâm thương mại)</span>
+          </div>
+
+          <div class="dialogue-audio-box">
+            <div style="font-size:12px; font-weight:700; color:#b45309; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+              <span>🎧 Audio chuẩn Sách Giáo Khoa (03-2.mp3):</span>
+            </div>
+            <audio controls preload="none" src="../audio_textbook/Bai_03/03-2.mp3"></audio>
+          </div>
+
+          <div class="dialogue-context">
+            <strong>Ngữ cảnh hội thoại:</strong> Tiểu Cương và Tiểu Lệ đi mua sắm quần áo, Tiểu Cương thử áo sơ mi và xin ý kiến Tiểu Lệ.
+          </div>
+
+          <div class="dialogue-lines">
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('你觉得这条裤子怎么样？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">你觉得这条裤子怎么样？</div>
+                <div class="d-py">Nǐ juéde zhè tiáo kùzi zěnmeyàng?</div>
+                <div class="d-vi">Em thấy chiếc quần này thế nào?</div>
+                <div class="d-analysis">💡 Lượng từ '条' dùng cho '裤子'; câu hỏi ý kiến '...怎么样?'.</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('你觉得这条裤子怎么样？', 'acc-d2-l0', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d2-l0"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小丽</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('我记得你已经有两条这样的裤子了。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">我记得你已经有两条这样的裤子了。</div>
+                <div class="d-py">Wǒ jìde nǐ yǐjīng yǒu liǎng tiáo zhèyàng de kùzi le.</div>
+                <div class="d-vi">Em nhớ là anh đã có hai chiếc quần như thế này rồi mà.</div>
+                <div class="d-analysis">💡 Động từ '记得' (ghi nhớ); cấu trúc '已经...了' (đã... rồi); '两条' (hai chiếc).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('我记得你已经有两条这样的裤子了。', 'acc-d2-l1', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d2-l1"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('那我们再看看别的新衣服吧。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">那我们再看看别的新衣服吧。</div>
+                <div class="d-py">Nà wǒmen zài kànkan bié de xīn yīfu ba.</div>
+                <div class="d-vi">Thế thì chúng mình xem tiếp quần áo mới khác đi.</div>
+                <div class="d-analysis">💡 Phó từ '再' biểu thị hành động tiếp diễn trong tương lai; lặp lại động từ '看看'.</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('那我们再看看别的新衣服吧。', 'acc-d2-l2', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d2-l2"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小丽</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('这件衬衫怎么样？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">这件衬衫怎么样？</div>
+                <div class="d-py">Zhè jiàn chènshān zěnmeyàng?</div>
+                <div class="d-vi">Chiếc áo sơ mi này thế nào?</div>
+                <div class="d-analysis">💡 Lượng từ của áo sơ mi là '件' (jiàn), không dùng '条'!</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('这件衬衫怎么样？', 'acc-d2-l3', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d2-l3"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('还不错，多少钱一件？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">还不错，多少钱一件？</div>
+                <div class="d-py">Hái búcuò, duōshao qián yí jiàn?</div>
+                <div class="d-vi">Cũng khá đấy, bao nhiêu tiền một chiếc vậy?</div>
+                <div class="d-analysis">💡 Thành ngữ khẩu ngữ '还不错' (cũng khá/không tồi). Hỏi giá: '多少钱...?'</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('还不错，多少钱一件？', 'acc-d2-l4', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d2-l4"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小丽</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('这上面写着三百二十元。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">这上面写着三百二十元。</div>
+                <div class="d-py">Zhè shàngmiàn xiězhe sānbǎi èrshí yuán.</div>
+                <div class="d-vi">Trên này ghi là ba trăm hai mươi tệ.</div>
+                <div class="d-analysis">💡 CÂU CHỮ '着': '这上面' (vị trí) + '写着' (động từ kèm 着) + '三百二十元' (nội dung hiển thị).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('这上面写着三百二十元。', 'acc-d2-l5', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d2-l5"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('买一件。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">买一件。</div>
+                <div class="d-py">Mǎi yí jiàn.</div>
+                <div class="d-vi">Mua một chiếc nhé.</div>
+                <div class="d-analysis">💡 </div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('买一件。', 'acc-d2-l6', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d2-l6"></span>
+                </div>
+              </div>
+            
+          </div>
+
+          
+          <div style="margin-top:18px; background:#fffbeb; border:1px solid #fde68a; border-radius:14px; padding:16px;">
+            <div style="font-weight:800; font-size:14.5px; color:#92400e; margin-bottom:10px;">
+              ❓ Câu hỏi hiểu bài: 那件衬衫多少钱？ (Chiếc áo sơ mi đó giá bao nhiêu tiền?)
+            </div>
+            <div class="quiz-options" style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              
+              <button class="quiz-opt" onclick="selectDialogueCheck('2', 'A', this)">
+                <strong>A.</strong> 两百元
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('2', 'B', this)">
+                <strong>B.</strong> 三百元
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('2', 'C', this)">
+                <strong>C.</strong> 三百二十元
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('2', 'D', this)">
+                <strong>D.</strong> 四百元
+              </button>
+            
+            </div>
+            <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+              <button class="nav-btn btn-arena" style="padding:6px 14px; font-size:13px;" onclick="checkDialogueQuiz('2', 'C')">Kiểm tra đáp án</button>
+              <div id="d-exp-2" style="display:none; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px;">
+                💡 <strong>Giải thích:</strong> Tiểu Lệ đọc trên mác áo: '这上面写着三百二十元' (Trên này ghi 320 tệ).
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        
+
+        <div class="dialogue-card" id="dialogue-3">
+          <div class="dialogue-header">
+            <div>
+              <span style="font-size:12px; font-weight:800; background:#fef3c7; color:#92400e; padding:3px 10px; border-radius:12px; text-transform:uppercase;">BÀI KHÓA 3</span>
+              <h3 class="dialogue-title" style="margin-top:4px;">在水果摊买水果 (Mua hoa quả ở quầy trái cây)</h3>
+            </div>
+            <span style="font-size:12.5px; font-weight:700; background:#f1f5f9; color:#475569; padding:4px 12px; border-radius:10px;">📍 在水果摊 (Tại quầy hoa quả)</span>
+          </div>
+
+          <div class="dialogue-audio-box">
+            <div style="font-size:12px; font-weight:700; color:#b45309; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+              <span>🎧 Audio chuẩn Sách Giáo Khoa (03-3.mp3):</span>
+            </div>
+            <audio controls preload="none" src="../audio_textbook/Bai_03/03-3.mp3"></audio>
+          </div>
+
+          <div class="dialogue-context">
+            <strong>Ngữ cảnh hội thoại:</strong> Khách hàng trò chuyện với người bán hoa quả về độ ngọt và tươi ngon của dưa hấu và táo.
+          </div>
+
+          <div class="dialogue-lines">
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 周太太</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('这些西瓜真新鲜，甜不甜？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">这些西瓜真新鲜，甜不甜？</div>
+                <div class="d-py">Zhèxiē xīguā zhēn xīnxiān, tián bu tián?</div>
+                <div class="d-vi">Mấy quả dưa hấu này tươi ngon thật, có ngọt không đấy?</div>
+                <div class="d-analysis">💡 Tính từ '新鲜' (tươi); câu hỏi chính phản '甜不甜' (ngọt hay không ngọt).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('这些西瓜真新鲜，甜不甜？', 'acc-d3-l0', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d3-l0"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 售货员</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('不甜不要钱。您要大的还是小的？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">不甜不要钱。您要大的还是小的？</div>
+                <div class="d-py">Bù tián bú yào qián. Nín yào dà de háishì xiǎo de?</div>
+                <div class="d-vi">Không ngọt không lấy tiền ạ. Bác muốn quả to hay quả nhỏ?</div>
+                <div class="d-analysis">💡 Cách chào mời nổi tiếng: '不甜不要钱'. Câu hỏi lựa chọn với '还是'.</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('不甜不要钱。您要大的还是小的？', 'acc-d3-l1', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d3-l1"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 周太太</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('买个大的吧。苹果怎么样？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">买个大的吧。苹果怎么样？</div>
+                <div class="d-py">Mǎi ge dà de ba. Píngguǒ zěnmeyàng?</div>
+                <div class="d-vi">Mua một quả to đi. Thế còn táo thì sao?</div>
+                <div class="d-analysis">💡 Tỉnh lược lượng từ '个' (买个大的); chuyển hướng chủ đề hỏi về táo.</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('买个大的吧。苹果怎么样？', 'acc-d3-l2', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d3-l2"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 售货员</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('苹果也很好，又大又甜，还很便宜。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">苹果也很好，又大又甜，还很便宜。</div>
+                <div class="d-py">Píngguǒ yě hěn hǎo, yòu dà yòu tián, hái hěn piányi.</div>
+                <div class="d-vi">Táo cũng rất ngon bác ạ, vừa to lại vừa ngọt, lại còn rất rẻ nữa.</div>
+                <div class="d-analysis">💡 Cấu trúc song hành '又...又...' (vừa... vừa...): 又大又甜 (vừa to vừa ngọt).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('苹果也很好，又大又甜，还很便宜。', 'acc-d3-l3', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d3-l3"></span>
+                </div>
+              </div>
+            
+          </div>
+
+          
+          <div style="margin-top:18px; background:#fffbeb; border:1px solid #fde68a; border-radius:14px; padding:16px;">
+            <div style="font-weight:800; font-size:14.5px; color:#92400e; margin-bottom:10px;">
+              ❓ Câu hỏi hiểu bài: 售货员觉得苹果怎么样？ (Người bán hàng thấy táo thế nào?)
+            </div>
+            <div class="quiz-options" style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              
+              <button class="quiz-opt" onclick="selectDialogueCheck('3', 'A', this)">
+                <strong>A.</strong> 不太甜
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('3', 'B', this)">
+                <strong>B.</strong> 有点儿贵
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('3', 'C', this)">
+                <strong>C.</strong> 又大又甜还便宜
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('3', 'D', this)">
+                <strong>D.</strong> 不新鲜
+              </button>
+            
+            </div>
+            <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+              <button class="nav-btn btn-arena" style="padding:6px 14px; font-size:13px;" onclick="checkDialogueQuiz('3', 'C')">Kiểm tra đáp án</button>
+              <div id="d-exp-3" style="display:none; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px;">
+                💡 <strong>Giải thích:</strong> Người bán hàng khen: '苹果也很好，又大又甜，还很便宜'.
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        
+
+        <div class="dialogue-card" id="dialogue-4">
+          <div class="dialogue-header">
+            <div>
+              <span style="font-size:12px; font-weight:800; background:#fef3c7; color:#92400e; padding:3px 10px; border-radius:12px; text-transform:uppercase;">BÀI KHÓA 4</span>
+              <h3 class="dialogue-title" style="margin-top:4px;">在休息室 (Ở phòng nghỉ)</h3>
+            </div>
+            <span style="font-size:12.5px; font-weight:700; background:#f1f5f9; color:#475569; padding:4px 12px; border-radius:10px;">📍 在休息室 (Tại phòng nghỉ ngơi)</span>
+          </div>
+
+          <div class="dialogue-audio-box">
+            <div style="font-size:12px; font-weight:700; color:#b45309; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+              <span>🎧 Audio chuẩn Sách Giáo Khoa (03-4.mp3):</span>
+            </div>
+            <audio controls preload="none" src="../audio_textbook/Bai_03/03-4.mp3"></audio>
+          </div>
+
+          <div class="dialogue-context">
+            <strong>Ngữ cảnh hội thoại:</strong> Hai đồng nghiệp cùng ngồi nghỉ ngơi uống nước, ngắm nhìn khung cảnh thư thái ngoài cửa sổ.
+          </div>
+
+          <div class="dialogue-lines">
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小丽</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('桌子上放着很多饮料，你喝什么？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">桌子上放着很多饮料，你喝什么？</div>
+                <div class="d-py">Zhuōzi shang fàngzhe hěnduō yǐnliào, nǐ hē shénme?</div>
+                <div class="d-vi">Trên bàn để rất nhiều đồ uống, bạn uống gì nào?</div>
+                <div class="d-analysis">💡 CÂU TỒN HIỆN CHỦ ĐẠO CỦA BÀI: '桌子上' (Nơi chốn) + '放着' (Động từ + 着) + '很多饮料' (Tân ngữ vật thể).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('桌子上放着很多饮料，你喝什么？', 'acc-d4-l0', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d4-l0"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('茶或者咖啡都可以。你呢？你喝什么？')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">茶或者咖啡都可以。你呢？你喝什么？</div>
+                <div class="d-py">Chá huòzhě kāfēi dōu kěyǐ. Nǐ ne? Nǐ hē shénme?</div>
+                <div class="d-vi">Trà hoặc là cà phê đều được cả. Còn cậu? Cậu uống gì?</div>
+                <div class="d-analysis">💡 PHÂN BIỆT '或者': Đây là câu trần thuật khẳng định nên DÙNG '或者', KHÔNG DÙNG '还是'!</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('茶或者咖啡都可以。你呢？你喝什么？', 'acc-d4-l1', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d4-l1"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小丽</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('我喝茶，茶是我的最爱。天冷了或者累了的时候，喝杯热茶很舒服。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">我喝茶，茶是我的最爱。天冷了或者累了的时候，喝杯热茶很舒服。</div>
+                <div class="d-py">Wǒ hē chá, chá shì wǒ de zuì ài. Tiān lěng le huòzhě lèi le de shíhou, hē bēi rè chá hěn shūfu.</div>
+                <div class="d-vi">Tớ uống trà, trà là món tớ mê nhất. Khi trời trở lạnh hoặc khi thấy mệt mỏi, được uống ly trà nóng thì thật dễ chịu.</div>
+                <div class="d-analysis">💡 Dùng '或者' nối hai trạng thái: '天冷了或者累了的时候'; tính từ '舒服' (thoải mái).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('我喝茶，茶是我的最爱。天冷了或者累了的时候，喝杯热茶很舒服。', 'acc-d4-l2', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d4-l2"></span>
+                </div>
+              </div>
+            
+              <div class="d-line">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span class="d-speaker">👤 小刚</span>
+                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('你看，窗外放着很多花，草也绿了，真漂亮。')">🔊 Nghe câu</button>
+                </div>
+                <div class="d-zh">你看，窗外放着很多花，草也绿了，真漂亮。</div>
+                <div class="d-py">Nǐ kàn, chuāngwài fàngzhe hěnduō huā, cǎo yě lǜ le, zhēn piàoliang.</div>
+                <div class="d-vi">Cậu nhìn xem, ngoài cửa sổ đặt bao nhiêu là hoa, cỏ cũng xanh mướt rồi, đẹp thật đấy.</div>
+                <div class="d-analysis">💡 Thêm một câu tồn hiện: '窗外放着很多花' (Ngoài cửa sổ đang đặt rất nhiều hoa).</div>
+                <div class="shadowing-box">
+                  <button class="btn-mic" onclick="startShadowing('你看，窗外放着很多花，草也绿了，真漂亮。', 'acc-d4-l3', this)">🎙️ Luyện Shadowing câu này</button>
+                  <span class="accuracy-badge" id="acc-d4-l3"></span>
+                </div>
+              </div>
+            
+          </div>
+
+          
+          <div style="margin-top:18px; background:#fffbeb; border:1px solid #fde68a; border-radius:14px; padding:16px;">
+            <div style="font-weight:800; font-size:14.5px; color:#92400e; margin-bottom:10px;">
+              ❓ Câu hỏi hiểu bài: 小刚想喝什么？ (Tiểu Cương muốn uống gì?)
+            </div>
+            <div class="quiz-options" style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              
+              <button class="quiz-opt" onclick="selectDialogueCheck('4', 'A', this)">
+                <strong>A.</strong> 只要冷饮
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('4', 'B', this)">
+                <strong>B.</strong> 只喝牛奶
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('4', 'C', this)">
+                <strong>C.</strong> 茶或者咖啡都可以
+              </button>
+            
+              <button class="quiz-opt" onclick="selectDialogueCheck('4', 'D', this)">
+                <strong>D.</strong> 什么都不喝
+              </button>
+            
+            </div>
+            <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+              <button class="nav-btn btn-arena" style="padding:6px 14px; font-size:13px;" onclick="checkDialogueQuiz('4', 'C')">Kiểm tra đáp án</button>
+              <div id="d-exp-4" style="display:none; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px;">
+                💡 <strong>Giải thích:</strong> Tiểu Cương trả lời rõ ràng: '茶或者咖啡都可以' (Trà hoặc cà phê đều được cả).
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        
+      </section>
+    </div>
+
+    <!-- ==================== TAB 4: XƯỞNG NGỮ PHÁP & QUIZ ==================== -->
+    <div id="tab-grammar" class="tab-content">
+      <section class="section-card">
+        <div class="section-header">
+          <div class="section-title"><span>⚖️ Xưởng Ngữ Pháp (Grammar Lab) &amp; Bẫy Đề Thi</span></div>
+          <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Điểm ngữ pháp mấu chốt</span>
+        </div>
+
+
+        <div class="grammar-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 class="grammar-title">Ngữ pháp 1: Câu Tồn Hiện với Động từ + “着” (存现句)</h3>
+            <span style="font-size:12px; font-weight:800; background:#fef3c7; color:#92400e; padding:3px 10px; border-radius:12px;">TRỌNG ĐIỂM HSK 3</span>
+          </div>
+          
+          <div class="grammar-formula">
+            <span style="font-size:12px; color:#b45309; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:4px;">📐 CÔNG THỨC VÀNG:</span>
+            Từ chỉ Nơi chốn / Vị trí + Động từ + 着 + (Số lượng / Hình dung từ) + Danh từ
+          </div>
+
+          <p style="font-size:14.5px; color:#334155; margin-bottom:14px;">Dùng để biểu thị ở một địa điểm nào đó đang tồn tại hoặc đang duy trì trạng thái của một vật thể hay người.</p>
+
+          
+              <div style="margin-bottom:14px;">
+                <h4 style="font-size:14.5px; font-weight:800; color:#0f172a; margin-bottom:8px;">📌 Quy tắc then chốt:</h4>
+                <ul style="padding-left:20px; font-size:14px; color:#334155; line-height:1.6;">
+                  <li style='margin-bottom:6px;'>1. Từ đầu câu PHẢI là từ chỉ nơi chốn (như: 桌子上, 门前, 墙上, 窗外).</li><li style='margin-bottom:6px;'>2. Động từ thường là động từ chỉ tư thế/trạng thái tĩnh: 放 (đặt), 挂 (treo), 坐 (ngồi), 站 (đứng), 躺 (nằm), 开 (mở).</li><li style='margin-bottom:6px;'>3. Dạng phủ định: Thêm '没' hoặc '没有' trước động từ, và BỎ số từ/lượng từ (Ví dụ: 桌子上没放饮料).</li>
+                </ul>
+              </div>
+            
+          
+          
+              <div style="margin-bottom:14px;">
+                <h4 style="font-size:14.5px; font-weight:800; color:#0f172a; margin-bottom:8px;">🌟 Câu ví dụ thực hành:</h4>
+                
+                  <div class="example-line" style="margin-bottom:8px;">
+                    <div class="example-zh">🔹 桌子上放着很多饮料。</div>
+                    <div style="font-size:12.5px; color:#d97706; font-weight:600;">Zhuōzi shang fàngzhe hěnduō yǐnliào.</div>
+                    <div class="example-vi">👉 Trên bàn đang để rất nhiều đồ uống.</div>
+                  </div>
+                
+                  <div class="example-line" style="margin-bottom:8px;">
+                    <div class="example-zh">🔹 墙上挂着一张中国地图。</div>
+                    <div style="font-size:12.5px; color:#d97706; font-weight:600;">Qiáng shang guàzhe yì zhāng Zhōngguó dìtú.</div>
+                    <div class="example-vi">👉 Trên tường đang treo một tấm bản đồ Trung Quốc.</div>
+                  </div>
+                
+                  <div class="example-line" style="margin-bottom:8px;">
+                    <div class="example-zh">🔹 门开着呢，请进吧。</div>
+                    <div style="font-size:12.5px; color:#d97706; font-weight:600;">Mén kāizhe ne, qǐng jìn ba.</div>
+                    <div class="example-vi">👉 Cửa đang mở đấy, xin mời vào.</div>
+                  </div>
+                
+              </div>
+            
+          
+          <div class="grammar-traps">
+            <strong>⚠️ BẪY ĐỀ THI HSK CẦN TRÁNH:</strong><br>
+            BẪY HSK 3: Không được thêm từ '在' trước nơi chốn nếu muốn dùng câu tồn hiện thuần túy (Sai: 在桌子上放着书 ➔ Đúng: 桌子上放着书).
+          </div>
+        
+        </div>
+        
+
+        <div class="grammar-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 class="grammar-title">Ngữ pháp 2: Phân Biệt Cặp Từ Dễ Nhầm Lẫn: “还是” vs “或者”</h3>
+            <span style="font-size:12px; font-weight:800; background:#fef3c7; color:#92400e; padding:3px 10px; border-radius:12px;">TRỌNG ĐIỂM HSK 3</span>
+          </div>
+          
+          <div class="grammar-formula">
+            <span style="font-size:12px; color:#b45309; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:4px;">📐 CÔNG THỨC VÀNG:</span>
+            Câu hỏi / Phân vân: A 还是 B ?  |  Câu trần thuật / Khẳng định: A 或者 B .
+          </div>
+
+          <p style="font-size:14.5px; color:#334155; margin-bottom:14px;">Cả hai từ đều mang nghĩa tương đương 'hoặc, hay là' trong tiếng Việt, nhưng ngữ cảnh sử dụng hoàn toàn trái ngược nhau.</p>
+
+          
+          
+              <div style="overflow-x:auto; margin-bottom:16px;">
+                <table style="width:100%; border-collapse:collapse; font-size:13.5px; text-align:left;">
+                  <thead>
+                    <tr style="background:#fef3c7; color:#78350f;">
+                      <th style="padding:10px 14px; border:1px solid #fde68a;">Tiêu chí</th>
+                      <th style="padding:10px 14px; border:1px solid #fde68a;">还是 (háishì) - Câu hỏi / Phân vân</th>
+                      <th style="padding:10px 14px; border:1px solid #fde68a;">或者 (huòzhě) - Câu khẳng định</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                  <tr>
+                    <td style="padding:10px 14px; font-weight:700; background:#f8fafc; border:1px solid #e2e8f0;">Loại câu sử dụng</td>
+                    <td style="padding:10px 14px; color:#b45309; font-weight:600; border:1px solid #e2e8f0; background:#fffdf5;">Chỉ dùng trong CÂU HỎI hoặc mệnh đề mang tính nghi vấn</td>
+                    <td style="padding:10px 14px; color:#0284c7; font-weight:600; border:1px solid #e2e8f0; background:#f0f9ff;">Dùng trong CÂU KHẲNG ĐỊNH, câu trần thuật</td>
+                  </tr>
+                
+                  <tr>
+                    <td style="padding:10px 14px; font-weight:700; background:#f8fafc; border:1px solid #e2e8f0;">Dấu hiệu nhận biết</td>
+                    <td style="padding:10px 14px; color:#b45309; font-weight:600; border:1px solid #e2e8f0; background:#fffdf5;">Thường kết thúc bằng dấu chấm hỏi '?' hoặc từ nghi vấn (不知道, 想想)</td>
+                    <td style="padding:10px 14px; color:#0284c7; font-weight:600; border:1px solid #e2e8f0; background:#f0f9ff;">Kết thúc bằng dấu chấm '.', biểu thị phương án nào cũng được</td>
+                  </tr>
+                
+                  <tr>
+                    <td style="padding:10px 14px; font-weight:700; background:#f8fafc; border:1px solid #e2e8f0;">Ví dụ chuẩn</td>
+                    <td style="padding:10px 14px; color:#b45309; font-weight:600; border:1px solid #e2e8f0; background:#fffdf5;">你喝茶还是喝咖啡？ (Bạn uống trà hay cà phê?)</td>
+                    <td style="padding:10px 14px; color:#0284c7; font-weight:600; border:1px solid #e2e8f0; background:#f0f9ff;">茶或者咖啡都可以。 (Trà hoặc cà phê đều được.)</td>
+                  </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            
+          
+          
+          <div class="grammar-traps">
+            <strong>⚠️ BẪY ĐỀ THI HSK CẦN TRÁNH:</strong><br>
+            BẪY ĐẶC BIỆT: Khi trong câu trần thuật có cụm từ chỉ sự phân vân nghi vấn như '我不知道 / 我还没想好' thì vẫn PHẢI DÙNG '还是' (Ví dụ: 我不知道他是中国人还是日本人).
+          </div>
+        
+        </div>
+        
+
+        <div style="margin-top:30px; border-top:2px dashed #f59e0b; padding-top:24px;">
+          <h3 style="font-size:19px; font-weight:800; color:#1e293b; margin-bottom:16px;">📝 Mini Quiz Kiểm Tra Nhanh Ngữ Pháp (5 Câu)</h3>
+
+        <div class="quiz-card mini-quiz grammar-quiz" id="quiz-card-1">
+          <div class="quiz-q">Câu 1: 桌子上______很多新鲜的水果。</div>
+          <div class="quiz-options">
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('1', 'A', this)">
+                A. 放了
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('1', 'B', this)">
+                B. 放着
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('1', 'C', this)">
+                C. 放过
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('1', 'D', this)">
+                D. 正在放
+              </button>
+            
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+            <button class="nav-btn btn-arena" style="padding:6px 16px; font-size:13px;" onclick="checkMiniQuiz('1', 'B')">Kiểm tra kết quả</button>
+            <span style="font-size:12.5px; color:#64748b;">Chọn đáp án đúng rồi bấm kiểm tra</span>
+          </div>
+          <div class="quiz-explain" id="quiz-exp-1">
+            <strong>Đáp án đúng: B</strong><br>
+            💡 Câu tồn hiện miêu tả trạng thái tĩnh của đồ vật ở một vị trí dùng cấu trúc: Nơi chốn + Động từ + 着 + Danh từ.
+          </div>
+        </div>
+        
+
+        <div class="quiz-card mini-quiz grammar-quiz" id="quiz-card-2">
+          <div class="quiz-q">Câu 2: 你打算今天去买衬衫______明天去？</div>
+          <div class="quiz-options">
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('2', 'A', this)">
+                A. 或者
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('2', 'B', this)">
+                B. 还是
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('2', 'C', this)">
+                C. 但是
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('2', 'D', this)">
+                D. 因为
+              </button>
+            
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+            <button class="nav-btn btn-arena" style="padding:6px 16px; font-size:13px;" onclick="checkMiniQuiz('2', 'B')">Kiểm tra kết quả</button>
+            <span style="font-size:12.5px; color:#64748b;">Chọn đáp án đúng rồi bấm kiểm tra</span>
+          </div>
+          <div class="quiz-explain" id="quiz-exp-2">
+            <strong>Đáp án đúng: B</strong><br>
+            💡 Câu hỏi lựa chọn kết thúc bằng dấu hỏi '?' bắt buộc dùng liên từ '还是' (hay là).
+          </div>
+        </div>
+        
+
+        <div class="quiz-card mini-quiz grammar-quiz" id="quiz-card-3">
+          <div class="quiz-q">Câu 3: 周末我常在宿舍听音乐______看电影。</div>
+          <div class="quiz-options">
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('3', 'A', this)">
+                A. 还是
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('3', 'B', this)">
+                B. 或者
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('3', 'C', this)">
+                C. 而且
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('3', 'D', this)">
+                D. 可是
+              </button>
+            
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+            <button class="nav-btn btn-arena" style="padding:6px 16px; font-size:13px;" onclick="checkMiniQuiz('3', 'B')">Kiểm tra kết quả</button>
+            <span style="font-size:12.5px; color:#64748b;">Chọn đáp án đúng rồi bấm kiểm tra</span>
+          </div>
+          <div class="quiz-explain" id="quiz-exp-3">
+            <strong>Đáp án đúng: B</strong><br>
+            💡 Đây là câu trần thuật kể về thói quen cuối tuần, diễn tả hai khả năng đều được, nên phải dùng '或者'.
+          </div>
+        </div>
+        
+
+        <div class="quiz-card mini-quiz grammar-quiz" id="quiz-card-4">
+          <div class="quiz-q">Câu 4: 我不知道明天是晴天______阴天。</div>
+          <div class="quiz-options">
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('4', 'A', this)">
+                A. 或者
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('4', 'B', this)">
+                B. 还有
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('4', 'C', this)">
+                C. 还是
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('4', 'D', this)">
+                D. 那么
+              </button>
+            
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+            <button class="nav-btn btn-arena" style="padding:6px 16px; font-size:13px;" onclick="checkMiniQuiz('4', 'C')">Kiểm tra kết quả</button>
+            <span style="font-size:12.5px; color:#64748b;">Chọn đáp án đúng rồi bấm kiểm tra</span>
+          </div>
+          <div class="quiz-explain" id="quiz-exp-4">
+            <strong>Đáp án đúng: C</strong><br>
+            💡 Mặc dù câu kết thúc bằng dấu chấm, nhưng có cụm từ nghi vấn '我不知道' (tôi không biết liệu rằng...), biểu thị sự phân vân lựa chọn nên bắt buộc dùng '还是'.
+          </div>
+        </div>
+        
+
+        <div class="quiz-card mini-quiz grammar-quiz" id="quiz-card-5">
+          <div class="quiz-q">Câu 5: Câu nào sau đây đúng ngữ pháp câu tồn hiện?</div>
+          <div class="quiz-options">
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('5', 'A', this)">
+                A. 墙上挂着一张中国地图。
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('5', 'B', this)">
+                B. 在墙上挂着一张中国地图。
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('5', 'C', this)">
+                C. 墙上挂一张中国地图着。
+              </button>
+            
+              <button class="quiz-opt" onclick="selectQuizOpt('5', 'D', this)">
+                D. 墙上是一张中国地图挂着。
+              </button>
+            
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+            <button class="nav-btn btn-arena" style="padding:6px 16px; font-size:13px;" onclick="checkMiniQuiz('5', 'A')">Kiểm tra kết quả</button>
+            <span style="font-size:12.5px; color:#64748b;">Chọn đáp án đúng rồi bấm kiểm tra</span>
+          </div>
+          <div class="quiz-explain" id="quiz-exp-5">
+            <strong>Đáp án đúng: A</strong><br>
+            💡 Câu tồn hiện chuẩn: Từ chỉ vị trí đứng đầu (không cần '在') + Động từ + 着 + Cụm danh từ.
+          </div>
+        </div>
+        
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      HSK 3 Pre-Study Studio &bull; Hệ thống chuẩn bị bài học tiếng Trung chất lượng cao 2026
+    </footer>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // DATA INJECTION
+    const VOCAB_DATA = [{"num": 1, "zh": "还是", "py": "háishì", "hv": "Hoàn thị", "pos": "Liên từ", "vi": "Hay là, hoặc là (dùng trong câu hỏi lựa chọn)", "radicals": "Bộ Nhật (日 - mặt trời) + Chữ Bất (不) trong '还'; Bộ Nhật (日) + Sơ (疋) trong '是'.", "stroke_info": "还 (7 nét), 是 (9 nét). Viết 还: ngang gập, phẩy, chấm, bộ quai xước sau cùng.", "eg1": {"zh": "你喝咖啡还是喝茶？", "py": "Nǐ hē kāfēi háishì hē chá?", "vi": "Bạn uống cà phê hay là uống trà?"}, "eg2": {"zh": "我们今天去爬山还是明天去？", "py": "Wǒmen jīntiān qù páshān háishì míngtiān qù?", "vi": "Chúng ta đi leo núi hôm nay hay là ngày mai đi?"}, "expansion": "还是...吧 (Hay là... đi - dùng để biểu thị quyết định sau khi cân nhắc)."}, {"num": 2, "zh": "爬山", "py": "páshān", "hv": "Bà sơn", "pos": "Động từ ly hợp", "vi": "Leo núi, đi bộ đường núi", "radicals": "爬: Bộ Trảo (爪 - móng vuốt) + chữ Ba (巴); 山: Bộ Sơn (núi non).", "stroke_info": "爬 (8 nét), 山 (3 nét). Chữ 山: sổ giữa trước, sổ gập, sổ phải.", "eg1": {"zh": "周末我们一起去爬山吧。", "py": "Zhōumò wǒmen yìqǐ qù páshān ba.", "vi": "Cuối tuần chúng mình cùng đi leo núi nhé."}, "eg2": {"zh": "爬山不仅能锻炼身体，还能看风景。", "py": "Páshān bùjǐn néng duànliàn shēntǐ, hái néng kàn fēngjǐng.", "vi": "Leo núi không những rèn luyện sức khỏe mà còn ngắm được cảnh đẹp."}, "expansion": "去爬山 (đi leo núi), 爬上山顶 (leo lên đỉnh núi)."}, {"num": 3, "zh": "小心", "py": "xiǎoxīn", "hv": "Tiểu tâm", "pos": "Tính từ / Động từ", "vi": "Cẩn thận, chú ý cẩn mật", "radicals": "小: Bộ Tiểu (nhỏ bé); 心: Bộ Tâm (trái tim, tâm trí).", "stroke_info": "小 (3 nét: sổ móc giữa, 2 chấm hai bên); 心 (4 nét).", "eg1": {"zh": "路上车多，要小心点儿。", "py": "Lùshang chē duō, yào xiǎoxīn diǎnr.", "vi": "Trên đường nhiều xe, phải cẩn thận một chút đấy."}, "eg2": {"zh": "下雪了，小心路滑。", "py": "Xià xuě le, xiǎoxīn lù huá.", "vi": "Tuyết rơi rồi, cẩn thận đường trơn."}, "expansion": "小心一点儿 (cẩn thận một chút), 小心地 + Động từ (làm gì một cách cẩn thận)."}, {"num": 4, "zh": "条", "py": "tiáo", "hv": "Điều", "pos": "Lượng từ", "vi": "Chiếc, con, sợi, dải (vật dài, uốn lượn)", "radicals": "Bao gồm chữ Phách/Trĩ (夂) ở trên và Bộ Mộc (木) ở dưới.", "stroke_info": "7 nét: phẩy, ngang gập phẩy, mác, sổ, phẩy, chấm.", "eg1": {"zh": "他买了一条新裤子。", "py": "Tā mǎi le yì tiáo xīn kùzi.", "vi": "Anh ấy đã mua một chiếc quần mới."}, "eg2": {"zh": "河里有一条大鱼。", "py": "Hé lǐ yǒu yì tiáo dà yú.", "vi": "Dưới sông có một con cá lớn."}, "expansion": "一条裤子 (chiếc quần), 一条鱼 (con cá), 一条河 (dòng sông), 一条路 (con đường)."}, {"num": 5, "zh": "裤子", "py": "kùzi", "hv": "Khố tử", "pos": "Danh từ", "vi": "Quần", "radicals": "Bộ Y (衤 - trang phục quần áo) + Chữ Khố (库 - nhà kho).", "stroke_info": "裤 (12 nét): Bộ Y bên trái, bên phải là Quảng (广) và Xa (车).", "eg1": {"zh": "这条裤子长短正合适。", "py": "Zhè tiáo kùzi chángduǎn zhèng héshì.", "vi": "Chiếc quần này độ dài vừa vặn luôn."}, "eg2": {"zh": "服务员，请帮我拿一条黑色的裤子。", "py": "Fúwùyuán, qǐng bāng wǒ ná yì tiáo hēisè de kùzi.", "vi": "Phục vụ ơi, lấy giúp tôi một chiếc quần màu đen với."}, "expansion": "穿裤子 (mặc quần), 牛仔裤 (quần bò/jean), 短裤 (quần soóc/quần đùi)."}, {"num": 6, "zh": "记得", "py": "jìde", "hv": "Ký đắc", "pos": "Động từ", "vi": "Nhớ, còn ghi nhớ trong đầu", "radicals": "记: Bộ Ngôn (讠) + Chữ Kỷ (己); 得: Bộ Xích (彳) + Nhật (日) + Thốn (寸).", "stroke_info": "记 (5 nét), 得 (11 nét). Phân biệt 记得 (còn nhớ) với 想 (nhớ nhung/muốn).", "eg1": {"zh": "我还记得我们第一次见面的地方。", "py": "Wǒ hái jìde wǒmen dì-yī cì jiànmiàn de dìfang.", "vi": "Tôi vẫn nhớ nơi lần đầu tiên chúng mình gặp nhau."}, "eg2": {"zh": "你不记得他的电话号码了吗？", "py": "Nǐ bù jìde tā de diànhuà hàomǎ le ma?", "vi": "Bạn không nhớ số điện thoại của anh ấy nữa à?"}, "expansion": "记不清 (nhớ không rõ), 记本 (sổ ghi chép)."}, {"num": 7, "zh": "衬衫", "py": "chènshān", "hv": "Sấn sam", "pos": "Danh từ", "vi": "Áo sơ mi", "radicals": "Cả hai chữ đều có Bộ Y (衤 - trang phục vải vóc).", "stroke_info": "衬 (8 nét: bộ Y + chữ Thốn 寸), 衫 (8 nét: bộ Y + 3 nét phẩy Sam 彡).", "eg1": {"zh": "穿白衬衫看起来很精神。", "py": "Chuān bái chènshān kàn qǐlái hěn jīngshen.", "vi": "Mặc áo sơ mi trắng trông rất sáng sủa tinh anh."}, "eg2": {"zh": "那件衬衫有点儿贵，但是质量很好。", "py": "Nà jiàn chènshān yǒudiǎnr guì, dànshì zhìliàng hěn hǎo.", "vi": "Chiếc áo sơ mi đó hơi đắt một chút nhưng chất lượng rất tốt."}, "expansion": "一件衬衫 (một chiếc áo sơ mi - dùng lượng từ 件 jiàn)."}, {"num": 8, "zh": "元", "py": "yuán", "hv": "Nguyên", "pos": "Lượng từ tiền tệ", "vi": "Đồng Nhân dân tệ (văn viết, bằng 块 kuài trong khẩu ngữ)", "radicals": "Bộ Nhất (一) ở trên + Chữ Nhi (儿) ở dưới.", "stroke_info": "4 nét: ngang trên, ngang dưới dài hơn, phẩy, sổ gập móc.", "eg1": {"zh": "这本书一共三十元。", "py": "Zhè běn shū yígòng sānshí yuán.", "vi": "Cuốn sách này tổng cộng ba mươi tệ."}, "eg2": {"zh": "这件衣服五十块（元）。", "py": "Zhè jiàn yīfu wǔshí kuài (yuán).", "vi": "Bộ quần áo này giá 50 tệ."}, "expansion": "一元钱 (1 tệ tiền), 美元 (đô la Mỹ), 欧元 (đồng Euro)."}, {"num": 9, "zh": "新鲜", "py": "xīnxiān", "hv": "Tân tiên", "pos": "Tính từ", "vi": "Tươi ngon (hoa quả, thức ăn), trong lành (không khí)", "radicals": "新: Thân (亲) + Cân (斤 - cái búa rìu); 鲜: Ngư (鱼 - cá) + Dương (羊 - cừu). Cá và dê kết hợp thành vị tươi ngon!", "stroke_info": "新 (13 nét), 鲜 (14 nét).", "eg1": {"zh": "早晨山上的空气很新鲜。", "py": "Zǎochén shānshang de kōngqì hěn xīnxiān.", "vi": "Buổi sáng không khí trên núi rất trong lành."}, "eg2": {"zh": "这些苹果是今天刚买的，非常新鲜。", "py": "Zhèxiē píngguǒ shì jīntiān gāng mǎi de, fēicháng xīnxiān.", "vi": "Mấy quả táo này vừa mua hôm nay, rất tươi ngon."}, "expansion": "新鲜水果 (hoa quả tươi), 新鲜空气 (không khí trong lành)."}, {"num": 10, "zh": "甜", "py": "tián", "hv": "Điềm", "pos": "Tính từ", "vi": "Ngọt ngào, có vị ngọt", "radicals": "Bộ Thiệt (舌 - cái lưỡi) bên trái + Bộ Cam (甘 - vị ngọt) bên phải. Lưỡi nếm vị ngọt!", "stroke_info": "11 nét: Bộ Thiệt 6 nét + Bộ Cam 5 nét.", "eg1": {"zh": "这个西瓜真甜。", "py": "Zhè ge xīguā zhēn tián.", "vi": "Quả dưa hấu này ngọt thật đấy."}, "eg2": {"zh": "我不喜欢吃太甜的蛋糕。", "py": "Wǒ bù xǐhuan chī tài tián de dàngāo.", "vi": "Tôi không thích ăn bánh kem ngọt quá."}, "expansion": "甜品 (món tráng miệng ngọt), 甜言蜜语 (lời nói ngọt ngào mật ngọt)."}, {"num": 11, "zh": "只", "py": "zhǐ", "hv": "Chỉ", "pos": "Phó từ", "vi": "Chỉ, duy chỉ có", "radicals": "Bộ Khẩu (口 - cái miệng) ở trên + Bộ Bát (八) ở dưới.", "stroke_info": "5 nét. Chú ý: Là chữ đa âm tự (Phó từ zhǐ: chỉ; Lượng từ zhī: con, chiếc).", "eg1": {"zh": "我只有一个姐姐。", "py": "Wǒ zhǐ yǒu yí ge jiějie.", "vi": "Tôi chỉ có một người chị gái thôi."}, "eg2": {"zh": "他只要了一杯水，什么也没吃。", "py": "Tā zhǐ yào le yì bēi shuǐ, shénme yě méi chī.", "vi": "Anh ấy chỉ gọi một cốc nước, chẳng ăn gì cả."}, "expansion": "只有 (chỉ có), 只要 (chỉ cần), 只能 (chỉ có thể)."}, {"num": 12, "zh": "放", "py": "fàng", "hv": "Phóng", "pos": "Động từ", "vi": "Đặt, để, đặt để tại chỗ", "radicals": "Bộ Phương (方 - phương hướng) bên trái + Bộ Phộc (攵 - đánh khẽ/động tác) bên phải.", "stroke_info": "8 nét: 方 (4 nét) + 攵 (4 nét).", "eg1": {"zh": "请把手机放在桌子上。", "py": "Qǐng bǎ shǒujī fàng zài zhuōzi shang.", "vi": "Xin vui lòng đặt điện thoại lên bàn."}, "eg2": {"zh": "桌子上放着很多书和饮料。", "py": "Zhuōzi shang fàngzhe hěnduō shū hé yǐnliào.", "vi": "Trên bàn đang để rất nhiều sách và đồ uống."}, "expansion": "放假 (nghỉ lễ/nghỉ phép), 放心 (yên tâm), 放下 (đặt xuống)."}, {"num": 13, "zh": "饮料", "py": "yǐnliào", "hv": "Ẩm liệu", "pos": "Danh từ", "vi": "Đồ uống, thức uống các loại", "radicals": "饮: Bộ Thực (饣 - ăn uống) + Chữ Khiếm (欠); 料: Chữ Mễ (米) + Chữ Đẩu (斗).", "stroke_info": "饮 (7 nét), 料 (10 nét).", "eg1": {"zh": "冰箱里有很多冷饮料。", "py": "Bīngxiāng lǐ yǒu hěnduō lěng yǐnliào.", "vi": "Trong tủ lạnh có rất nhiều đồ uống lạnh."}, "eg2": {"zh": "你想喝点儿什么饮料？", "py": "Nǐ xiǎng hē diǎnr shénme yǐnliào?", "vi": "Bạn muốn uống chút đồ uống gì nào?"}, "expansion": "热饮料 (đồ uống nóng), 碳酸饮料 (nước ngọt có ga)."}, {"num": 14, "zh": "或者", "py": "huòzhě", "hv": "Hoặc giả", "pos": "Liên từ", "vi": "Hoặc, hoặc là (dùng trong câu khẳng định/trần thuật)", "radicals": "或: Bộ Qua (戈 - vũ khí) bao bọc; 者: Bộ Lão (耂) + Bộ Nhật (日).", "stroke_info": "或 (8 nét), 者 (8 nét). Trọng tâm so sánh với 还是 háishì!", "eg1": {"zh": "星期天我常看书或者听音乐。", "py": "Xīngqītiān wǒ cháng kànshū huòzhě tīng yīnyuè.", "vi": "Chủ nhật tôi thường đọc sách hoặc nghe nhạc."}, "eg2": {"zh": "你明天或者后天来都可以。", "py": "Nǐ míngtiān huòzhě hòutiān lái dōu kěyǐ.", "vi": "Bạn ngày mai hoặc ngày kia đến đều được cả."}, "expansion": "A 或者 B 都行 (A hoặc B đều được)."}, {"num": 15, "zh": "舒服", "py": "shūfu", "hv": "Thư phục", "pos": "Tính từ", "vi": "Thoải mái, dễ chịu, khỏe khoắn", "radicals": "舒: Chữ Xá (舍) + Chữ Dư (予); 服: Bộ Nguyệt (月) + Chữ Phục (𠬝).", "stroke_info": "舒 (12 nét), 服 (8 nét: đọc thanh nhẹ 'fu').", "eg1": {"zh": "吹着凉风真舒服。", "py": "Chuīzhe liángfēng zhēn shūfu.", "vi": "Được gió mát thổi qua thật là dễ chịu."}, "eg2": {"zh": "我今天身体有点儿不舒服，想请假。", "py": "Wǒ jīntiān shēntǐ yǒudiǎnr bù shūfu, xiǎng qǐngjià.", "vi": "Hôm nay người tôi hơi không được khỏe, muốn xin nghỉ phép."}, "expansion": "不舒服 (khó chịu, trong người thấy ốm)."}, {"num": 16, "zh": "花", "py": "huā", "hv": "Hoa", "pos": "Danh từ / Động từ", "vi": "Hoa, bông hoa (Danh từ); Tiêu xài thời gian/tiền bạc (Động từ)", "radicals": "Bộ Thảo đầu (艹 - cây cỏ hoa lá) ở trên + Chữ Hóa (化) ở dưới.", "stroke_info": "7 nét: ngang, 2 nét sổ của Thảo đầu, phẩy, sổ đứng, phẩy gập.", "eg1": {"zh": "公园里的花开了，真漂亮。", "py": "Gōngyuán lǐ de huā kāi le, zhēn piàoliang.", "vi": "Hoa trong công viên đã nở rồi, đẹp thật đấy."}, "eg2": {"zh": "买这件衣服花了我两百元。", "py": "Mǎi zhè jiàn yīfu huā le wǒ liǎng bǎi yuán.", "vi": "Mua bộ quần áo này tốn của tôi hai trăm tệ."}, "expansion": "开花 (nở hoa), 花钱 (tiêu tiền), 花时间 (tốn thời gian)."}, {"num": 17, "zh": "绿", "py": "lǜ", "hv": "Lục", "pos": "Tính từ", "vi": "Xanh lá cây, xanh lục", "radicals": "Bộ Mịch (纟 - sợi tơ) bên trái + Chữ Lục (录) bên phải. Nhuộm sợi tơ màu lục!", "stroke_info": "11 nét: 纟 (3 nét) + 录 (8 nét). Phát âm âm 'ü' tròn môi.", "eg1": {"zh": "春天草地变得很绿。", "py": "Chūntiān cǎodì biàn de hěn lǜ.", "vi": "Mùa xuân bãi cỏ trở nên rất xanh tươi."}, "eg2": {"zh": "窗外是一片绿色的树林。", "py": "Chuāngwài shì yí piàn lǜsè de shùlín.", "vi": "Ngoài cửa sổ là một rặng cây xanh mướt."}, "expansion": "绿茶 (trà xanh), 绿草 (cỏ xanh), 绿色 (màu xanh lá)."}];
+    const MATCHING_DATA = [{"zh": "还是", "vi": "hay là (câu hỏi)", "py": "háishì"}, {"zh": "爬山", "vi": "leo núi", "py": "páshān"}, {"zh": "小心", "vi": "cẩn thận", "py": "xiǎoxīn"}, {"zh": "条", "vi": "chiếc, con (lượng từ)", "py": "tiáo"}, {"zh": "裤子", "vi": "quần", "py": "kùzi"}, {"zh": "记得", "vi": "nhớ, ghi nhớ", "py": "jìde"}, {"zh": "衬衫", "vi": "áo sơ mi", "py": "chènshān"}, {"zh": "元", "vi": "đồng nhân dân tệ", "py": "yuán"}, {"zh": "新鲜", "vi": "tươi ngon, trong lành", "py": "xīnxiān"}, {"zh": "甜", "vi": "ngọt ngào", "py": "tián"}, {"zh": "只", "vi": "chỉ, duy chỉ có", "py": "zhǐ"}, {"zh": "放", "vi": "đặt, để", "py": "fàng"}, {"zh": "饮料", "vi": "đồ uống", "py": "yǐnliào"}, {"zh": "或者", "vi": "hoặc là (câu khẳng định)", "py": "huòzhě"}, {"zh": "舒服", "vi": "dễ chịu, thoải mái", "py": "shūfu"}, {"zh": "花", "vi": "hoa / tiêu xài", "py": "huā"}, {"zh": "绿", "vi": "xanh lá cây", "py": "lǜ"}];
+
+    // TAB SWITCHING
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+    }
+
+    function switchSubtab(subId) {
+      document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('subtab-flashcard').style.display = 'none';
+      document.getElementById('subtab-matching').style.display = 'none';
+      if (subId === 'subtab-flashcard') {
+        document.getElementById('btnSubtabFC').classList.add('active');
+        document.getElementById('subtab-flashcard').style.display = 'block';
+      } else {
+        document.getElementById('btnSubtabMatch').classList.add('active');
+        document.getElementById('subtab-matching').style.display = 'block';
+        if (!gameStarted) initMatchingGame();
+      }
+    }
+
+    // TTS AUDIO SYNTHESIS
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'zh-CN';
+      u.rate = 0.85;
+      window.speechSynthesis.speak(u);
+    }
+
+    // ==================== CANVAS MI ZI GE ENGINE ====================
+    function initCanvasMiZiGe(canvas) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Draw MiZiGe background
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+
+      // Cross lines
+      ctx.beginPath();
+      ctx.moveTo(w/2, 0); ctx.lineTo(w/2, h);
+      ctx.moveTo(0, h/2); ctx.lineTo(w, h/2);
+      ctx.stroke();
+
+      // Diagonals
+      ctx.beginPath();
+      ctx.moveTo(0, 0); ctx.lineTo(w, h);
+      ctx.moveTo(w, 0); ctx.lineTo(0, h);
+      ctx.stroke();
+
+      ctx.setLineDash([]);
+    }
+
+    function setupCanvasDrawing(canvas) {
+      initCanvasMiZiGe(canvas);
+      const ctx = canvas.getContext('2d');
+      let drawing = false;
+
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: (clientX - rect.left) * (canvas.width / rect.width),
+          y: (clientY - rect.top) * (canvas.height / rect.height)
+        };
+      }
+
+      function startDraw(e) {
+        e.preventDefault();
+        drawing = true;
+        const pos = getPos(e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+      }
+
+      function moveDraw(e) {
+        if (!drawing) return;
+        e.preventDefault();
+        const pos = getPos(e);
+        ctx.lineWidth = 6;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = '#0f172a';
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+      }
+
+      function stopDraw() {
+        drawing = false;
+      }
+
+      canvas.addEventListener('mousedown', startDraw);
+      canvas.addEventListener('mousemove', moveDraw);
+      window.addEventListener('mouseup', stopDraw);
+
+      canvas.addEventListener('touchstart', startDraw, { passive: false });
+      canvas.addEventListener('touchmove', moveDraw, { passive: false });
+      window.addEventListener('touchend', stopDraw);
+    }
+
+    function clearCanvas(canvasId) {
+      const c = document.getElementById(canvasId);
+      if (c) initCanvasMiZiGe(c);
+    }
+
+    // ==================== FLASHCARD 3D LOGIC ====================
+    let currentFCIdx = 0;
+    function updateFlashcardUI() {
+      const card = VOCAB_DATA[currentFCIdx];
+      if (!card) return;
+      document.getElementById('flashcardElement').classList.remove('flipped');
+      document.getElementById('fcPos').textContent = card.pos || 'Từ mới';
+      document.getElementById('fcHanzi').textContent = card.zh;
+      document.getElementById('fcPy').textContent = card.py;
+      document.getElementById('fcHv').textContent = 'Hán Việt: ' + (card.hv || '');
+      document.getElementById('fcMeaning').textContent = card.vi;
+      document.getElementById('fcEg').textContent = (card.eg1 ? card.eg1.zh + ' (' + card.eg1.vi + ')' : '');
+      document.getElementById('fcProgress').textContent = (currentFCIdx + 1) + ' / ' + VOCAB_DATA.length;
+    }
+
+    function flipFlashcard() {
+      document.getElementById('flashcardElement').classList.toggle('flipped');
+    }
+    function nextFlashcard() {
+      currentFCIdx = (currentFCIdx + 1) % VOCAB_DATA.length;
+      updateFlashcardUI();
+    }
+    function prevFlashcard() {
+      currentFCIdx = (currentFCIdx - 1 + VOCAB_DATA.length) % VOCAB_DATA.length;
+      updateFlashcardUI();
+    }
+    function playCurrentFCAudio() {
+      const card = VOCAB_DATA[currentFCIdx];
+      if (card) speakText(card.zh);
+    }
+
+    // ==================== MATCHING GAME 2 COLUMNS ====================
+    let gameStarted = false;
+    let selectedZhItem = null;
+    let selectedViItem = null;
+    let matchMoves = 0;
+    let matchedCount = 0;
+    let gameTimerInterval = null;
+    let gameSeconds = 0;
+    let showGamePinyin = false;
+
+    function playBeep(type) {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        if (type === 'correct') {
+          osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+          osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); // A5
+          gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.35);
+        } else {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+          osc.frequency.setValueAtTime(160, audioCtx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.3);
+        }
+      } catch(e){}
+    }
+
+    function toggleGamePinyin() {
+      showGamePinyin = !showGamePinyin;
+      document.getElementById('btnToggleGamePinyin').textContent = showGamePinyin ? '🙈 Ẩn Pinyin' : '👁 Hiện Pinyin';
+      document.querySelectorAll('.match-py').forEach(el => {
+        el.style.display = showGamePinyin ? 'inline' : 'none';
+      });
+    }
+
+    function initMatchingGame() {
+      gameStarted = true;
+      selectedZhItem = null;
+      selectedViItem = null;
+      matchMoves = 0;
+      matchedCount = 0;
+      gameSeconds = 0;
+      clearInterval(gameTimerInterval);
+
+      document.getElementById('gameMoves').textContent = '0';
+      document.getElementById('gameMatches').textContent = '0';
+      document.getElementById('gameTotal').textContent = MATCHING_DATA.length;
+      document.getElementById('gameTimer').textContent = '00:00';
+
+      gameTimerInterval = setInterval(() => {
+        gameSeconds++;
+        const mins = String(Math.floor(gameSeconds / 60)).padStart(2, '0');
+        const secs = String(gameSeconds % 60).padStart(2, '0');
+        document.getElementById('gameTimer').textContent = `${mins}:${secs}`;
+      }, 1000);
+
+      // Render columns
+      const colZh = document.getElementById('colChinese');
+      const colVi = document.getElementById('colVietnamese');
+      colZh.innerHTML = '';
+      colVi.innerHTML = '';
+
+      // Shuffle arrays
+      const zhList = [...MATCHING_DATA].sort(() => Math.random() - 0.5);
+      const viList = [...MATCHING_DATA].sort(() => Math.random() - 0.5);
+
+      zhList.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'match-item';
+        div.dataset.zh = item.zh;
+        div.innerHTML = `
+          <div>
+            <span class="match-zh">${item.zh}</span>
+            <span class="match-py" style="display:${showGamePinyin ? 'inline' : 'none'};">${item.py}</span>
+          </div>
+          <button class="btn-tool" onclick="event.stopPropagation(); speakText('${item.zh}');">🔊</button>
+        `;
+        div.onclick = () => selectZhCard(div, item.zh);
+        colZh.appendChild(div);
+      });
+
+      viList.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'match-item';
+        div.dataset.zh = item.zh;
+        div.textContent = item.vi;
+        div.onclick = () => selectViCard(div, item.zh);
+        colVi.appendChild(div);
+      });
+    }
+
+    function selectZhCard(el, zh) {
+      if (el.classList.contains('matched')) return;
+      document.querySelectorAll('#colChinese .match-item').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedZhItem = { el, zh };
+      speakText(zh);
+      checkPairMatch();
+    }
+
+    function selectViCard(el, zh) {
+      if (el.classList.contains('matched')) return;
+      document.querySelectorAll('#colVietnamese .match-item').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedViItem = { el, zh };
+      checkPairMatch();
+    }
+
+    function checkPairMatch() {
+      if (!selectedZhItem || !selectedViItem) return;
+
+      matchMoves++;
+      document.getElementById('gameMoves').textContent = matchMoves;
+
+      const zhMatch = selectedZhItem.zh;
+      const viMatch = selectedViItem.zh;
+
+      if (zhMatch === viMatch) {
+        // MATCHED
+        playBeep('correct');
+        selectedZhItem.el.classList.remove('selected');
+        selectedViItem.el.classList.remove('selected');
+        selectedZhItem.el.classList.add('matched');
+        selectedViItem.el.classList.add('matched');
+        matchedCount++;
+        document.getElementById('gameMatches').textContent = matchedCount;
+        selectedZhItem = null;
+        selectedViItem = null;
+
+        if (matchedCount === MATCHING_DATA.length) {
+          clearInterval(gameTimerInterval);
+          setTimeout(() => {
+            alert(`🎉 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI NỐI TỪ!\n⏱ Thời gian: ${document.getElementById('gameTimer').textContent}\n🎯 Tổng số lượt ghép: ${matchMoves}`);
+          }, 300);
+        }
+      } else {
+        // WRONG
+        playBeep('wrong');
+        const zhEl = selectedZhItem.el;
+        const viEl = selectedViItem.el;
+        zhEl.classList.add('shake-error');
+        viEl.classList.add('shake-error');
+        setTimeout(() => {
+          zhEl.classList.remove('shake-error', 'selected');
+          viEl.classList.remove('shake-error', 'selected');
+          selectedZhItem = null;
+          selectedViItem = null;
+        }, 500);
+      }
+    }
+
+    // ==================== AI SHADOWING SPEECH RECOGNITION ====================
+    function startShadowing(targetZh, badgeId, btnEl) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Trình duyệt của bạn chưa hỗ trợ Web Speech Recognition API. Khuyên dùng Google Chrome hoặc Microsoft Edge.");
+        return;
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'zh-CN';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      btnEl.classList.add('recording');
+      btnEl.textContent = '🔴 Đang nghe... Hãy nói ngay';
+
+      recognition.onresult = function(event) {
+        btnEl.classList.remove('recording');
+        btnEl.textContent = '🎙️ Đọc lại câu này';
+
+        const transcript = event.results[0][0].transcript.trim();
+        const cleanTarget = targetZh.replace(/[，。？！\s]/g, '');
+        const cleanSpoken = transcript.replace(/[，。？！\s]/g, '');
+
+        // Calculate simple character match ratio
+        let matches = 0;
+        for (let char of cleanSpoken) {
+          if (cleanTarget.includes(char)) matches++;
+        }
+        let score = Math.min(100, Math.round((matches / cleanTarget.length) * 100));
+        if (cleanTarget === cleanSpoken) score = 100;
+
+        const badge = document.getElementById(badgeId);
+        badge.className = 'accuracy-badge ' + (score >= 80 ? 'excellent' : 'good');
+        badge.innerHTML = `Độ chính xác: <strong>${score}%</strong> (Bạn nói: "${transcript}")`;
+      };
+
+      recognition.onerror = function(event) {
+        btnEl.classList.remove('recording');
+        btnEl.textContent = '🎙️ Đọc lại câu này';
+        alert("Lỗi nhận diện âm thanh: " + event.error);
+      };
+
+      recognition.start();
+    }
+
+    // ==================== MINI QUIZ ENGINE ====================
+    const userQuizAnswers = {};
+    function selectQuizOpt(qId, optKey, btn) {
+      userQuizAnswers[qId] = optKey;
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    function checkMiniQuiz(qId, correctAns) {
+      const selected = userQuizAnswers[qId];
+      if (!selected) {
+        alert("Vui lòng chọn một đáp án trước!");
+        return;
+      }
+      const explainBox = document.getElementById(`quiz-exp-${qId}`);
+      explainBox.style.display = 'block';
+      if (selected === correctAns) {
+        explainBox.style.borderLeftColor = '#10b981';
+        explainBox.style.background = '#f0fdf4';
+        explainBox.style.color = '#166534';
+      } else {
+        explainBox.style.borderLeftColor = '#ef4444';
+        explainBox.style.background = '#fef2f2';
+        explainBox.style.color = '#991b1b';
+      }
+    }
+
+    
+    // DIALOGUE QUIZ HELPER
+    const userDialogueAnswers = {};
+    function selectDialogueCheck(dNum, optKey, btn) {
+      userDialogueAnswers[dNum] = optKey;
+      btn.parentElement.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+    function checkDialogueQuiz(dNum, correctAns) {
+      const selected = userDialogueAnswers[dNum];
+      if (!selected) {
+        alert("Vui lòng chọn một phương án!");
+        return;
+      }
+      const exp = document.getElementById(`d-exp-${dNum}`);
+      exp.style.display = 'block';
+      if (selected === correctAns) {
+        exp.style.background = '#dcfce7';
+        exp.style.color = '#166534';
+      } else {
+        exp.style.background = '#fee2e2';
+        exp.style.color = '#991b1b';
+      }
+    }
+    
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      // Init all canvases
+      document.querySelectorAll('.hanzi-canvas').forEach(c => setupCanvasDrawing(c));
+      // Init flashcard
+      updateFlashcardUI();
+    });
+  </script>
+</body>
+</html>

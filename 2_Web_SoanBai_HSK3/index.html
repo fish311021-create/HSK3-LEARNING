@@ -3,134 +3,499 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HSK 3 - Phòng Soạn & Ôn Trước Bài Học (Pre-Study Studio)</title>
+  <title>HSK 3 - Trung Tâm Soạn Bài Trước (Pre-Study Studio)</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg: #090e17;
-      --card-bg: rgba(22, 30, 48, 0.75);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text-main: #f8fafc;
-      --text-sub: #94a3b8;
-      --purple: #a855f7;
-      --purple-glow: rgba(168, 85, 247, 0.3);
-      --accent: #38bdf8;
+      --bg: #fffdf5;
+      --bg-ambient: radial-gradient(130% 110% at 50% -5%, #fef9c3 0%, #fefce8 30%, #fffdf7 70%, #ffffff 100%);
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-border: rgba(245, 158, 11, 0.28);
+      --card-border-glow: rgba(251, 191, 36, 0.55);
+      --text-main: #0f172a;
+      --text-sub: #334155;
+      --text-muted: #64748b;
+      
+      /* SUNSHINE YELLOW PALETTE */
+      --primary: #f59e0b;
+      --primary-bright: #fbbf24;
+      --primary-yellow: #fde047;
+      --primary-vibrant: #eab308;
+      --primary-dark: #b45309;
+      --primary-glow: rgba(251, 191, 36, 0.35);
+      --primary-light: #fef9c3;
+      --primary-soft: #fefce8;
+      
+      --accent-blue: #0284c7;
+      --accent-teal: #0d9488;
+      --accent-purple: #7c3aed;
+      --accent-coral: #ea580c;
+      --success: #10b981;
+      --danger: #ef4444;
+      --chinese-font: "Noto Serif SC", "Songti SC", serif;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: radial-gradient(circle at 50% 0%, #2e1065 0%, #0d1322 45%, #070b14 100%);
+      background: var(--bg-ambient);
       color: var(--text-main);
       font-family: 'Plus Jakarta Sans', sans-serif;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px 20px;
+      padding: 24px 16px 80px;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .welcome-card {
-      max-width: 680px;
-      width: 100%;
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* TOPBAR */
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      border-radius: 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.08);
+      flex-wrap: wrap;
+    }
+    .topbar-nav .nav-left, .topbar-nav .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    .nav-btn.btn-exam {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    /* HERO HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 38px 24px;
       background: var(--card-bg);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      border-radius: 24px;
-      padding: 36px 32px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      border-radius: 26px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 16px 40px rgba(217, 119, 6, 0.08);
+      position: relative;
+      overflow: hidden;
     }
-    .badge {
-      display: inline-block;
-      background: rgba(168, 85, 247, 0.15);
-      border: 1px solid rgba(168, 85, 247, 0.4);
-      color: var(--purple);
-      padding: 6px 16px;
+    header::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 200px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .badge-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--primary-dark);
+      padding: 6px 18px;
       border-radius: 30px;
       font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 20px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
     }
     h1 {
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 12px;
+      font-size: 36px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
     }
-    p {
-      color: var(--text-sub);
-      font-size: 15px;
-      margin-bottom: 24px;
+    .subtitle {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      max-width: 720px;
+      margin: 0 auto 20px;
     }
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      text-align: left;
-      margin-bottom: 28px;
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
-    .feat-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 14px;
-      font-size: 13.5px;
-    }
-    .feat-item strong {
-      color: var(--purple);
-      display: block;
-      margin-bottom: 4px;
-    }
-    .btn-home {
+    .btn-action-primary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-      padding: 10px 20px;
-      border-radius: 12px;
+      background: linear-gradient(135deg, #fde047 0%, #facc15 50%, #f59e0b 100%);
+      color: #78350f;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 800;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
+      border: 1px solid #d97706;
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+      transition: all 0.25s ease;
+    }
+    .btn-action-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.45);
+    }
+    .btn-action-arena {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: #0f172a;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      border: 2px solid #f59e0b;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
       transition: all 0.2s ease;
     }
-    .btn-home:hover {
-      background: var(--purple);
-      color: #fff;
+    .btn-action-arena:hover {
+      background: #fefce8;
+      transform: translateY(-2px);
+    }
+
+    /* MODULES HIGHLIGHT */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .module-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s;
+    }
+    .module-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .module-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .module-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .module-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border-radius: 22px;
+      border: 1px solid var(--card-border);
+      padding: 28px 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.06);
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* LESSONS LIST */
+    .lessons-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .lesson-item-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .lesson-item-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.12);
+    }
+    .lesson-item-card.active-ready {
+      border-color: #f59e0b;
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%);
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+    }
+    .lic-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .lic-badge {
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+    .lic-badge.ready {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+    .lic-badge.prep {
+      background: #f1f5f9;
+      color: #64748b;
+    }
+    .lic-num {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+    .lic-zh {
+      font-family: var(--chinese-font);
+      font-size: 22px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .lic-vi {
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 14px;
+    }
+    .lic-meta {
+      font-size: 12.5px;
+      color: #64748b;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   </style>
 </head>
 <body>
-  <div class="welcome-card">
-    <div class="badge">📝 PHÂN HỆ SOẠN & ÔN TRƯỚC BÀI HỌC</div>
-    <h1>Phòng Soạn Bài Trước HSK 3</h1>
-    <p>Thư mục độc lập <strong>2_Web_SoanBai_HSK3</strong> đã được thiết lập thành công và sẵn sàng triển khai.</p>
-    
-    <div class="features-grid">
-      <div class="feat-item">
-        <strong>🧩 Game Nối Từ 2 Cột</strong>
-        Rèn luyện phản xạ mặt chữ Hán và tiếng Việt.
+  <div class="container">
+    <!-- TOPBAR -->
+    <div class="topbar-nav">
+      <div class="nav-left">
+        <a href="../index.html" class="nav-btn">🌐 Cổng Tổng HSK 3</a>
+        <a href="kiem_tra_tu_vung.html" class="nav-btn" style="background:#fef3c7; color:#92400e; font-weight:700;">🎯 Đấu Trường Từ Vựng</a>
       </div>
-      <div class="feat-item">
-        <strong>✍️ Chiết Tự &amp; Bút Thuận</strong>
-        Mẹo nhớ chữ và video hướng dẫn từng nét viết.
-      </div>
-      <div class="feat-item">
-        <strong>📖 Phân Tích Bài Khóa</strong>
-        Bóc tách sâu 4 đoạn hội thoại SGK.
-      </div>
-      <div class="feat-item">
-        <strong>⚖️ Xưởng Ngữ Pháp</strong>
-        Công thức, ví dụ đời sống và bẫy đề thi.
+      <div class="nav-right">
+        <a href="../1_Web_LuyenThi_HSK3/index.html" class="nav-btn btn-exam">🚀 Sang Web Luyện Đề Thi HSK 3</a>
       </div>
     </div>
 
-    <a href="../index.html" class="btn-home">
-      <span>🏠 Quay lại Trang Chủ Cổng Tổng</span>
-    </a>
+    <!-- HERO HEADER -->
+    <header>
+      <div class="badge-hero">✨ HSK 3 PRE-STUDY STUDIO &bull; SOẠN BÀI CHUẨN SGK</div>
+      <h1>Trung Tâm Soạn Bài Trước HSK 3</h1>
+      <p class="subtitle">Trang bị toàn diện kiến thức trước khi lên lớp: Từ vựng thực chiến, Ô mễ tập viết nét, Minigame nối từ, Audio SGK &amp; Luyện phát âm AI Shadowing</p>
+      
+      <div class="hero-actions">
+        <a href="Bai_03/index.html" class="btn-action-primary">
+          <span>📖 Vào Học Ngay: Bài 3 - 桌子上放着很多饮料</span>
+          <span>▶</span>
+        </a>
+        <a href="kiem_tra_tu_vung.html" class="btn-action-arena">
+          <span>🎯 Đấu Trường Kiểm Tra Từ Vựng</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- 4 MODULES OVERVIEW -->
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon">✍️</div>
+        <div class="module-title">1. Từ Vựng &amp; Ô Mễ Vẽ Nét</div>
+        <div class="module-desc">Phân tích chiết tự, bút thuận, 2 câu ví dụ thực tế và khung canvas ô mễ để bạn dùng ngón tay/chuột viết chữ ngay trên màn hình.</div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon">🃏</div>
+        <div class="module-title">2. Flashcard 3D &amp; Nối Từ</div>
+        <div class="module-desc">Thẻ lật 3D có phát âm và trò chơi ghép nối 2 cột đối kháng tính giờ, có chế độ bật/tắt Pinyin giúp ghi nhớ mặt chữ siêu tốc.</div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon">🎙️</div>
+        <div class="module-title">3. 4 Bài Khóa &amp; AI Shadowing</div>
+        <div class="module-desc">Tích hợp file audio chuẩn từ Sách Giáo Khoa, phân tích ngữ cảnh từng câu và Micro nhận diện giọng nói chấm điểm % độ chuẩn xác.</div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon">⚖️</div>
+        <div class="module-title">4. Xưởng Ngữ Pháp &amp; Bẫy Thi</div>
+        <div class="module-desc">Bóc tách công thức vàng, phân biệt cặp từ dễ nhầm lẫn (还是 vs 或者) và 5 câu mini quiz kiểm tra phản xạ tránh bẫy HSK 3.</div>
+      </div>
+    </div>
+
+    <!-- LESSON CATALOG -->
+    <section class="section-card">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">📚 Danh Mục 20 Bài Soạn Chuẩn Giáo Trình HSK 3</h2>
+          <span style="font-size:13.5px; color:var(--text-sub);">Bài 3 đã hoàn thiện đầy đủ dữ liệu và chức năng sẵn sàng học</span>
+        </div>
+      </div>
+
+      <div class="lessons-list">
+        <!-- BÀI 3: COMPLETED -->
+        <a href="Bai_03/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 03</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">桌子上放着很多饮料</div>
+          <div class="lic-vi">Trên bàn để rất nhiều đồ uống</div>
+          <div class="lic-meta">
+            <span>17 Từ vựng &bull; 4 Bài khóa &bull; Ngữ pháp 着</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 1: IN QUEUE -->
+        <div class="lesson-item-card" style="opacity:0.75;">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 01</span>
+            <span class="lic-badge prep">⏳ Sắp mở</span>
+          </div>
+          <div class="lic-zh">周末你有什么打算？</div>
+          <div class="lic-vi">Cuối tuần bạn có dự định gì?</div>
+          <div class="lic-meta">
+            <span>14 Từ vựng &bull; Ngữ pháp 一直 / 跟</span>
+            <span>Đang đóng gói</span>
+          </div>
+        </div>
+
+        <!-- BÀI 2: IN QUEUE -->
+        <div class="lesson-item-card" style="opacity:0.75;">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 02</span>
+            <span class="lic-badge prep">⏳ Sắp mở</span>
+          </div>
+          <div class="lic-zh">他什么时候回来？</div>
+          <div class="lic-vi">Khi nào anh ấy về?</div>
+          <div class="lic-meta">
+            <span>15 Từ vựng &bull; Bổ ngữ xu hướng 来 / 去</span>
+            <span>Đang đóng gói</span>
+          </div>
+        </div>
+
+        <!-- BÀI 4 -->
+        <div class="lesson-item-card" style="opacity:0.75;">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 04</span>
+            <span class="lic-badge prep">⏳ Sắp mở</span>
+          </div>
+          <div class="lic-zh">她总是笑着也说话</div>
+          <div class="lic-vi">Cô ấy luôn mỉm cười khi nói chuyện</div>
+          <div class="lic-meta">
+            <span>16 Từ vựng &bull; Cấu trúc 又...又...</span>
+            <span>Đang đóng gói</span>
+          </div>
+        </div>
+
+        <!-- BÀI 5 -->
+        <div class="lesson-item-card" style="opacity:0.75;">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 05</span>
+            <span class="lic-badge prep">⏳ Sắp mở</span>
+          </div>
+          <div class="lic-zh">我最近越来越胖了</div>
+          <div class="lic-vi">Dạo này tôi ngày càng béo ra</div>
+          <div class="lic-meta">
+            <span>14 Từ vựng &bull; Cấu trúc 越来越...</span>
+            <span>Đang đóng gói</span>
+          </div>
+        </div>
+
+        <!-- BÀI 6 -->
+        <div class="lesson-item-card" style="opacity:0.75;">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 06</span>
+            <span class="lic-badge prep">⏳ Sắp mở</span>
+          </div>
+          <div class="lic-zh">怎么突然找不到了</div>
+          <div class="lic-vi">Sao đột nhiên lại tìm không thấy rồi</div>
+          <div class="lic-meta">
+            <span>15 Từ vựng &bull; Bổ ngữ khả năng</span>
+            <span>Đang đóng gói</span>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </body>
 </html>
