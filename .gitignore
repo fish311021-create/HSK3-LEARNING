@@ -1,0 +1,6 @@
+# Temporary / Large raw materials not needed for GitHub Pages
+FILE TÀI LIỆU/
+audio/
+__pycache__/
+*.bat
+server.py

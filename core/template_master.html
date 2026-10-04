@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSK 3 - Bài {{LESSON_NUM}}: {{LESSON_TITLE}} - Luyện Nghe, Đọc, Viết & Từ Điển</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090e17;
+      --card-bg: rgba(26, 34, 52, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --chinese-font: "Noto Serif SC", "Songti SC", serif;
+      --pinyin-color: #38bdf8;
+      --trans-color: #cbd5e1;
+      --male-color: #60a5fa;
+      --female-color: #f472b6;
+      --poly-color: #f59e0b;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #171c36 0%, #0d1322 40%, #070b14 100%);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 28px 24px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+
+    .badge-course {
+      display: inline-block;
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-family: var(--chinese-font);
+      font-size: 24px;
+      color: #38bdf8;
+      margin-bottom: 16px;
+    }
+
+    /* AUDIO CONTROLLER BAR */
+    .audio-bar {
+      margin-top: 18px;
+      padding: 16px 20px;
+      background: rgba(13, 19, 34, 0.85);
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .audio-bar audio {
+      width: 100%;
+      height: 42px;
+      outline: none;
+    }
+
+    .jump-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .jump-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .jump-btn:hover, .jump-btn.active {
+      background: var(--accent);
+      color: #04101e;
+      font-weight: 700;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    /* GLOBAL TOOLBAR */
+    .global-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .tool-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tool-btn:hover, .tool-btn.active {
+      background: var(--accent);
+      color: #04101e;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    /* NAV TABS */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      position: sticky;
+      top: 15px;
+      z-index: 900;
+      background: rgba(13, 19, 34, 0.92);
+      backdrop-filter: blur(16px);
+      padding: 10px 16px;
+      border-radius: 50px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-sub);
+      border: 1px solid transparent;
+      padding: 9px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #04101e;
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px var(--accent-glow);
+      font-weight: 700;
+    }
+
+    /* TAB CONTENT */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    /* WORD TOKEN HOVER INTERACTION */
+    .interactive-text {
+      font-family: var(--chinese-font);
+      font-size: 20px;
+      line-height: 2.1;
+      letter-spacing: 0.5px;
+      color: #f8fafc;
+    }
+
+    .zh-word {
+      display: inline-block;
+      padding: 1px 2px;
+      margin: 0 1px;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s ease;
+      border-bottom: 2px dashed rgba(56, 189, 248, 0.4);
+    }
+    .zh-word:hover {
+      background: rgba(56, 189, 248, 0.25);
+      color: #38bdf8;
+      border-bottom-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    /* Polyphonic marker */
+    .zh-word.polyphonic {
+      border-bottom: 2px solid var(--poly-color);
+    }
+    .zh-word.polyphonic::after {
+      content: "•";
+      color: var(--poly-color);
+      position: absolute;
+      top: -11px;
+      right: 1px;
+      font-size: 16px;
+    }
+
+    /* POPUP DICTIONARY TOOLTIP */
+    #dict-tooltip {
+      position: fixed;
+      z-index: 10000;
+      background: rgba(13, 19, 34, 0.96);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      border-radius: 14px;
+      padding: 12px 16px;
+      min-width: 220px;
+      max-width: 330px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7), 0 0 20px rgba(56, 189, 248, 0.25);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    #dict-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .tooltip-word {
+      font-family: var(--chinese-font);
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .tooltip-pinyin {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .tooltip-hv {
+      font-size: 12px;
+      color: #a78bfa;
+      font-weight: 600;
+      margin-left: auto;
+    }
+
+    .tooltip-meaning {
+      font-size: 14px;
+      color: #e2e8f0;
+      margin-top: 6px;
+      line-height: 1.45;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 6px;
+    }
+
+    .poly-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid var(--poly-color);
+      color: #fbbf24;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      margin-top: 6px;
+    }
+
+    .poly-detail-box {
+      margin-top: 8px;
+      padding: 8px 10px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      border-left: 3px solid var(--poly-color);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .poly-item { margin-bottom: 5px; }
+    .poly-item:last-child { margin-bottom: 0; }
+    .poly-py { color: var(--poly-color); font-weight: 700; }
+
+    /* CARD STYLING FOR QUESTIONS & DIALOGUES */
+    .card {
+      background: rgba(13, 19, 34, 0.55);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .card-num {
+      display: inline-block;
+      background: #0284c7;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .speaker-line {
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+    .speaker {
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .speaker.male { color: var(--male-color); }
+    .speaker.female { color: var(--female-color); }
+    .speaker.question { color: #fbbf24; }
+
+    .pinyin-line {
+      font-size: 14px;
+      color: var(--pinyin-color);
+      margin-left: 28px;
+      display: block;
+      margin-top: 2px;
+    }
+    .trans-line {
+      font-size: 14px;
+      color: var(--trans-color);
+      margin-left: 28px;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .hide-pinyin .pinyin-line { display: none !important; }
+    .hide-trans .trans-line { display: none !important; }
+
+    /* SENTENCE TRANSLATION TOGGLE BUTTON */
+    .sentence-footer {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-trans-toggle {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--card-border);
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-trans-toggle:hover {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .sentence-trans-box {
+      display: none;
+      background: rgba(13, 19, 34, 0.7);
+      border-left: 3px solid #38bdf8;
+      border-radius: 0 10px 10px 0;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #cbd5e1;
+      animation: fadeIn 0.25s ease;
+    }
+    .sentence-pinyin-full {
+      font-size: 13px;
+      color: #38bdf8;
+      margin-bottom: 4px;
+    }
+
+    /* QUIZ OPTIONS GRID & SPECIALIZED LAYOUTS */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    /* Tab 1 Phần 1: Chọn tranh minh họa A-F */
+    .options-grid.grid-pics-options {
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      max-width: 680px;
+    }
+    /* Tab 1 Phần 2: Đúng / Sai √ / × (2 cột gọn 320px) */
+    .options-grid.grid-true-false {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 320px;
+    }
+    /* Tab 1 Phần 3 & 4: 3 Lựa chọn A, B, C */
+    .options-grid.grid-abc {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    /* Tab 2 Phần 1 (Câu 21-25): Chip chữ cái A-F siêu gọn (65px, max-width 420px) */
+    .options-grid.grid-letters {
+      grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+      max-width: 420px;
+      margin-top: 12px;
+    }
+    /* Tab 2 Phần 2 (Câu 26-30): Chip từ vựng A-F (90px, max-width 550px) */
+    .options-grid.grid-vocab {
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      max-width: 550px;
+      margin-top: 12px;
+    }
+
+    /* LISTENING TAB SPECIALIZED STYLES */
+    .listening-statement {
+      font-family: var(--chinese-font);
+      font-size: 18px;
+      color: #f8fafc;
+      margin: 10px 0;
+      padding: 8px 12px;
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      line-height: 1.7;
+    }
+    .listening-question {
+      font-family: var(--chinese-font);
+      font-size: 17px;
+      color: #fbbf24;
+      margin: 8px 0 12px;
+      padding-left: 8px;
+      border-left: 3px solid #fbbf24;
+      line-height: 1.6;
+    }
+
+    /* READING PART 1: REFERENCE BOX CHO CÂU ĐỐI ỨNG (A - F) */
+    .reading-ref-box {
+      background: rgba(13, 19, 34, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .reading-ref-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .reading-ref-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: background 0.2s;
+    }
+    .reading-ref-item:last-child {
+      margin-bottom: 0;
+    }
+    .reading-ref-item:hover {
+      background: rgba(56, 189, 248, 0.06);
+    }
+    .reading-ref-item .chip-letter {
+      background: var(--accent);
+      color: #04101e;
+      flex-shrink: 0;
+    }
+    .reading-ref-item.is-example .chip-letter {
+      background: #64748b;
+      color: #fff;
+    }
+
+    /* READING PART 2: NGÂN HÀNG TỪ VỰNG GRID (A - F) */
+    .reading-vocab-box {
+      background: rgba(13, 19, 34, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .reading-vocab-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .reading-vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+    .reading-vocab-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .reading-vocab-card:hover {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: #38bdf8;
+    }
+    .reading-vocab-card .chip-letter {
+      background: var(--accent);
+      color: #04101e;
+      width: 24px;
+      height: 24px;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .reading-vocab-card.is-example .chip-letter {
+      background: #64748b;
+      color: #fff;
+    }
+
+    /* READING PART 3: Ô CHỮ HÁN ĐOẠN VĂN */
+    .reading-passage-box {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 14px 18px;
+      border-radius: 12px;
+      border-left: 3px solid #38bdf8;
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .reading-question-title {
+      font-weight: bold;
+      font-size: 17px;
+      color: #fbbf24;
+      margin-bottom: 12px;
+    }
+
+    /* WRITING STYLES (PHẦN 1 & PHẦN 2) */
+    .writing-scramble-text {
+      font-size: 18px;
+      color: #cbd5e1;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .writing-correct-answer {
+      font-size: 18px;
+      font-weight: 700;
+      color: #86efac;
+      margin-bottom: 4px;
+    }
+    .writing-fill-sentence {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .writing-target-hanzi {
+      font-size: 24px;
+      font-weight: 800;
+      color: #86efac;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .writing-grammar-note {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      line-height: 1.5;
+    }
+    .writing-compound-hint {
+      font-size: 13px;
+      color: #e2e8f0;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* TAB 4: TỪ VỰNG & NGỮ PHÁP SGK */
+    .grammar-point-box, .grammar-card {
+      background: rgba(13, 19, 34, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--accent);
+    }
+    .grammar-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .grammar-formula {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px dashed rgba(56, 189, 248, 0.4);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #7dd3fc;
+    }
+    .grammar-example-item, .example-item {
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .grammar-example-item:hover, .example-item:hover {
+      background: rgba(56, 189, 248, 0.06);
+    }
+    .extended-vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .extended-vocab-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      transition: all 0.2s;
+    }
+    .extended-vocab-card:hover {
+      border-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.06);
+    }
+    .poly-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .poly-card {
+      background: rgba(245, 158, 11, 0.05);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .option-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+    .option-chip:hover {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: #38bdf8;
+    }
+    .option-chip.selected {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .chip-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .option-chip.selected .chip-letter {
+      background: #38bdf8;
+      color: #04101e;
+    }
+
+    /* ACTION BUTTONS */
+    .quiz-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      align-items: center;
+    }
+
+    .btn-check {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .btn-check:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-reset {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-reset:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .feedback-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .feedback-box.correct {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid var(--success);
+      color: #86efac;
+    }
+    .feedback-box.wrong {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid var(--danger);
+      color: #fca5a5;
+    }
+
+    /* PICTURES GRID */
+    .pics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .pic-item {
+      background: rgba(13, 19, 34, 0.7);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .pic-item:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+    .pic-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    .pic-label {
+      padding: 8px;
+      font-weight: 700;
+      color: #38bdf8;
+      font-size: 14px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    /* VOCABULARY TABLE */
+    .vocab-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+    .vocab-table th, .vocab-table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .vocab-table th {
+      color: #38bdf8;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(0,0,0,0.2);
+    }
+    .vocab-table tr:hover td {
+      background: rgba(56, 189, 248, 0.05);
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 12px 8px 60px; }
+      h1 { font-size: 22px; }
+      .subtitle { font-size: 18px; }
+      .nav-tabs { flex-wrap: wrap; border-radius: 20px; }
+      .tab-btn { padding: 7px 14px; font-size: 13px; }
+      .interactive-text { font-size: 18px; line-height: 2; }
+    }
+  
+    /* HAMBURGER BUTTON (☰) */
+    .btn-hamburger {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 1000;
+      background: rgba(13, 19, 34, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px var(--accent-glow);
+      transition: all 0.25s ease;
+    }
+    .btn-hamburger:hover {
+      background: var(--accent);
+      color: #04101e;
+      transform: scale(1.05);
+    }
+    .btn-hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    /* SIDEBAR DRAWER OVERLAY */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* SIDEBAR DRAWER */
+    .sidebar-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 380px;
+      max-width: 86vw;
+      background: #0d1322;
+      border-right: 1px solid var(--card-border);
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 20px 0 50px rgba(0, 0, 0, 0.8);
+    }
+    .sidebar-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(26, 34, 52, 0.6);
+    }
+    .drawer-header h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+    .btn-close-drawer {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+    .btn-close-drawer:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .drawer-search-box {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .drawer-search-box input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .drawer-search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .drawer-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .drawer-content::-webkit-scrollbar { width: 5px; }
+    .drawer-content::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+
+    .drawer-lesson-item {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+    .drawer-lesson-item:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateX(3px);
+    }
+    .drawer-lesson-item.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.35), rgba(56, 189, 248, 0.2));
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .lesson-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #38bdf8;
+      flex-shrink: 0;
+    }
+    .drawer-lesson-item.active .lesson-badge {
+      background: var(--accent);
+      color: #04101e;
+    }
+    .lesson-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .lesson-item-title {
+      font-family: var(--chinese-font);
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lesson-item-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HAMBURGER BUTTON (☰) -->
+  <button class="btn-hamburger" id="btnHamburger" onclick="toggleDrawer()" title="Danh sách 20 bài học">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- DRAWER OVERLAY -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+  <!-- SIDEBAR DRAWER -->
+  <aside class="sidebar-drawer" id="sidebarDrawer">
+    <div class="drawer-header">
+      <h3>HSK 3 - 20 BÀI HỌC</h3>
+      <button class="btn-close-drawer" onclick="closeDrawer()" title="Đóng menu">✕</button>
+    </div>
+    <div class="drawer-search-box">
+      <input type="text" id="searchLessonInput" placeholder="Tìm kiếm bài học..." oninput="filterDrawerLessons()">
+    </div>
+    <div class="drawer-content" id="drawerLessonList">
+      <!-- Generated via JS -->
+    </div>
+  </aside>
+
+  <div class="container" id="app">
+    <header>
+      <div class="badge-course">Giáo trình chuẩn HSK 3 &bull; Bài {{LESSON_NUM}}</div>
+      <h1>{{LESSON_TITLE}}</h1>
+      <div class="subtitle">{{LESSON_SUBTITLE}}</div>
+      <p style="color: var(--text-sub); font-size: 14px; max-width: 680px; margin: 0 auto;">
+        💡 <strong>Cách học:</strong> Rê chuột (hoặc chạm trên điện thoại) vào <strong>bất kỳ chữ Hán nào</strong> để tra Pinyin và nghĩa tiếng Việt; chữ có dấu chấm cam <span style="color:#f59e0b;font-weight:bold;">•</span> là chữ đa âm tự (bấm/giữ để xem toàn bộ các âm khác); bấm <strong>"👁 Dịch cả câu"</strong> khi cần kiểm tra lại khả năng hiểu nghĩa của mình.
+      </p>
+
+      <div class="audio-bar">
+        <audio id="main-audio" controls preload="auto" src="{{AUDIO_SRC}}">
+          Trình duyệt của bạn không hỗ trợ phát âm thanh.
+        </audio>
+        <div class="jump-buttons">
+{{AUDIO_JUMP_BUTTONS}}
+        </div>
+      </div>
+    </header>
+
+    <!-- NAV TABS -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('tab-listening')">🎧 BÀI NGHE (听力 - 20 câu)</button>
+      <button class="tab-btn" onclick="switchTab('tab-reading')">📖 BÀI ĐỌC (阅读 - 15 câu)</button>
+      <button class="tab-btn" onclick="switchTab('tab-writing')">✍️ BÀI VIẾT (书写 - 10 câu)</button>
+      <button class="tab-btn" onclick="switchTab('tab-textbook')">📚 TỪ VỰNG & NGỮ PHÁP (Sách GK)</button>
+    </nav>
+
+    
+    <!-- ==================== TAB 1: BÀI NGHE (LISTENING) ==================== -->
+    <!-- [QUY CHUẨN TAB 1]: 
+         1. Nút kiểm tra dùng onclick="checkQuiz(NUM)" SẠCH, KHÔNG truyền chuỗi đáp án/giải thích vào onclick!
+         2. Phần 2 (Câu 6-10): Dùng selectOption(NUM, '√') và selectOption(NUM, '×'), TUYỆT ĐỐI KHÔNG dùng 'true'/'false'.
+         3. Mọi đáp án và giải thích của Câu 1-20 bắt buộc khai báo trong QUIZ_DATA. -->
+    <div id="tab-listening" class="tab-content active">
+{{TAB1_CONTENT}}
+    </div>
+
+    <!-- ==================== TAB 2: BÀI ĐỌC (READING) ==================== -->
+    <!-- [QUY CHUẨN TAB 2]:
+         1. Câu 21-25: Chip chữ cái CHỈ hiển thị <span class="chip-letter">A</span> A. TUYỆT ĐỐI KHÔNG lặp lại [A] hay chữ cái!
+         2. Câu 31-35: Hộp dịch (.sentence-footer) phải nằm TRÊN .quiz-actions; từng lựa chọn A, B, C phải có đầy đủ: Chữ Hán, Phiên âm Pinyin trong ngoặc đơn và Dịch nghĩa. -->
+    <div id="tab-reading" class="tab-content">
+{{TAB2_CONTENT}}
+    </div>
+
+    <!-- ==================== TAB 3: BÀI VIẾT (WRITING) ==================== -->
+    <!-- [QUY CHUẨN TAB 3]:
+         1. Câu 36-40: Các cụm từ rời rạc phân cách bằng dấu gạch chéo '/'.
+         2. Câu 41-45: Đề bài phải có phiên âm pinyin trong ngoặc đơn để điền chữ Hán. -->
+    <div id="tab-writing" class="tab-content">
+{{TAB3_CONTENT}}
+    </div>
+
+    <!-- ==================== TAB 4: TỪ VỰNG & NGỮ PHÁP SÁCH GIÁO KHOA ==================== -->
+    <!-- [QUY CHUẨN TAB 4]:
+         1. TUYỆT ĐỐI KHÔNG chứa .global-toolbar (chỉ thuộc về Tab 1, 2, 3).
+         2. TUYỆT ĐỐI KHÔNG chứa nội dung "Bài khóa" SGK.
+         3. Gồm đúng 4 phần chuẩn:
+            - Phần 1 (生词 & 专有名词): Bảng chuẩn 5 cột .vocab-table
+            - Phần 2 (注释): .grammar-card (hoặc .grammar-point-box), .grammar-title, .grammar-formula, .example-item
+            - Phần 3 (旧字新词 & 俗语): .extended-vocab-grid, .extended-vocab-card (hoặc .card)
+            - Phần 4 (多音字): .poly-card-grid, .poly-card
+         4. CẤM TUYỆT ĐỐI dùng class tự chế ngoài hệ thống hoặc biến CSS không tồn tại. -->
+    <div id="tab-textbook" class="tab-content">
+{{TAB4_CONTENT}}
+    </div>
+  </div>
+
+  <!-- DICTIONARY TOOLTIP -->
+  <div id="dict-tooltip">
+    <div class="tooltip-word">
+      <span id="tt-word">字</span>
+      <span class="tooltip-pinyin" id="tt-pinyin">pīnyīn</span>
+      <span class="tooltip-hv" id="tt-hv">Âm HV</span>
+    </div>
+    <div class="tooltip-meaning" id="tt-meaning">Nghĩa tiếng Việt</div>
+    <div id="tt-poly-container" style="display:none;">
+      <span class="poly-badge">★ Đa âm tự (Kéo / Giữ để xem)</span>
+      <div class="poly-detail-box" id="tt-poly-list"></div>
+    </div>
+  </div>
+<script>
+    const CURRENT_LESSON = {{LESSON_NUM}};
+    
+    // 100% COMPLETE MASTER DICTIONARY
+    const DICT = {{DICT_JSON}};
+
+    // POLYPHONIC CHARACTERS (MULTITONE)
+    const MULTITONE = {{MULTITONE_JSON}};
+
+    // ROBUST QUIZ DATA OBJECT
+    const QUIZ_DATA = {{QUIZ_DATA_JSON}};
+
+    const userAnswers = {};
+
+    // TAB SWITCHING
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+      
+      const activeBtn = btn || (window.event && window.event.currentTarget) || document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+      window.scrollTo({ top: 180, behavior: 'smooth' });
+    }
+
+    // AUDIO JUMP
+    function jumpAudio(seconds, btn) {
+      const audio = document.getElementById('main-audio');
+      if (!audio) return;
+
+      document.querySelectorAll('.jump-btn').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.classList.add('active');
+      }
+
+      const doSeekAndPlay = () => {
+        try {
+          audio.currentTime = seconds;
+          const playPromise = audio.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {});
+          }
+        } catch (e) {
+          console.warn("Audio seek error:", e);
+        }
+      };
+
+      if (audio.readyState >= 1) {
+        doSeekAndPlay();
+      } else {
+        const onLoaded = () => {
+          doSeekAndPlay();
+          audio.removeEventListener('loadedmetadata', onLoaded);
+          audio.removeEventListener('canplay', onLoaded);
+        };
+        audio.addEventListener('loadedmetadata', onLoaded);
+        audio.addEventListener('canplay', onLoaded);
+        audio.load();
+      }
+    }
+
+    // GLOBAL TOGGLES FOR LISTENING TAB
+    function toggleGlobalPinyin() {
+      const app = document.getElementById('app');
+      const btn = document.getElementById('btnTogglePinyin');
+      app.classList.toggle('hide-pinyin');
+      btn.classList.toggle('active');
+    }
+    function toggleGlobalTrans() {
+      const app = document.getElementById('app');
+      const btn = document.getElementById('btnToggleTrans');
+      app.classList.toggle('hide-trans');
+      btn.classList.toggle('active');
+    }
+
+    // QUIZ CONTROLLER (LISTENING & READING)
+    // userAnswers already declared above
+
+    function selectOption(qNum, value, text) {
+      const qKey = String(qNum);
+      userAnswers[qKey] = value;
+      userAnswers[qNum] = value;
+      
+      // Update chips with data-q (Reading tab & unified cards)
+      const chipsWithData = document.querySelectorAll(`.option-chip[data-q="${qKey}"], .option-chip[data-q="${qNum}"]`);
+      if (chipsWithData.length > 0) {
+        chipsWithData.forEach(c => {
+          if (c.getAttribute('data-val') === value) {
+            c.classList.add('selected');
+          } else {
+            c.classList.remove('selected');
+          }
+        });
+      }
+
+      // Update card chips (Listening tab & legacy cards)
+      const card = document.getElementById(`card-${qKey}`) || document.getElementById(`card-${qNum}`) || document.getElementById(`q-${qKey}`);
+      if (card) {
+        card.querySelectorAll('.option-chip').forEach(chip => {
+          const lElem = chip.querySelector('.chip-letter');
+          const l = lElem ? lElem.textContent.trim() : '';
+          const chipVal = chip.getAttribute('data-val');
+          const isTrueChoice = (value === '√' || value === 'true' || value === 'TRUE');
+          const isFalseChoice = (value === '×' || value === 'false' || value === 'FALSE' || value === 'X');
+
+          if (l === value || chipVal === value ||
+              (isTrueChoice && (l.includes('√') || chip.textContent.includes('Đúng') || chipVal === '√')) ||
+              (isFalseChoice && (l.includes('×') || l.includes('X') || chip.textContent.includes('Sai') || chipVal === '×'))) {
+            chip.classList.add('selected');
+          } else {
+            chip.classList.remove('selected');
+          }
+        });
+      }
+
+      const blankDisplay = document.getElementById(`blank-display-${qKey}`) || document.getElementById(`blank-display-${qNum}`);
+      if (blankDisplay) {
+        blankDisplay.textContent = `( ${value} ${text || ''} )`;
+        blankDisplay.style.color = '#38bdf8';
+      }
+    }
+
+    // Check quiz (Listening & Reading Tabs via QUIZ_DATA or direct arguments)
+    function checkQuiz(qNum, correctAns, explanation) {
+      const qKey = String(qNum);
+      const userChoice = userAnswers[qKey] || userAnswers[qNum];
+      const feedback = document.getElementById(`feedback-${qKey}`) || document.getElementById(`feedback-${qNum}`);
+      if (!feedback) return;
+
+      // Centralized QUIZ_DATA lookup
+      if ((!correctAns || !explanation) && typeof QUIZ_DATA !== 'undefined' && (QUIZ_DATA[qKey] || QUIZ_DATA[qNum])) {
+        const item = QUIZ_DATA[qKey] || QUIZ_DATA[qNum];
+        correctAns = correctAns || item.ans;
+        explanation = explanation || item.explain;
+      }
+
+      if (!userChoice) {
+        feedback.className = 'feedback-box wrong';
+        feedback.style.display = 'block';
+        feedback.innerHTML = '⚠️ Vui lòng chọn một đáp án trước khi bấm kiểm tra!';
+        return;
+      }
+
+      const u = String(userChoice).trim().toUpperCase();
+      const c = String(correctAns || '').trim().toUpperCase();
+      const isCorrect = (u === c) ||
+                        ((u === 'TRUE' || u === '√' || u === 'ĐÚNG') && (c === 'TRUE' || c === '√' || c === 'ĐÚNG')) ||
+                        ((u === 'FALSE' || u === '×' || u === 'X' || u === 'SAI') && (c === 'FALSE' || c === '×' || c === 'X' || c === 'SAI'));
+
+      if (isCorrect) {
+        feedback.className = 'feedback-box correct';
+        feedback.style.display = 'block';
+        feedback.innerHTML = `🎉 <strong>Chính xác!</strong> Đáp án đúng là <strong>${correctAns}</strong>.<br>${explanation || ''}`;
+      } else {
+        feedback.className = 'feedback-box wrong';
+        feedback.style.display = 'block';
+        feedback.innerHTML = `❌ <strong>Chưa chính xác!</strong> Bạn chọn <strong>${userChoice}</strong>. Đáp án đúng là <strong>${correctAns}</strong>.<br>${explanation || ''}`;
+      }
+    }
+
+    // Check answer alias for Reading Tab
+    function checkAnswer(qNum) {
+      checkQuiz(qNum);
+    }
+
+    // Reset for both tabs
+    function resetQuiz(qNum) {
+      const qKey = String(qNum);
+      delete userAnswers[qKey];
+      delete userAnswers[qNum];
+      const card = document.getElementById(`card-${qKey}`) || document.getElementById(`card-${qNum}`) || document.getElementById(`q-${qKey}`);
+      if (card) {
+        card.querySelectorAll('.option-chip').forEach(chip => chip.classList.remove('selected'));
+      }
+      const chips = document.querySelectorAll(`.option-chip[data-q="${qKey}"], .option-chip[data-q="${qNum}"]`);
+      chips.forEach(c => c.classList.remove('selected'));
+      
+      const blankDisplay = document.getElementById(`blank-display-${qKey}`) || document.getElementById(`blank-display-${qNum}`);
+      if (blankDisplay) {
+        blankDisplay.textContent = '( ? )';
+        blankDisplay.style.color = '#38bdf8';
+      }
+
+      const feedback = document.getElementById(`feedback-${qKey}`) || document.getElementById(`feedback-${qNum}`);
+      if (feedback) feedback.style.display = 'none';
+    }
+    const resetAnswer = resetQuiz;
+
+    // Accordion toggle for translation
+    function toggleSentenceTrans(param) {
+      if (typeof param === 'number' || typeof param === 'string') {
+        const box = document.getElementById(`transbox-${param}`);
+        if (box) {
+          const isHidden = box.style.display === 'none' || !box.style.display;
+          box.style.display = isHidden ? 'block' : 'none';
+        }
+      } else if (param && param.parentNode) {
+        const box = param.parentNode.querySelector('.sentence-trans-box');
+        if (box) {
+          const isHidden = box.style.display === 'none' || !box.style.display;
+          box.style.display = isHidden ? 'block' : 'none';
+          param.innerHTML = isHidden ? '✕ Thu gọn dịch' : '👁 Dịch cả câu';
+        }
+      }
+    }
+
+    function tokenizeAllInteractiveText() {
+      const keys = Object.keys(DICT).sort((a, b) => b.length - a.length);
+
+      document.querySelectorAll('.interactive-text').forEach(block => {
+        if (block.getAttribute('data-tokenized') === 'true') return;
+        
+        const walkAndWrap = (node) => {
+          if (node.nodeType === 3) { // Text node
+            const text = node.nodeValue;
+            if (!/[\u4e00-\u9fa5]/.test(text)) return;
+            
+            const fragment = document.createDocumentFragment();
+            let i = 0;
+            while (i < text.length) {
+              const char = text[i];
+              if (!/[\u4e00-\u9fa5]/.test(char)) {
+                fragment.appendChild(document.createTextNode(char));
+                i++;
+                continue;
+              }
+
+              // Match longest vocabulary word
+              let matched = null;
+              for (const k of keys) {
+                if (text.substr(i, k.length) === k) {
+                  matched = k;
+                  break;
+                }
+              }
+
+              if (matched) {
+                const span = document.createElement('span');
+                span.className = 'zh-word';
+                span.textContent = matched;
+                span.setAttribute('data-word', matched);
+                
+                const data = DICT[matched] || {};
+                span.setAttribute('data-pinyin', data.py || '');
+                span.setAttribute('data-meaning', data.vi || '');
+                span.setAttribute('data-hv', data.hv || '');
+                if (data.poly) {
+                  span.classList.add('polyphonic');
+                  span.setAttribute('data-poly', JSON.stringify(data.poly));
+                }
+
+                fragment.appendChild(span);
+                i += matched.length;
+              } else {
+                // Fallback single character
+                const span = document.createElement('span');
+                span.className = 'zh-word';
+                span.textContent = char;
+                span.setAttribute('data-word', char);
+                
+                const data = DICT[char] || { py: '', vi: 'Chữ Hán: ' + char, hv: '' };
+                span.setAttribute('data-pinyin', data.py || '');
+                span.setAttribute('data-meaning', data.vi || '');
+                span.setAttribute('data-hv', data.hv || '');
+                if (data.poly) {
+                  span.classList.add('polyphonic');
+                  span.setAttribute('data-poly', JSON.stringify(data.poly));
+                }
+
+                fragment.appendChild(span);
+                i++;
+              }
+            }
+            node.parentNode.replaceChild(fragment, node);
+          } else if (node.nodeType === 1 && node.nodeName !== 'BUTTON' && !node.classList.contains('sentence-trans-box')) {
+            Array.from(node.childNodes).forEach(walkAndWrap);
+          }
+        };
+
+        walkAndWrap(block);
+        block.setAttribute('data-tokenized', 'true');
+      });
+    }
+
+    // DICTIONARY TOOLTIP LOGIC
+    const tooltip = document.getElementById('dict-tooltip');
+    const ttWord = document.getElementById('tt-word');
+    const ttPinyin = document.getElementById('tt-pinyin');
+    const ttHv = document.getElementById('tt-hv');
+    const ttMeaning = document.getElementById('tt-meaning');
+    const ttPolyBox = document.getElementById('tt-poly-container');
+    const ttPolyList = document.getElementById('tt-poly-list');
+
+    document.addEventListener('mouseover', (e) => {
+      const target = e.target.closest('.zh-word');
+      if (!target) return;
+
+      showTooltipFor(target);
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const target = e.target.closest('.zh-word');
+      if (target) {
+        tooltip.classList.remove('visible');
+      }
+    });
+
+    // Touch support for mobile / tablet
+    document.addEventListener('touchstart', (e) => {
+      const target = e.target.closest('.zh-word');
+      if (!target) {
+        tooltip.classList.remove('visible');
+        return;
+      }
+      showTooltipFor(target);
+    });
+
+    // Click support for desktop & mobile
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('.zh-word');
+      if (target) {
+        showTooltipFor(target);
+      } else if (!e.target.closest('#dict-tooltip')) {
+        tooltip.classList.remove('visible');
+      }
+    });
+
+    function showTooltipFor(target) {
+      const word = target.getAttribute('data-word');
+      const py = target.getAttribute('data-pinyin');
+      const hv = target.getAttribute('data-hv');
+      const mean = target.getAttribute('data-meaning');
+      const polyJson = target.getAttribute('data-poly');
+
+      ttWord.textContent = word;
+      ttPinyin.textContent = py;
+      ttHv.textContent = hv ? `[${hv}]` : '';
+      ttMeaning.textContent = mean || 'Từ trong bài';
+
+      if (polyJson) {
+        ttPolyBox.style.display = 'block';
+        try {
+          const polyList = JSON.parse(polyJson);
+          ttPolyList.innerHTML = polyList.map((item, idx) => `
+            <div class="poly-item">
+              <span class="poly-py">${idx+1}. [${item.py}]</span>: ${item.vi}
+            </div>
+          `).join('');
+        } catch(err) {}
+      } else {
+        ttPolyBox.style.display = 'none';
+      }
+
+      positionTooltip(target);
+      tooltip.classList.add('visible');
+    }
+
+    function positionTooltip(elem) {
+      const rect = elem.getBoundingClientRect();
+      const tipWidth = 260;
+      const tipHeight = tooltip.offsetHeight || 100;
+
+      let left = rect.left + rect.width / 2 - tipWidth / 2;
+      let top = rect.top - tipHeight - 12;
+
+      if (left < 10) left = 10;
+      if (left + tipWidth > window.innerWidth - 10) {
+        left = window.innerWidth - tipWidth - 10;
+      }
+      if (top < 10) {
+        top = rect.bottom + 10;
+      }
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      tokenizeAllInteractiveText();
+    });
+  
+    // DRAWER MENU LOGIC FOR LESSON 1
+    const LESSONS_DATA = [
+      {"num": 1, "title": "周末你有什么打算？", "py": "Zhōumò nǐ yǒu shénme dǎsuàn?", "url": "index.html"},
+      {"num": 2, "title": "他什么时候回来？", "py": "Tā shénme shíhou huílái?", "url": "../Bai_02/index.html"},
+      {"num": 3, "title": "桌子上放着很多饮料", "py": "Zhuōzi shang fàngzhe hěnduō yǐnliào", "url": "../Bai_03/index.html"},
+      {"num": 4, "title": "她总是笑着跟客人说话", "py": "Tā zǒngshì xiàozhe gēn kèrén shuōhuà", "url": "../Bai_04/index.html"},
+      {"num": 5, "title": "我最近越来越胖了", "py": "Wǒ zuìjìn yuèláiyuè pàng le", "url": "../Bai_05/index.html"},
+      {"num": 6, "title": "怎么突然找不到了", "py": "Zěnme tūrán zhǎobúdào le", "url": "../Bai_06/index.html"},
+      {"num": 7, "title": "我跟他都认识五年了", "py": "Wǒ gēn tā dōu rènshi wǔ nián le", "url": "../Bai_07/index.html"},
+      {"num": 8, "title": "你去哪儿我就去哪儿", "py": "Nǐ qù nǎr wǒ jiù qù nǎr", "url": "../Bai_08/index.html"},
+      {"num": 9, "title": "她的汉语说得跟中国人一样好", "py": "Tā de hànyǔ shuō de gēn zhōngguórén yíyàng hǎo", "url": "../Bai_09/index.html"},
+      {"num": 10, "title": "数学比历史难多了", "py": "Shùxué bǐ lìshǐ nán duō le", "url": "../Bai_10/index.html"},
+      {"num": 11, "title": "别忘了把空调关了", "py": "Bié wàng le bǎ kōngtiáo guān le", "url": "../Bai_11/index.html"},
+      {"num": 12, "title": "把重要的事写在笔记本上", "py": "Bǎ zhòngyào de shì xiě zài bǐjìběn shang", "url": "../Bai_12/index.html"},
+      {"num": 13, "title": "我是走回来的", "py": "Wǒ shì zǒu huílái de", "url": "../Bai_13/index.html"},
+      {"num": 14, "title": "你把水果拿过来", "py": "Nǐ bǎ shuǐguǒ ná guòlái", "url": "../Bai_14/index.html"},
+      {"num": 15, "title": "其他都没什么问题", "py": "Qítā dōu méi shénme wèntí", "url": "../Bai_15/index.html"},
+      {"num": 16, "title": "我现在累得想睡觉", "py": "Wǒ xiànzài lèi de xiǎng shuìjiào", "url": "../Bai_16/index.html"},
+      {"num": 17, "title": "谁都有办法看好病", "py": "Shéi dōu yǒu bànfǎ kànhǎo bìng", "url": "../Bai_17/index.html"},
+      {"num": 18, "title": "我相信他们会同意的", "py": "Wǒ xiāngxìn tāmen huì tóngyì de", "url": "../Bai_18/index.html"},
+      {"num": 19, "title": "你没看出来吗？", "py": "Nǐ méi kàn chūlái ma?", "url": "../Bai_19/index.html"},
+      {"num": 20, "title": "我被他影响了", "py": "Wǒ bèi tā yǐngxiǎng le", "url": "../Bai_20/index.html"}
+    ];
+
+    function toggleDrawer() {
+      const drawer = document.getElementById('sidebarDrawer');
+      if (drawer.classList.contains('open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    }
+
+    function openDrawer() {
+      document.getElementById('sidebarDrawer').classList.add('open');
+      document.getElementById('drawerOverlay').classList.add('active');
+    }
+
+    function closeDrawer() {
+      document.getElementById('sidebarDrawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('active');
+    }
+
+    function renderDrawerLessons(filterText = '') {
+      const list = document.getElementById('drawerLessonList');
+      if (!list) return;
+      const query = filterText.toLowerCase().trim();
+
+      list.innerHTML = LESSONS_DATA.map(lesson => {
+        const match = !query || 
+          lesson.num.toString().includes(query) || 
+          lesson.title.toLowerCase().includes(query) || 
+          lesson.py.toLowerCase().includes(query);
+
+        if (!match) return '';
+
+        const isActive = lesson.num === CURRENT_LESSON;
+        return `
+          <a href="${lesson.num === CURRENT_LESSON ? 'index.html' : `../Bai_${String(lesson.num).padStart(2, '0')}/index.html`}" class="drawer-lesson-item ${isActive ? 'active' : ''}" onclick="closeDrawer()">
+            <span class="lesson-badge">Bài ${lesson.num}</span>
+            <div class="lesson-item-info">
+              <div class="lesson-item-title">${lesson.title}</div>
+              <div class="lesson-item-sub">${lesson.py}</div>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    function filterDrawerLessons() {
+      const val = document.getElementById('searchLessonInput').value;
+      renderDrawerLessons(val);
+    }
+
+    renderDrawerLessons();
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+  </script>
+</body>
+</html>

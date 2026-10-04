@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>HSK 3 - Trọn Bộ 20 Bài Học Chuẩn Quốc Tế (Nghe, Đọc, Viết, Từ Vựng & Ngữ Pháp)</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090e17;
+      --card-bg: rgba(26, 34, 52, 0.78);
+      --card-hover: rgba(36, 48, 74, 0.9);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-glow: rgba(56, 189, 248, 0.25);
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.28);
+      --accent-dark: #0284c7;
+      --chinese-font: "Noto Serif SC", "Songti SC", serif;
+      --pinyin-color: #38bdf8;
+      --trans-color: #cbd5e1;
+      --male-color: #60a5fa;
+      --female-color: #f472b6;
+      --poly-color: #f59e0b;
+      --success: #22c55e;
+      --success-glow: rgba(34, 197, 94, 0.25);
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --drawer-width: 380px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: radial-gradient(circle at 50% 0%, #171c36 0%, #0d1322 40%, #070b14 100%);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP NAVBAR */
+    .top-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 800;
+      background: rgba(13, 19, 34, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    /* NÚT 3 GẠCH (HAMBURGER) */
+    .btn-hamburger {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+
+    .btn-hamburger:hover {
+      background: var(--accent);
+      color: #090e17;
+      transform: scale(1.05);
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    .btn-hamburger svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-lesson-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .nav-badge {
+      background: linear-gradient(135deg, #0284c7, #4f46e5);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .nav-title-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-title-zh {
+      font-family: var(--chinese-font);
+      color: var(--accent);
+      font-size: 15px;
+      margin-left: 6px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-nav-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-nav-btn:hover:not(:disabled) {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .nav-nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* BACKDROP OVERLAY CHO MENU */
+    .drawer-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(4, 8, 16, 0.72);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 950;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.28s ease;
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* SIDEBAR DRAWER */
+    .sidebar-drawer {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: var(--drawer-width);
+      max-width: 88vw;
+      background: #0f172a;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 12px 0 45px rgba(0, 0, 0, 0.75);
+      z-index: 999;
+      transform: translateX(-100%);
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .drawer-header h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-close-drawer {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+
+    .btn-close-drawer:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+
+    .drawer-search-box {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(11, 17, 32, 0.6);
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--card-border);
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .drawer-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .drawer-content::-webkit-scrollbar { width: 5px; }
+    .drawer-content::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+
+    .lesson-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .lesson-item:hover {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateX(4px);
+    }
+
+    .lesson-item.active {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(2, 132, 199, 0.1));
+      border: 1.5px solid var(--accent);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
+    }
+
+    .lesson-item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lesson-num-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .lesson-status {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-weight: 600;
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+    }
+
+    .lesson-item-zh {
+      font-family: var(--chinese-font);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .lesson-item-py {
+      font-size: 12px;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .lesson-item-vi {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .drawer-footer {
+      padding: 12px 18px;
+      border-top: 1px solid var(--card-border);
+      background: rgba(10, 15, 26, 0.85);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 80px;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      padding: 28px 24px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: -40px; left: 50%;
+      transform: translateX(-50%);
+      width: 280px; height: 120px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, transparent 70%);
+      filter: blur(35px);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-zh {
+      font-family: var(--chinese-font);
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-py {
+      font-size: 16px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .hero-vi {
+      font-size: 17px;
+      color: var(--text-sub);
+      font-weight: 500;
+    }
+
+    /* GLOBAL TOOLBAR */
+    .global-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tool-btn {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tool-btn:hover, .tool-btn.active {
+      background: var(--accent);
+      color: #04101e;
+      border-color: var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    /* NAV TABS */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      position: sticky;
+      top: 65px;
+      z-index: 750;
+      background: rgba(13, 19, 34, 0.94);
+      backdrop-filter: blur(16px);
+      padding: 8px 12px;
+      border-radius: 50px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-sub);
+      border: 1px solid transparent;
+      padding: 9px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #04101e;
+      border-color: #38bdf8;
+      box-shadow: 0 0 16px var(--accent-glow);
+      font-weight: 700;
+    }
+
+    /* TAB CONTENT */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.28s ease;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .section-title-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* DIALOGUE STYLES */
+    .dialogue-card {
+      background: rgba(13, 19, 34, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .dialogue-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .dialogue-title-badge {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .dialogue-location {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .dialogue-line {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+
+    .dialogue-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .speaker-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .speaker-avatar.male {
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: #fff;
+    }
+
+    .speaker-avatar.female {
+      background: linear-gradient(135deg, #9d174d, #ec4899);
+      color: #fff;
+    }
+
+    .speech-bubble {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 10px 14px;
+      position: relative;
+    }
+
+    .line-actions {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-tts {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+
+    .btn-tts:hover {
+      background: var(--accent);
+      color: #090e17;
+      border-color: var(--accent);
+    }
+
+    .line-py {
+      font-size: 13px;
+      color: var(--pinyin-color);
+      margin-bottom: 4px;
+      padding-right: 32px;
+    }
+
+    .line-zh {
+      font-family: var(--chinese-font);
+      font-size: 19px;
+      line-height: 1.6;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .line-vi {
+      font-size: 13px;
+      color: var(--trans-color);
+      margin-top: 5px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.07);
+      padding-top: 5px;
+    }
+
+    /* TOKENIZED CHINESE TEXT & TOOLTIP INTERACTION */
+    .zh-text {
+      display: inline;
+    }
+
+    .zh-word {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 1px;
+      border-radius: 3px;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .zh-word:hover, .zh-word.tapped {
+      background: rgba(56, 189, 248, 0.25);
+      color: #38bdf8 !important;
+      text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+    }
+
+    .zh-word.polyphonic {
+      border-bottom: 2px dotted var(--poly-color);
+    }
+
+    /* DICTIONARY FLOATING TOOLTIP */
+    #dict-tooltip {
+      position: fixed;
+      z-index: 10000;
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 18px rgba(56, 189, 248, 0.2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      width: 270px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    #dict-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .tt-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 6px;
+    }
+
+    .tt-word {
+      font-family: var(--chinese-font);
+      font-size: 24px;
+      font-weight: 900;
+      color: #38bdf8;
+      line-height: 1;
+    }
+
+    .tt-pinyin {
+      font-size: 14px;
+      color: #fdba74;
+      font-weight: 700;
+    }
+
+    .tt-hv {
+      font-size: 12px;
+      color: #a78bfa;
+      font-weight: 600;
+    }
+
+    .tt-meaning {
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    .tt-poly-container {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      display: none;
+    }
+
+    .tt-poly-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--poly-color);
+      margin-bottom: 4px;
+    }
+
+    .tt-poly-item {
+      font-size: 11.5px;
+      color: #cbd5e1;
+      margin-bottom: 2px;
+    }
+
+    /* QUIZ QUESTION STYLES */
+    .quiz-card {
+      background: rgba(13, 19, 34, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .quiz-num-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .quiz-question-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .quiz-audio-script {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: var(--text-sub);
+      display: none;
+    }
+
+    .quiz-audio-script.show {
+      display: block;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .opt-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: left;
+      color: var(--text-main);
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .opt-btn:hover {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .opt-btn.correct {
+      background: rgba(34, 197, 94, 0.2) !important;
+      border-color: var(--success) !important;
+      color: #4ade80 !important;
+      font-weight: 700;
+    }
+
+    .opt-btn.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger) !important;
+      color: #f87171 !important;
+    }
+
+    .quiz-explain {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #cbd5e1;
+      display: none;
+    }
+
+    .quiz-explain.show {
+      display: block;
+    }
+
+    /* READING PART 1 & 2 & 3 STYLES */
+    .word-bank-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+    }
+
+    .word-bank-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .word-chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .word-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .word-chip strong {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .word-chip .chip-zh {
+      font-family: var(--chinese-font);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .word-chip .chip-vi {
+      color: var(--text-sub);
+      font-size: 12px;
+    }
+
+    .reading-passage-box {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .passage-zh {
+      font-family: var(--chinese-font);
+      font-size: 19px;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .passage-py {
+      font-size: 13px;
+      color: var(--pinyin-color);
+      margin-bottom: 8px;
+    }
+
+    .passage-vi {
+      font-size: 14px;
+      color: var(--trans-color);
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      padding-top: 8px;
+    }
+
+    /* WRITING STYLES */
+    .reorder-chunks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .chunk-tag {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: var(--chinese-font);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .btn-reveal {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reveal:hover {
+      background: var(--accent);
+      color: #090e17;
+    }
+
+    .reveal-box {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .reveal-box.show {
+      display: block;
+    }
+
+    .reveal-zh {
+      font-family: var(--chinese-font);
+      font-size: 18px;
+      font-weight: 700;
+      color: #4ade80;
+      margin-bottom: 4px;
+    }
+
+    .reveal-py {
+      font-size: 12.5px;
+      color: var(--pinyin-color);
+      margin-bottom: 2px;
+    }
+
+    .reveal-vi {
+      font-size: 13px;
+      color: var(--trans-color);
+    }
+
+    .writing-input-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .hanzi-input {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #fff;
+      font-size: 16px;
+      font-family: var(--chinese-font);
+      width: 140px;
+      outline: none;
+    }
+
+    .hanzi-input:focus {
+      border-color: var(--accent);
+    }
+
+    /* VOCABULARY TABLE */
+    .vocab-table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+    }
+
+    .vocab-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    .vocab-table th {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-sub);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .vocab-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: middle;
+    }
+
+    .vocab-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .vocab-zh {
+      font-family: var(--chinese-font);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .vocab-py {
+      color: var(--pinyin-color);
+      font-weight: 600;
+    }
+
+    .vocab-pos {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .vocab-vi {
+      color: #e2e8f0;
+    }
+
+    .vocab-eg {
+      font-size: 12.5px;
+      color: var(--text-sub);
+    }
+
+    /* GRAMMAR CARDS */
+    .grammar-card {
+      background: rgba(13, 19, 34, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .grammar-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .grammar-structure {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 3px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 0 8px 8px 0;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .grammar-explain {
+      font-size: 13.5px;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .grammar-examples {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .eg-item {
+      font-size: 13px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+      padding-bottom: 6px;
+    }
+
+    .eg-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .eg-zh {
+      font-family: var(--chinese-font);
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .eg-vi {
+      color: var(--text-sub);
+      font-size: 12px;
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-notice {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      border: 1px solid var(--accent);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border-radius: 12px;
+      padding: 12px 18px;
+      color: #fff;
+      font-size: 13px;
+      z-index: 10001;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+    }
+
+    .toast-notice.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HIDE PINYIN & TRANSLATION TOGGLE CLASSES */
+    body.hide-pinyin .line-py,
+    body.hide-pinyin .passage-py,
+    body.hide-pinyin .reveal-py,
+    body.hide-pinyin .vocab-py {
+      display: none !important;
+    }
+
+    body.hide-trans .line-vi,
+    body.hide-trans .passage-vi,
+    body.hide-trans .reveal-vi,
+    body.hide-trans .vocab-vi,
+    body.hide-trans .quiz-explain,
+    body.hide-trans .eg-vi {
+      display: none !important;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 640px) {
+      .container { padding: 14px 10px 80px; }
+      .hero-zh { font-size: 24px; }
+      .hero-banner { padding: 20px 16px; }
+      .nav-title-text { max-width: 140px; }
+      .section-card { padding: 16px 12px; }
+      .dialogue-card { padding: 14px 12px; }
+      .line-zh { font-size: 17px; }
+      .tab-btn { padding: 7px 14px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header class="top-navbar">
+    <div class="nav-left">
+      <!-- NÚT 3 GẠCH (HAMBURGER) -->
+      <button class="btn-hamburger" onclick="toggleDrawer()" title="Mở danh sách 20 bài học" id="btnHamburger">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      
+      <div class="nav-lesson-info">
+        <span class="nav-badge" id="navBadge">HSK 3</span>
+        <span class="nav-title-text" id="navLessonTitle">Bài 1:</span>
+        <span class="nav-title-zh" id="navLessonZh">周末你有什么打算？</span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <button class="nav-nav-btn" onclick="goToPrevLesson()" id="btnPrevLesson" title="Bài trước">◀ Trước</button>
+      <button class="nav-nav-btn" onclick="goToNextLesson()" id="btnNextLesson" title="Bài sau">Sau ▶</button>
+    </div>
+  </header>
+
+  <!-- BACKDROP OVERLAY -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+  <!-- SIDEBAR DRAWER (DANH SÁCH 20 BÀI HỌC) -->
+  <aside class="sidebar-drawer" id="sidebarDrawer">
+    <div class="drawer-header">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        Danh Sách 20 Bài HSK 3
+      </h3>
+      <button class="btn-close-drawer" onclick="closeDrawer()" title="Đóng menu">✕</button>
+    </div>
+
+    <div class="drawer-search-box">
+      <input type="text" id="searchLessonInput" class="search-input" placeholder="🔍 Tìm bài học (số bài, tên tiếng Trung, dịch nghĩa)..." oninput="filterLessons()">
+    </div>
+
+    <div class="drawer-content" id="drawerLessonList">
+      <!-- Sẽ được render động 20 bài học bằng JavaScript -->
+    </div>
+
+    <div class="drawer-footer">
+      <span>Chọn bài học bất kỳ sẽ tự động thu gọn menu về 3 gạch</span>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTAINER -->
+  <main class="container">
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+      <span class="hero-badge" id="heroBadge">Giáo trình chuẩn HSK 3 • Bài 1</span>
+      <h1 class="hero-zh zh-text" id="heroZh">周末你有什么打算？</h1>
+      <div class="hero-py" id="heroPy">Zhōumò nǐ yǒu shénme dǎsuàn?</div>
+      <div class="hero-vi" id="heroVi">Cuối tuần bạn có dự định gì?</div>
+
+      <!-- GLOBAL TOOLBAR -->
+      <div class="global-toolbar">
+        <button class="tool-btn active" id="btnTogglePinyin" onclick="toggleGlobalPinyin()">🔤 Pinyin: Bật</button>
+        <button class="tool-btn active" id="btnToggleTrans" onclick="toggleGlobalTrans()">🇻🇳 Dịch nghĩa: Bật</button>
+        <button class="tool-btn" onclick="playLessonTitleTTS()">🔊 Đọc tiêu đề bài</button>
+      </div>
+    </div>
+
+    <!-- STICKY NAV TABS -->
+    <nav class="nav-tabs" id="mainNavTabs">
+      <button class="tab-btn active" onclick="switchTab('listening')">🎧 Bài Nghe</button>
+      <button class="tab-btn" onclick="switchTab('reading')">📖 Bài Đọc</button>
+      <button class="tab-btn" onclick="switchTab('writing')">✍️ Bài Viết</button>
+      <button class="tab-btn" onclick="switchTab('vocab')">📚 Từ Vựng & Ngữ Pháp</button>
+    </nav>
+
+    <!-- TAB 1: BÀI NGHE -->
+    <section id="tab-listening" class="tab-pane active">
+      <!-- 4 ĐOẠN HỘI THOẠI -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>🗣️ 4 Đoạn Hội Thoại Chuẩn Giáo Trình</span>
+          </div>
+          <button class="tool-btn" style="font-size:12px; padding:4px 12px;" onclick="playAllDialoguesTTS()">🔊 Nghe toàn bài</button>
+        </div>
+        <div id="dialoguesContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- LUYỆN NGHE SÁCH BÀI TẬP -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>🎯 Luyện Nghe Trắc Nghiệm (Workbook)</span>
+          </div>
+        </div>
+        <div id="listeningQuizContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: BÀI ĐỌC -->
+    <section id="tab-reading" class="tab-pane">
+      <!-- PHẦN 1: GHÉP NỐI A-E -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>🧩 Phần 1: Ghép Nối Hội Thoại (Câu 21 - 25)</span>
+          </div>
+        </div>
+        <div id="readingP1Container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- PHẦN 2: ĐIỀN TỪ VÀO CHỖ TRỐNG -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>📝 Phần 2: Điền Từ Vào Chỗ Trống (Câu 26 - 30)</span>
+          </div>
+        </div>
+        <div id="readingP2Container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- PHẦN 3: ĐỌC HIỂU ĐOẠN VĂN -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>📖 Phần 3: Đọc Hiểu Đoạn Văn & Trả Lời (Câu 31 - 35)</span>
+          </div>
+        </div>
+        <div id="readingP3Container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: BÀI VIẾT -->
+    <section id="tab-writing" class="tab-pane">
+      <!-- PHẦN 1: SẮP XẾP TỪ THÀNH CÂU -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>🔀 Phần 1: Sắp Xếp Từ Thành Câu Hoàn Chỉnh (Câu 36 - 40)</span>
+          </div>
+        </div>
+        <div id="writingP1Container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- PHẦN 2: VIẾT CHỮ HÁN THEO PINYIN -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>✍️ Phần 2: Viết Chữ Hán Theo Phiên Âm (Câu 41 - 45)</span>
+          </div>
+        </div>
+        <div id="writingP2Container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: TỪ VỰNG & NGỮ PHÁP -->
+    <section id="tab-vocab" class="tab-pane">
+      <!-- TỪ VỰNG GIÁO TRÌNH -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>📖 Từ Vựng Giáo Trình Chuẩn HSK 3</span>
+          </div>
+          <span style="font-size:12px; color:var(--text-sub);" id="vocabCountBadge">15 từ mới</span>
+        </div>
+        <div class="vocab-table-wrap">
+          <table class="vocab-table">
+            <thead>
+              <tr>
+                <th style="width: 45px;">STT</th>
+                <th>Chữ Hán</th>
+                <th>Phiên Âm</th>
+                <th>Từ Loại</th>
+                <th>Dịch Nghĩa Tiếng Việt</th>
+                <th>Câu Ví Dụ Thực Tế</th>
+                <th style="width: 50px;">Nghe</th>
+              </tr>
+            </thead>
+            <tbody id="vocabTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ĐIỂM NGỮ PHÁP TRỌNG TÂM -->
+      <div class="section-card">
+        <div class="section-title">
+          <div class="section-title-left">
+            <span>💡 Các Điểm Ngữ Pháp Trọng Tâm Của Bài</span>
+          </div>
+        </div>
+        <div id="grammarContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING DICTIONARY TOOLTIP (100% COVERAGE) -->
+  <div id="dict-tooltip">
+    <div class="tt-header">
+      <span class="tt-word" id="ttWord">字</span>
+      <span class="tt-pinyin" id="ttPinyin">zì</span>
+      <span class="tt-hv" id="ttHv">[Tự]</span>
+    </div>
+    <div class="tt-meaning" id="ttMeaning">Định nghĩa tiếng Việt</div>
+    <div class="tt-poly-container" id="ttPolyBox">
+      <div class="tt-poly-title">★ Chữ đa âm / nhiều nghĩa:</div>
+      <div id="ttPolyList"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notice" id="toastNotice">
+    <span id="toastMsg">Thông báo</span>
+  </div>
+
+  <!-- LOAD DỮ LIỆU ĐẦY ĐỦ 20 BÀI VÀ TỪ ĐIỂN TỔNG HỢP -->
+  <script src="data/dictionary_full.js"></script>
+  <script src="data/lessons_data.js"></script>
+
+  <!-- APPLICATION CORE LOGIC ENGINE -->
+  <script>
+    // GLOBAL STATE
+    let currentLessonId = parseInt(localStorage.getItem('hsk3_selected_lesson') || '1', 10);
+    if (!window.LESSONS_DATABASE || !window.LESSONS_DATABASE[currentLessonId]) {
+      currentLessonId = 1;
+    }
+
+    const DICT = window.DICT || {};
+    let isPinyinVisible = true;
+    let isTransVisible = true;
+
+    // AUDIO TTS SYNTHESIS
+    function speakText(text, lang = 'zh-CN') {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const clean = text.replace(/[\(\)\[\]\{\}\?\!\.\,，。！？]/g, ' ');
+      const utter = new SpeechSynthesisUtterance(clean);
+      utter.lang = lang;
+      utter.rate = 0.9; // Tốc độ chuẩn cho người học HSK 3
+      window.speechSynthesis.speak(utter);
+    }
+
+    function playLessonTitleTTS() {
+      const lesson = window.LESSONS_DATABASE[currentLessonId];
+      if (lesson) speakText(lesson.title_zh);
+    }
+
+    function playAllDialoguesTTS() {
+      const lesson = window.LESSONS_DATABASE[currentLessonId];
+      if (!lesson || !lesson.dialogues) return;
+      let allText = lesson.dialogues.flatMap(d => d.lines.map(l => l.zh)).join('。 ');
+      speakText(allText);
+    }
+
+    // DRAWER LOGIC
+    function toggleDrawer() {
+      const drawer = document.getElementById('sidebarDrawer');
+      if (drawer.classList.contains('open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    }
+
+    function openDrawer() {
+      document.getElementById('sidebarDrawer').classList.add('open');
+      document.getElementById('drawerOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        const activeElem = document.querySelector('.lesson-item.active');
+        if (activeElem) activeElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150);
+    }
+
+    function closeDrawer() {
+      document.getElementById('sidebarDrawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // CHỌN BÀI HỌC VÀ TỰ ĐỘNG THU GỌN MENU VỀ 3 GẠCH
+    function selectLesson(id) {
+      if (!window.LESSONS_DATABASE[id]) return;
+      currentLessonId = id;
+      localStorage.setItem('hsk3_selected_lesson', id);
+
+      // 1. TỰ ĐỘNG THU GỌN VỀ 3 GẠCH THEO ĐÚNG YÊU CẦU NGƯỜI DÙNG
+      closeDrawer();
+
+      // 2. Render nội dung bài học được chọn
+      renderCurrentLesson(id);
+
+      // 3. Cập nhật menu drawer item active
+      renderDrawerLessonList(document.getElementById('searchLessonInput').value);
+
+      // 4. Scroll mượt lên đầu trang
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // 5. Thông báo nhẹ (Toast)
+      const lesson = window.LESSONS_DATABASE[id];
+      showToast(`Đã chuyển sang Bài ${id}: ${lesson.title_zh}`);
+    }
+
+    function goToPrevLesson() {
+      if (currentLessonId > 1) {
+        selectLesson(currentLessonId - 1);
+      }
+    }
+
+    function goToNextLesson() {
+      if (currentLessonId < 20) {
+        selectLesson(currentLessonId + 1);
+      }
+    }
+
+    function filterLessons() {
+      const q = document.getElementById('searchLessonInput').value;
+      renderDrawerLessonList(q);
+    }
+
+    function renderDrawerLessonList(query = '') {
+      const container = document.getElementById('drawerLessonList');
+      if (!window.LESSONS_META) return;
+
+      const q = query.trim().toLowerCase();
+      const filtered = window.LESSONS_META.filter(l => {
+        return (
+          `bài ${l.id}`.includes(q) ||
+          l.id.toString() === q ||
+          l.zh.toLowerCase().includes(q) ||
+          l.py.toLowerCase().includes(q) ||
+          l.vi.toLowerCase().includes(q)
+        );
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding:30px; color:var(--text-muted); font-size:13px;">Không tìm thấy bài học phù hợp với "${query}"</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(l => {
+        const isActive = l.id === currentLessonId;
+        return `
+          <div class="lesson-item ${isActive ? 'active' : ''}" onclick="selectLesson(${l.id})">
+            <div class="lesson-item-top">
+              <span class="lesson-num-badge">Bài ${l.id < 10 ? '0' + l.id : l.id}</span>
+              <span class="lesson-status">● Đầy đủ nội dung</span>
+            </div>
+            <div class="lesson-item-zh">${l.zh}</div>
+            <div class="lesson-item-py">${l.py}</div>
+            <div class="lesson-item-vi">${l.vi}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // TAB SWITCHING
+    function switchTab(tabKey) {
+      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', ['listening', 'reading', 'writing', 'vocab'][idx] === tabKey);
+      });
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+      const activePane = document.getElementById(`tab-${tabKey}`);
+      if (activePane) activePane.classList.add('active');
+    }
+
+    // GLOBAL TOGGLES
+    function toggleGlobalPinyin() {
+      isPinyinVisible = !isPinyinVisible;
+      document.body.classList.toggle('hide-pinyin', !isPinyinVisible);
+      const btn = document.getElementById('btnTogglePinyin');
+      btn.textContent = `🔤 Pinyin: ${isPinyinVisible ? 'Bật' : 'Tắt'}`;
+      btn.classList.toggle('active', isPinyinVisible);
+    }
+
+    function toggleGlobalTrans() {
+      isTransVisible = !isTransVisible;
+      document.body.classList.toggle('hide-trans', !isTransVisible);
+      const btn = document.getElementById('btnToggleTrans');
+      btn.textContent = `🇻🇳 Dịch nghĩa: ${isTransVisible ? 'Bật' : 'Tắt'}`;
+      btn.classList.toggle('active', isTransVisible);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotice');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 2200);
+    }
+
+    // MAIN LESSON RENDERER
+    function renderCurrentLesson(id) {
+      const lesson = window.LESSONS_DATABASE[id];
+      if (!lesson) return;
+
+      // 1. Header & Navigation update
+      document.getElementById('navBadge').textContent = `HSK 3 • BÀI ${lesson.id}`;
+      document.getElementById('navLessonTitle').textContent = `Bài ${lesson.id}:`;
+      document.getElementById('navLessonZh').textContent = lesson.title_zh;
+      document.getElementById('btnPrevLesson').disabled = (id <= 1);
+      document.getElementById('btnNextLesson').disabled = (id >= 20);
+
+      // 2. Hero Banner update
+      document.getElementById('heroBadge').textContent = `Giáo trình chuẩn HSK 3 • Bài ${lesson.id}`;
+      document.getElementById('heroZh').textContent = lesson.title_zh;
+      document.getElementById('heroPy').textContent = lesson.title_py;
+      document.getElementById('heroVi').textContent = lesson.title_vi;
+
+      // 3. Render 4 Tabs
+      renderTabListening(lesson);
+      renderTabReading(lesson);
+      renderTabWriting(lesson);
+      renderTabVocabGrammar(lesson);
+
+      // 4. Tokenize all newly inserted Chinese text for 100% dictionary popup coverage
+      tokenizeAllInteractiveText();
+    }
+
+    // TAB 1 RENDERER: DIALOGUES & LISTENING QUIZ
+    function renderTabListening(lesson) {
+      // 4 Dialogues
+      const dlgContainer = document.getElementById('dialoguesContainer');
+      dlgContainer.innerHTML = lesson.dialogues.map((dlg, dIdx) => `
+        <div class="dialogue-card">
+          <div class="dialogue-card-header">
+            <span class="dialogue-title-badge">${dlg.title}</span>
+            <span class="dialogue-location">📍 ${dlg.location}</span>
+          </div>
+          <div class="dialogue-lines">
+            ${dlg.lines.map((l, lIdx) => {
+              const isMale = l.role === 'male';
+              return `
+                <div class="dialogue-line">
+                  <div class="speaker-avatar ${isMale ? 'male' : 'female'}" title="${l.speaker}">
+                    ${l.speaker.substring(0, 2)}
+                  </div>
+                  <div class="speech-bubble">
+                    <div class="line-actions">
+                      <button class="btn-tts" onclick="speakText('${l.zh.replace(/'/g, "\\'")}')" title="Nghe câu này">🔊</button>
+                    </div>
+                    <div class="line-py">${l.py}</div>
+                    <div class="line-zh zh-text">${l.zh}</div>
+                    <div class="line-vi">${l.vi}</div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      // Listening Quiz
+      const quizContainer = document.getElementById('listeningQuizContainer');
+      quizContainer.innerHTML = lesson.listening_quiz.map((q, idx) => `
+        <div class="quiz-card" id="quiz-card-${q.num}">
+          <div class="quiz-header">
+            <span class="quiz-num-badge">Câu ${q.num}</span>
+            <button class="btn-reveal" onclick="toggleAudioScript(${q.num})">📜 Lời thoại nghe</button>
+          </div>
+          <div class="quiz-audio-script" id="script-${q.num}">
+            <div style="color:var(--accent); font-weight:700; margin-bottom:4px;">Lời thoại băng ghi âm:</div>
+            <div class="zh-text">${q.audio_script}</div>
+            <button class="tool-btn" style="margin-top:6px; font-size:11px; padding:3px 10px;" onclick="speakText('${q.audio_script.replace(/'/g, "\\'")}')">🔊 Nghe đoạn thoại</button>
+          </div>
+          <div class="quiz-question-text zh-text">${q.question}</div>
+          <div class="options-grid">
+            ${q.options.map(opt => {
+              const optId = opt.trim().substring(0, 1);
+              return `
+                <button class="opt-btn" onclick="checkListeningAnswer(${q.num}, '${optId}', '${q.ans}', this)">
+                  <strong>${optId}.</strong> <span>${opt.substring(2)}</span>
+                </button>
+              `;
+            }).join('')}
+          </div>
+          <div class="quiz-explain" id="explain-${q.num}">
+            <strong>✓ Giải thích:</strong> ${q.explain}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleAudioScript(qNum) {
+      const elem = document.getElementById(`script-${qNum}`);
+      if (elem) elem.classList.toggle('show');
+    }
+
+    function checkListeningAnswer(qNum, selected, correct, btnElem) {
+      const card = document.getElementById(`quiz-card-${qNum}`);
+      const buttons = card.querySelectorAll('.opt-btn');
+      buttons.forEach(b => {
+        b.classList.remove('correct', 'wrong');
+        const optLetter = b.querySelector('strong').textContent.replace('.', '').trim();
+        if (optLetter === correct || b.textContent.includes(correct)) {
+          b.classList.add('correct');
+        }
+      });
+
+      if (selected !== correct && !btnElem.textContent.includes(correct)) {
+        btnElem.classList.add('wrong');
+      }
+
+      const explain = document.getElementById(`explain-${qNum}`);
+      if (explain) explain.classList.add('show');
+    }
+
+    // TAB 2 RENDERER: READING PARTS 1, 2, 3
+    function renderTabReading(lesson) {
+      // Reading Part 1 (Matching A-E)
+      const p1Container = document.getElementById('readingP1Container');
+      p1Container.innerHTML = `
+        <div class="word-bank-box">
+          <div class="word-bank-title">Danh sách các câu lựa chọn (A - E):</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            ${lesson.reading_p1.options.map(opt => `
+              <div class="word-chip" style="width:100%; justify-content:flex-start; padding:8px 12px;">
+                <strong style="font-size:15px; width:24px;">${opt.id}.</strong>
+                <span class="chip-zh zh-text" style="font-size:16px;">${opt.text}</span>
+                <span class="chip-vi" style="margin-left:auto;">(${opt.vi})</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          ${lesson.reading_p1.questions.map(q => `
+            <div class="quiz-card" id="rp1-card-${q.num}">
+              <div class="quiz-header">
+                <span class="quiz-num-badge">Câu ${q.num}</span>
+              </div>
+              <div class="quiz-question-text zh-text">${q.text}</div>
+              <div style="font-size:13px; color:var(--text-sub); margin-bottom:10px;">${q.vi}</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                ${['A', 'B', 'C', 'D', 'E'].map(letter => `
+                  <button class="opt-btn" style="min-width:60px; justify-content:center;" onclick="checkReadingP1Answer(${q.num}, '${letter}', '${q.ans}', this)">
+                    ${letter}
+                  </button>
+                `).join('')}
+              </div>
+              <div class="quiz-explain" id="rp1-explain-${q.num}" style="margin-top:10px;">
+                <strong>Đáp án đúng: ${q.ans}</strong> • ${q.explain}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      // Reading Part 2 (Fill in blanks with word chips)
+      const p2Container = document.getElementById('readingP2Container');
+      p2Container.innerHTML = `
+        <div class="word-bank-box">
+          <div class="word-bank-title">Ngân hàng từ vựng điền khuyết (A - E):</div>
+          <div class="word-chips-grid">
+            ${lesson.reading_p2.words.map(w => `
+              <div class="word-chip">
+                <strong>${w.id}.</strong>
+                <span class="chip-zh zh-text">${w.zh}</span>
+                <span style="color:var(--accent); font-size:12px;">[${w.py}]</span>
+                <span class="chip-vi">(${w.vi})</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          ${lesson.reading_p2.questions.map(q => `
+            <div class="quiz-card" id="rp2-card-${q.num}">
+              <div class="quiz-header">
+                <span class="quiz-num-badge">Câu ${q.num}</span>
+              </div>
+              <div class="quiz-question-text">
+                <span class="zh-text">${q.prefix}</span>
+                <span style="color:var(--accent); font-weight:800; border-bottom:2px solid var(--accent); padding:0 8px;">( ? )</span>
+                <span class="zh-text">${q.suffix}</span>
+              </div>
+              <div style="font-size:13px; color:var(--text-sub); margin-bottom:10px;">${q.vi}</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                ${['A', 'B', 'C', 'D', 'E'].map(letter => `
+                  <button class="opt-btn" style="min-width:60px; justify-content:center;" onclick="checkReadingP2Answer(${q.num}, '${letter}', '${q.ans}', this)">
+                    ${letter}
+                  </button>
+                `).join('')}
+              </div>
+              <div class="quiz-explain" id="rp2-explain-${q.num}" style="margin-top:10px;">
+                <strong>Đáp án đúng: ${q.ans} (${q.word})</strong> • ${q.explain}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      // Reading Part 3 (Passage & Comprehension)
+      const p3Container = document.getElementById('readingP3Container');
+      p3Container.innerHTML = `
+        <div class="reading-passage-box">
+          <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+            <span style="font-size:12px; font-weight:700; color:var(--accent);">ĐOẠN VĂN ĐỌC HIỂU (HSK 3 STANDARD):</span>
+            <button class="btn-tts" onclick="speakText('${lesson.reading_p3.passage_zh.replace(/'/g, "\\'")}')" title="Nghe đọc bài">🔊</button>
+          </div>
+          <div class="passage-py">${lesson.reading_p3.passage_py}</div>
+          <div class="passage-zh zh-text">${lesson.reading_p3.passage_zh}</div>
+          <div class="passage-vi">${lesson.reading_p3.passage_vi}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          ${lesson.reading_p3.questions.map(q => `
+            <div class="quiz-card" id="rp3-card-${q.num}">
+              <div class="quiz-header">
+                <span class="quiz-num-badge">Câu ${q.num}</span>
+              </div>
+              <div class="quiz-question-text zh-text">${q.text}</div>
+              <div class="options-grid">
+                ${q.options.map(opt => {
+                  const optLetter = opt.trim().substring(0, 1);
+                  return `
+                    <button class="opt-btn" onclick="checkReadingP3Answer(${q.num}, '${optLetter}', '${q.ans}', this)">
+                      <strong style="color:var(--accent);">${optLetter}.</strong>
+                      <span class="zh-text">${opt.substring(2)}</span>
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+              <div class="quiz-explain" id="rp3-explain-${q.num}">
+                <strong>Đáp án: ${q.ans}</strong> • ${q.explain}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function checkReadingP1Answer(qNum, selected, correct, btnElem) {
+      const card = document.getElementById(`rp1-card-${qNum}`);
+      card.querySelectorAll('.opt-btn').forEach(b => {
+        b.classList.remove('correct', 'wrong');
+        if (b.textContent.trim() === correct) b.classList.add('correct');
+      });
+      if (selected !== correct) btnElem.classList.add('wrong');
+      document.getElementById(`rp1-explain-${qNum}`).classList.add('show');
+    }
+
+    function checkReadingP2Answer(qNum, selected, correct, btnElem) {
+      const card = document.getElementById(`rp2-card-${qNum}`);
+      card.querySelectorAll('.opt-btn').forEach(b => {
+        b.classList.remove('correct', 'wrong');
+        if (b.textContent.trim() === correct) b.classList.add('correct');
+      });
+      if (selected !== correct) btnElem.classList.add('wrong');
+      document.getElementById(`rp2-explain-${qNum}`).classList.add('show');
+    }
+
+    function checkReadingP3Answer(qNum, selected, correct, btnElem) {
+      const card = document.getElementById(`rp3-card-${qNum}`);
+      card.querySelectorAll('.opt-btn').forEach(b => {
+        b.classList.remove('correct', 'wrong');
+        const letter = b.querySelector('strong').textContent.replace('.', '').trim();
+        if (letter === correct) b.classList.add('correct');
+      });
+      if (selected !== correct) btnElem.classList.add('wrong');
+      document.getElementById(`rp3-explain-${qNum}`).classList.add('show');
+    }
+
+    // TAB 3 RENDERER: WRITING PARTS 1 & 2
+    function renderTabWriting(lesson) {
+      // Writing Part 1: Reordering
+      const wp1Container = document.getElementById('writingP1Container');
+      wp1Container.innerHTML = lesson.writing_p1.map(item => `
+        <div class="quiz-card">
+          <div class="quiz-header">
+            <span class="quiz-num-badge">Câu ${item.num}</span>
+            <button class="btn-reveal" onclick="toggleRevealBox('wp1-reveal-${item.num}')">👁️ Hiện đáp án</button>
+          </div>
+          <div class="reorder-chunks">
+            ${item.chunks.map(chunk => `
+              <span class="chunk-tag zh-text">${chunk}</span>
+            `).join('')}
+          </div>
+          <div class="reveal-box" id="wp1-reveal-${item.num}">
+            <div class="reveal-zh zh-text">${item.ans}</div>
+            <div class="reveal-py">${item.py}</div>
+            <div class="reveal-vi">${item.vi}</div>
+          </div>
+        </div>
+      `).join('');
+
+      // Writing Part 2: Characters from Pinyin
+      const wp2Container = document.getElementById('writingP2Container');
+      wp2Container.innerHTML = lesson.writing_p2.map(item => `
+        <div class="quiz-card">
+          <div class="quiz-header">
+            <span class="quiz-num-badge">Câu ${item.num}</span>
+            <button class="btn-reveal" onclick="toggleRevealBox('wp2-reveal-${item.num}')">👁️ Đáp án</button>
+          </div>
+          <div class="quiz-question-text" style="font-size:16px;">
+            <span class="zh-text">${item.sentence}</span>
+          </div>
+          <div style="font-size:13px; color:var(--text-sub); margin-bottom:10px;">${item.vi}</div>
+          <div class="writing-input-row">
+            <input type="text" class="hanzi-input" placeholder="Gõ chữ Hán..." id="wp2-input-${item.num}">
+            <button class="tool-btn" onclick="checkWritingP2(${item.num}, '${item.ans}')">Kiểm tra</button>
+          </div>
+          <div class="reveal-box" id="wp2-reveal-${item.num}">
+            <div class="reveal-zh zh-text">Chữ đúng: <strong>${item.ans}</strong></div>
+            <div class="reveal-py">Phiên âm: ${item.pinyin}</div>
+            <div class="reveal-vi">Dịch nghĩa: ${item.vi}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleRevealBox(id) {
+      const box = document.getElementById(id);
+      if (box) box.classList.toggle('show');
+    }
+
+    function checkWritingP2(num, correctAns) {
+      const input = document.getElementById(`wp2-input-${num}`);
+      const val = input.value.trim();
+      const reveal = document.getElementById(`wp2-reveal-${num}`);
+      reveal.classList.add('show');
+      if (val === correctAns) {
+        input.style.borderColor = 'var(--success)';
+        showToast('✓ Chính xác tuyệt đối!');
+      } else {
+        input.style.borderColor = 'var(--danger)';
+        showToast(`Chưa chính xác! Đáp án đúng là: ${correctAns}`);
+      }
+    }
+
+    // TAB 4 RENDERER: VOCABULARY & GRAMMAR
+    function renderTabVocabGrammar(lesson) {
+      // Vocabulary Table
+      document.getElementById('vocabCountBadge').textContent = `${lesson.vocab.length} từ mới`;
+      const tableBody = document.getElementById('vocabTableBody');
+      tableBody.innerHTML = lesson.vocab.map(v => `
+        <tr>
+          <td style="color:var(--text-muted); font-weight:700;">${v.num}</td>
+          <td><span class="vocab-zh zh-text">${v.zh}</span></td>
+          <td><span class="vocab-py">${v.py}</span></td>
+          <td><span class="vocab-pos">${v.pos}</span></td>
+          <td><span class="vocab-vi">${v.vi}</span></td>
+          <td><span class="vocab-eg zh-text">${v.eg}</span></td>
+          <td>
+            <button class="btn-tts" onclick="speakText('${v.zh}')" title="Phát âm từ">🔊</button>
+          </td>
+        </tr>
+      `).join('');
+
+      // Grammar Cards
+      const grammarContainer = document.getElementById('grammarContainer');
+      grammarContainer.innerHTML = lesson.grammar.map(g => `
+        <div class="grammar-card">
+          <div class="grammar-title">${g.title}</div>
+          <div class="grammar-structure">${g.structure}</div>
+          <div class="grammar-explain">${g.explain}</div>
+          <div class="grammar-examples">
+            <div style="font-size:11.5px; font-weight:700; color:var(--accent); text-transform:uppercase;">Ví dụ song ngữ:</div>
+            ${g.examples.map(eg => `
+              <div class="eg-item">
+                <div class="eg-zh zh-text">${eg.zh}</div>
+                <div style="font-size:12px; color:var(--pinyin-color);">${eg.py}</div>
+                <div class="eg-vi">${eg.vi}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // UNIVERSAL TOKENIZER & DICTIONARY LOOKUP (100% COVERAGE, 0% MISSING)
+    function tokenizeAllInteractiveText() {
+      const textBlocks = document.querySelectorAll('.zh-text:not([data-tokenized="true"])');
+      textBlocks.forEach(block => {
+        const walkAndWrap = (node) => {
+          if (node.nodeType === 3) { // Text node
+            const text = node.nodeValue;
+            if (!/[\u4e00-\u9fa5]/.test(text)) return;
+
+            const fragment = document.createDocumentFragment();
+            let i = 0;
+            while (i < text.length) {
+              const char = text[i];
+              if (!/[\u4e00-\u9fa5]/.test(char)) {
+                fragment.appendChild(document.createTextNode(char));
+                i++;
+                continue;
+              }
+
+              // Longest match up to 4 characters
+              let matched = null;
+              for (let len = 4; len >= 1; len--) {
+                if (i + len <= text.length) {
+                  const candidate = text.substring(i, i + len);
+                  if (DICT[candidate]) {
+                    matched = candidate;
+                    break;
+                  }
+                }
+              }
+
+              if (matched) {
+                const span = document.createElement('span');
+                span.className = 'zh-word';
+                span.textContent = matched;
+                span.setAttribute('data-word', matched);
+
+                const data = DICT[matched];
+                span.setAttribute('data-pinyin', data.py || '');
+                span.setAttribute('data-meaning', data.vi || '');
+                span.setAttribute('data-hv', data.hv || '');
+                if (data.poly) {
+                  span.classList.add('polyphonic');
+                  span.setAttribute('data-poly', JSON.stringify(data.poly));
+                }
+
+                fragment.appendChild(span);
+                i += matched.length;
+              } else {
+                // Single character fallback
+                const span = document.createElement('span');
+                span.className = 'zh-word';
+                span.textContent = char;
+                span.setAttribute('data-word', char);
+
+                const data = DICT[char] || { py: '', vi: 'Chữ Hán: ' + char, hv: '' };
+                span.setAttribute('data-pinyin', data.py || '');
+                span.setAttribute('data-meaning', data.vi || '');
+                span.setAttribute('data-hv', data.hv || '');
+
+                fragment.appendChild(span);
+                i++;
+              }
+            }
+            node.parentNode.replaceChild(fragment, node);
+          } else if (node.nodeType === 1 && node.nodeName !== 'BUTTON' && !node.classList.contains('line-py')) {
+            Array.from(node.childNodes).forEach(walkAndWrap);
+          }
+        };
+
+        walkAndWrap(block);
+        block.setAttribute('data-tokenized', 'true');
+      });
+    }
+
+    // FLOATING DICTIONARY TOOLTIP HANDLERS
+    const tooltip = document.getElementById('dict-tooltip');
+    const ttWord = document.getElementById('ttWord');
+    const ttPinyin = document.getElementById('ttPinyin');
+    const ttHv = document.getElementById('ttHv');
+    const ttMeaning = document.getElementById('ttMeaning');
+    const ttPolyBox = document.getElementById('ttPolyBox');
+    const ttPolyList = document.getElementById('ttPolyList');
+
+    document.addEventListener('mouseover', (e) => {
+      const target = e.target.closest('.zh-word');
+      if (!target) return;
+      showTooltipFor(target);
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const target = e.target.closest('.zh-word');
+      if (target) {
+        tooltip.classList.remove('visible');
+      }
+    });
+
+    // Touch support for iPad / Mobile
+    document.addEventListener('touchstart', (e) => {
+      const target = e.target.closest('.zh-word');
+      if (!target) {
+        tooltip.classList.remove('visible');
+        return;
+      }
+      showTooltipFor(target);
+    }, { passive: true });
+
+    function showTooltipFor(target) {
+      const word = target.getAttribute('data-word');
+      const py = target.getAttribute('data-pinyin');
+      const hv = target.getAttribute('data-hv');
+      const mean = target.getAttribute('data-meaning');
+      const polyJson = target.getAttribute('data-poly');
+
+      ttWord.textContent = word;
+      ttPinyin.textContent = py;
+      ttHv.textContent = hv ? `[${hv}]` : '';
+      ttMeaning.textContent = mean || 'Từ trong bài';
+
+      if (polyJson) {
+        ttPolyBox.style.display = 'block';
+        try {
+          const polyList = JSON.parse(polyJson);
+          ttPolyList.innerHTML = polyList.map((item, idx) => `
+            <div class="tt-poly-item">
+              <span style="color:var(--accent); font-weight:700;">${idx + 1}. [${item.py}]</span>: ${item.vi}
+            </div>
+          `).join('');
+        } catch(e) {}
+      } else {
+        ttPolyBox.style.display = 'none';
+      }
+
+      positionTooltip(target);
+      tooltip.classList.add('visible');
+    }
+
+    function positionTooltip(elem) {
+      const rect = elem.getBoundingClientRect();
+      const tipWidth = 270;
+      const tipHeight = tooltip.offsetHeight || 110;
+
+      let left = rect.left + rect.width / 2 - tipWidth / 2;
+      let top = rect.top - tipHeight - 12;
+
+      if (left < 10) left = 10;
+      if (left + tipWidth > window.innerWidth - 10) {
+        left = window.innerWidth - tipWidth - 10;
+      }
+      if (top < 10) {
+        top = rect.bottom + 10;
+      }
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    }
+
+    // KEYBOARD SHORTCUTS
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+      if (e.key === 'ArrowLeft' && e.altKey) goToPrevLesson();
+      if (e.key === 'ArrowRight' && e.altKey) goToNextLesson();
+    });
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      renderDrawerLessonList();
+      selectLesson(currentLessonId);
+    });
+  </script>
+</body>
+</html>
