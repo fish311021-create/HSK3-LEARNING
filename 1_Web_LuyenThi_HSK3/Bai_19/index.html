@@ -1163,68 +1163,145 @@
       .lesson-nav-bar .nav-btn { order: 2; flex: 1; justify-content: center; font-size: 12px; padding: 7px 6px; }
     }
 
+  
+    /* TOP LESSON NAVIGATION BAR */
+    .lesson-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(13, 19, 34, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      border-radius: 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      flex-wrap: wrap;
+    }
+    .lesson-nav-bar .nav-left, .lesson-nav-bar .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lesson-nav-bar .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .lesson-nav-bar .nav-btn:hover:not(:disabled) {
+      background: var(--accent);
+      color: #04101e;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .lesson-nav-bar .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .lesson-nav-bar .nav-btn.btn-hub {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #04101e;
+      font-weight: 700;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+    .lesson-nav-bar .nav-btn.btn-hub:hover {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: #fff;
+    }
+    .lesson-nav-bar .nav-select-box {
+      flex: 1;
+      min-width: 240px;
+      max-width: 480px;
+      position: relative;
+    }
+    .lesson-nav-bar select {
+      width: 100%;
+      background: rgba(26, 34, 52, 0.95);
+      color: var(--text-main);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .lesson-nav-bar select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+    @media (max-width: 720px) {
+      .lesson-nav-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+      .lesson-nav-bar .nav-left, .lesson-nav-bar .nav-right { justify-content: space-between; width: 100%; }
+      .lesson-nav-bar .nav-select-box { max-width: 100%; width: 100%; }
+    }
+    /* HIDE / REMOVE FLOATING HAMBURGER AND SIDEBAR DRAWER */
+    .btn-hamburger, #btnHamburger, .sidebar-drawer, #sidebarDrawer, .drawer-overlay, #drawerOverlay {
+      display: none !important;
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- HAMBURGER BUTTON (☰) -->
-  <button class="btn-hamburger" id="btnHamburger" onclick="toggleDrawer()" title="Danh sách 20 bài học">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+  
 
-  <!-- DRAWER OVERLAY -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  
 
   <!-- SIDEBAR DRAWER -->
-  <aside class="sidebar-drawer" id="sidebarDrawer">
-    <div class="drawer-header">
-      <h3>HSK 3 - 20 BÀI HỌC</h3>
-      <button class="btn-close-drawer" onclick="closeDrawer()" title="Đóng menu">✕</button>
-    </div>
-    <div class="drawer-search-box">
-      <input type="text" id="searchLessonInput" placeholder="Tìm kiếm bài học..." oninput="filterDrawerLessons()">
-    </div>
-    <div class="drawer-content" id="drawerLessonList">
-      <!-- Generated via JS -->
-    </div>
-  </aside>
+  
 
   <div class="container" id="app">
     <!-- TOP LESSON NAVIGATION BAR -->
     <div class="lesson-nav-bar">
-      <a href="../Bai_18/index.html" class="nav-btn prev-btn" title="Quay lại bài 18">◀ Bài trước</a>
-      <div class="nav-select-box">
-        <select id="lessonNavSelect" onchange="if(this.value) window.location.href=this.value;">
-        <option value="../Bai_01/index.html">Bài 01: 周末你有什么打算？ (Cuối tuần bạn có dự định gì?)</option>
-        <option value="../Bai_02/index.html">Bài 02: 他什么时候回来？ (Khi nào anh ấy về?)</option>
-        <option value="../Bai_03/index.html">Bài 03: 桌子上放着很多饮料 (Trên bàn để rất nhiều đồ uống)</option>
-        <option value="../Bai_04/index.html">Bài 04: 她总是笑着跟客人说话 (Cô ấy luôn cười nói với khách)</option>
-        <option value="../Bai_05/index.html">Bài 05: 我最近越来越胖了 (Dạo này em ngày càng béo ra)</option>
-        <option value="../Bai_06/index.html">Bài 06: 怎么突然找不到了 (Sao tự nhiên lại không tìm thấy)</option>
-        <option value="../Bai_07/index.html">Bài 07: 我跟他都认识五年了 (Tôi và anh ấy quen nhau 5 năm rồi)</option>
-        <option value="../Bai_08/index.html">Bài 08: 你去哪儿我就去哪儿 (Em đi đâu anh đi theo đó)</option>
-        <option value="../Bai_09/index.html">Bài 09: 她的汉语说得跟中国人一样好 (Tiếng Trung của cô ấy nói hay như người Trung Quốc)</option>
-        <option value="../Bai_10/index.html">Bài 10: 数学比历史难多了 (Toán khó hơn Lịch sử nhiều)</option>
-        <option value="../Bai_11/index.html">Bài 11: 别忘了把空调关了 (Đừng quên tắt máy điều hòa)</option>
-        <option value="../Bai_12/index.html">Bài 12: 把重要的事写在笔记本上 (Hãy viết việc quan trọng vào sổ tay)</option>
-        <option value="../Bai_13/index.html">Bài 13: 我是走回来的 (Tôi đi bộ về đấy)</option>
-        <option value="../Bai_14/index.html">Bài 14: 你把水果拿过来 (Em mang hoa quả qua đây)</option>
-        <option value="../Bai_15/index.html">Bài 15: 其他都没什么问题 (Những thứ khác đều không vấn đề gì)</option>
-        <option value="../Bai_16/index.html">Bài 16: 我现在累得想睡觉 (Bây giờ tôi mệt đến mức chỉ muốn ngủ)</option>
-        <option value="../Bai_17/index.html">Bài 17: 谁都有办法看好病 (Ai cũng có cách chữa khỏi bệnh)</option>
-        <option value="../Bai_18/index.html">Bài 18: 我相信他们会同意的 (Tôi tin rằng họ sẽ đồng ý)</option>
-        <option value="index.html" selected>Bài 19: 你没看出来吗？ (Bạn không nhận ra à?)</option>
-        <option value="../Bai_20/index.html">Bài 20: 我被他影响了 (Tôi bị anh ấy ảnh hưởng)</option>
-        </select>
+      <div class="nav-left">
+        <a href="../../index.html" class="nav-btn btn-hub" title="Quay về Cổng Tổng HSK 3">🏠 Cổng Tổng</a>
+        <a href="../index.html" class="nav-btn" title="Quay về danh mục 20 bài">📚 Danh mục</a>
       </div>
-      <a href="../Bai_20/index.html" class="nav-btn next-btn" title="Chuyển sang bài 20">Bài tiếp ▶</a>
-      <button class="nav-btn drawer-btn" onclick="toggleDrawer()" title="Mở danh mục toàn bộ 20 bài">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        <span>20 Bài học</span>
-      </button>
+      <div class="nav-right" style="flex:1; justify-content:flex-end;">
+        <a href="../Bai_18/index.html" class="nav-btn prev-btn" title="Quay lại bài 18">◀</a>
+        <div class="nav-select-box">
+          <select id="lessonNavSelect" onchange="if(this.value) window.location.href=this.value;">
+            <option value="../Bai_01/index.html">Bài 01: 周末你有什么打算？ (Cuối tuần bạn có dự định gì?)</option>
+            <option value="../Bai_02/index.html">Bài 02: 他什么时候回来？ (Khi nào anh ấy về?)</option>
+            <option value="../Bai_03/index.html">Bài 03: 桌子上放着很多饮料 (Trên bàn để rất nhiều đồ uống)</option>
+            <option value="../Bai_04/index.html">Bài 04: 她总是笑着跟客人说话 (Cô ấy luôn cười nói với khách)</option>
+            <option value="../Bai_05/index.html">Bài 05: 我最近越来越胖了 (Dạo này em ngày càng béo ra)</option>
+            <option value="../Bai_06/index.html">Bài 06: 怎么突然找不到了 (Sao tự nhiên lại không tìm thấy)</option>
+            <option value="../Bai_07/index.html">Bài 07: 我跟他都认识五年了 (Tôi và anh ấy quen nhau 5 năm rồi)</option>
+            <option value="../Bai_08/index.html">Bài 08: 你去哪儿我就去哪儿 (Em đi đâu anh đi theo đó)</option>
+            <option value="../Bai_09/index.html">Bài 09: 她的汉语说得跟中国人一样好 (Tiếng Trung của cô ấy nói hay như người Trung Quốc)</option>
+            <option value="../Bai_10/index.html">Bài 10: 数学比历史难多了 (Toán khó hơn Lịch sử nhiều)</option>
+            <option value="../Bai_11/index.html">Bài 11: 别忘了把空调关了 (Đừng quên tắt máy điều hòa)</option>
+            <option value="../Bai_12/index.html">Bài 12: 把重要的事写在笔记本上 (Hãy viết việc quan trọng vào sổ tay)</option>
+            <option value="../Bai_13/index.html">Bài 13: 我是走回来的 (Tôi đi bộ về đấy)</option>
+            <option value="../Bai_14/index.html">Bài 14: 你把水果拿过来 (Em mang hoa quả qua đây)</option>
+            <option value="../Bai_15/index.html">Bài 15: 其他都没什么问题 (Những thứ khác đều không vấn đề gì)</option>
+            <option value="../Bai_16/index.html">Bài 16: 我现在累得想睡觉 (Bây giờ tôi mệt đến mức chỉ muốn ngủ)</option>
+            <option value="../Bai_17/index.html">Bài 17: 谁都有办法看好病 (Ai cũng có cách chữa khỏi bệnh)</option>
+            <option value="../Bai_18/index.html">Bài 18: 我相信他们会同意的 (Tôi tin rằng họ sẽ đồng ý)</option>
+            <option value="index.html" selected>Bài 19: 你没看出来吗？ (Bạn không nhận ra à?)</option>
+            <option value="../Bai_20/index.html">Bài 20: 我被他影响了 (Tôi bị anh ấy ảnh hưởng)</option>
+          </select>
+        </div>
+        <a href="../Bai_20/index.html" class="nav-btn next-btn" title="Chuyển sang bài 20">▶</a>
+      </div>
     </div>
+    <!-- END TOP LESSON NAVIGATION BAR -->
 
     <header>
       <div class="badge-course">Giáo trình chuẩn HSK 3 &bull; Bài 19</div>
@@ -1788,7 +1865,7 @@
           <div class="options-grid grid-abc">
             <div class="option-chip" onclick="selectOption('13', 'A')"><span class="chip-letter">A</span> <span class="interactive-text">睡觉</span></div>
             <div class="option-chip" onclick="selectOption('13', 'B')"><span class="chip-letter">B</span> <span class="interactive-text">吃糖</span></div>
-            <div class="option-chip" onclick="selectOption('13', 'C')"><span class="chip-letter">C</span> <span class="interactive-text">刷牙洗脸</span></div>
+            <div class="option-chip" onclick="selectOption('13', 'C')"><span class="chip-letter">C</span> <span class="interactive-text">起床</span></div>
           </div>
           <div class="quiz-actions">
             <button class="btn-check" onclick="checkQuiz(13)">Kiểm tra</button>
@@ -1801,8 +1878,8 @@
             &bull; Câu hỏi: Hỏi: Người nữ dự định làm gì?<br>
             &bull; A. 睡觉 (Shuìjiào): Đi ngủ<br>
             &bull; B. 吃糖 (Chī táng): Ăn kẹo<br>
-            &bull; C. 刷牙洗脸 (Shuā yá xǐ liǎn): Đánh răng rửa mặt<br>
-            <strong>Giải thích:</strong> Đáp án đúng là <strong>C</strong>: Người nữ nói rõ '不吃了，我现在就去刷牙洗脸' (bây giờ đi đánh răng rửa mặt).
+            &bull; C. 起床 (Qǐchuáng): Thức dậy<br>
+            <strong>Giải thích:</strong> Đáp án đúng là <strong>A</strong>: Người nam nhắc nhở '都这么晚了' (Đã muộn thế này rồi sao con còn ăn kẹo), người nữ đáp '不吃了，我现在就去刷牙洗脸' (Con không ăn nữa, bây giờ con đi đánh răng rửa mặt ngay). Buổi tối muộn đánh răng rửa mặt xong thì dự định tiếp theo là đi ngủ (睡觉).
           </div>
           <div class="feedback-box" id="feedback-13"></div>
         </div>
@@ -3201,7 +3278,7 @@
     const MULTITONE = {"便": [{"py": "biàn", "vi": "thuận tiện, tiện lợi (方便 (fāngbiàn), 便饭 (biànfàn))"}, {"py": "pián", "vi": "rẻ tiền, chiếm tiện nghi (便宜 (piányi), 占便宜 (zhàn piányi))"}], "还": [{"py": "hái", "vi": "vẫn, còn (还有 (háiyǒu), 还是 (háishì))"}, {"py": "huán", "vi": "trả lại vật mượn (还钱 (huán qián), 还书 (huán shū))"}]};
 
     // ROBUST QUIZ DATA OBJECT
-    const QUIZ_DATA = {"1": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Miêu tả chú chim nhỏ mỏ đỏ trên cành cây ('树上那只鸟，红红的嘴，小小的') khớp hình B."}, "2": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Bác sĩ bảo đừng sợ để bác soi khám tai ('让我看一下你的耳朵') khớp hình A."}, "3": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Con trai đã dậy và đang đứng rửa mặt ('已经起床了，现在在洗脸呢') khớp hình C."}, "4": {"ans": "E", "explain": "Đáp án đúng là <strong>E</strong>: Trò chuyện về cưỡi ngựa học từ ông nội ('你会骑马 / 他很喜欢骑马') khớp hình E."}, "5": {"ans": "F", "explain": "Đáp án đúng là <strong>F</strong>: Bộ đồ thể thao màu đỏ giúp trẻ ra ('穿的这件红色运动服真好看 / 让我年轻了不少') khớp hình F."}, "6": {"ans": "√", "explain": "Đáp án đúng là <strong>Đúng (√)</strong>: Hàng cây và chim hót trên đường đi làm khiến tác giả luôn thấy vui tươi ('使我觉得很快乐')."}, "7": {"ans": "×", "explain": "Đáp án đúng là <strong>Sai (×)</strong>: Bác sĩ khẳng định tai của cháu bé hoàn toàn bình thường ('医生说他的耳朵没问题')."}, "8": {"ans": "√", "explain": "Đáp án đúng là <strong>Đúng (√)</strong>: Người nói kể rõ trước kia sống ven sông Hoàng Hà ('以前我家住在黄河边上')."}, "9": {"ans": "√", "explain": "Đáp án đúng là <strong>Đúng (√)</strong>: Sau nhiều ngày tìm kiếm, hôm nay đã mua được sách ở hiệu sách trên đường về ('下班路过一家书店时看见了它，我太高兴了')."}, "10": {"ans": "√", "explain": "Đáp án đúng là <strong>Đúng (√)</strong>: Đoạn văn khẳng định hiện tại cô ấy để tóc dài ('现在她是长头发')."}, "11": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nam giải thích do gió lớn bụi bay vào mắt chứ không phải khóc ('刚才风刮得太大，眼睛里进东西了')."}, "12": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Người nữ nói '我又不是第一次骑马' ngụ ý bảo mình biết cưỡi ngựa thành thạo (她会骑马)."}, "13": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Người nữ nói rõ '不吃了，我现在就去刷牙洗脸' (bây giờ đi đánh răng rửa mặt)."}, "14": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nữ tự nói '我没想到坐公共汽车要花这么长时间' chứng tỏ cô ấy đi bằng xe buýt."}, "15": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nam nấu mì vì hôm nay là sinh nhật của người nữ ('过生日要吃面条')."}, "16": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nữ thừa nhận nhìn nhầm người trong vườn ('那是我看错了，那个人看上去真像你')."}, "17": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nữ nói rõ nguyên nhân '游泳时耳朵进水了' (bơi lội bị nước vào trong tai)."}, "18": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nam chọn thử chiếc màu xanh lam ('好，蓝色会让我的脸看上去更年轻些')."}, "19": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Người nữ cho biết '我感冒了，都快一个星期了' (em bị cảm cúm gần một tuần rồi)."}, "20": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nam bảo người nữ đi mua 2 vé máy bay và người nữ đáp '好的，我现在就去' (đi mua vé máy bay)."}, "21": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Lựa chọn đi tàu thủy theo câu hỏi ở câu C ('坐船或者坐火车都可以，你想怎么去？')."}, "22": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Hướng dẫn người tập cưỡi ngựa lần đầu ở câu B ('慢点儿，我这是第一次骑马')."}, "23": {"ans": "F", "explain": "Đáp án đúng là <strong>F</strong>: Mời cùng ăn cơm sau khi được khen cơm nấu trông ngon ở câu F ('这是你做的饭吗？看起来真好吃')."}, "24": {"ans": "D", "explain": "Đáp án đúng là <strong>D</strong>: Chúc mừng khi hay tin em trai đã đỗ đại học ở câu D ('经过高中三年的认真学习，弟弟终于考上了大学')."}, "25": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Giải thích lý do con gái vui vẻ sau câu hỏi A ('什么事让我们的女儿这么高兴？')."}, "26": {"ans": "B", "explain": "Đáp án đúng là <strong>B: 经过</strong> (đi qua): '经过黄河' (đi ngang qua sông Hoàng Hà)."}, "27": {"ans": "F", "explain": "Đáp án đúng là <strong>F: 哭</strong> (khóc): '小冬又哭了' (Tiểu Đông lại khóc rồi)."}, "28": {"ans": "A", "explain": "Đáp án đúng là <strong>A: 耳朵</strong> (đôi tai): Rửa mặt và rửa cả tai ('别忘了也把耳朵洗一下')."}, "29": {"ans": "C", "explain": "Đáp án đúng là <strong>C: 短</strong> (ngắn): Áo hơi ngắn đòi lấy chiếc áo dài hơn ('这件运动服有点儿短')."}, "30": {"ans": "D", "explain": "Đáp án đúng là <strong>D: 过</strong> (trải qua, đón): '这个周末你打算怎么过' (cuối tuần này bạn định trải qua thế nào)."}, "31": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Tác giả kể '我小时候住在中国最南边，一直没见过雪' (hồi nhỏ ở miền Nam chưa từng thấy tuyết)."}, "32": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Đoạn văn khuyên '只要努力工作，这些东西早晚都会有的' (chỉ cần nỗ lực làm việc thì cái gì cũng sẽ có)."}, "33": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Đoạn văn kể '“街道”就是河，船就是“公共汽车”' (đường là sông, thuyền là xe buýt, ra ngoài phải đi thuyền)."}, "34": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Tác giả giải thích '有了车以后，会更方便的' (sau khi có xe sẽ rất tiện lợi)."}, "35": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Vào mùa đông nhiều loài chim phương Bắc bay về quê tác giả ở miền Nam trú đông ('老家冬天有很多鸟')."}};
+    const QUIZ_DATA = {"1": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Miêu tả chú chim nhỏ mỏ đỏ trên cành cây ('树上那只鸟，红红的嘴，小小的') khớp hình B."}, "2": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Bác sĩ bảo đừng sợ để bác soi khám tai ('让我看一下你的耳朵') khớp hình A."}, "3": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Con trai đã dậy và đang đứng rửa mặt ('已经起床了，现在在洗脸呢') khớp hình C."}, "4": {"ans": "E", "explain": "Đáp án đúng là <strong>E</strong>: Trò chuyện về cưỡi ngựa học từ ông nội ('你会骑马 / 他很喜欢骑马') khớp hình E."}, "5": {"ans": "F", "explain": "Đáp án đúng là <strong>F</strong>: Bộ đồ thể thao màu đỏ giúp trẻ ra ('穿的这件红色运动服真好看 / 让我年轻了不少') khớp hình F."}, "6": {"ans": "√", "explain": "Đáp án đúng là <strong>Đúng (√)</strong>: Hàng cây và chim hót trên đường đi làm khiến tác giả luôn thấy vui tươi ('使我觉得很快乐')."}, "7": {"ans": "×", "explain": "Đáp án đúng là <strong>Sai (×)</strong>: Bác sĩ khẳng định tai của cháu bé hoàn toàn bình thường ('医生说他的耳朵没问题')."}, "8": {"ans": "√", "explain": "Đáp án đúng là <strong>Đúng (√)</strong>: Người nói kể rõ trước kia sống ven sông Hoàng Hà ('以前我家住在黄河边上')."}, "9": {"ans": "√", "explain": "Đáp án đúng là <strong>Đúng (√)</strong>: Sau nhiều ngày tìm kiếm, hôm nay đã mua được sách ở hiệu sách trên đường về ('下班路过一家书店时看见了它，我太高兴了')."}, "10": {"ans": "√", "explain": "Đáp án đúng là <strong>Đúng (√)</strong>: Đoạn văn khẳng định hiện tại cô ấy để tóc dài ('现在她是长头发')."}, "11": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nam giải thích do gió lớn bụi bay vào mắt chứ không phải khóc ('刚才风刮得太大，眼睛里进东西了')."}, "12": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Người nữ nói '我又不是第一次骑马' ngụ ý bảo mình biết cưỡi ngựa thành thạo (她会骑马)."}, "13": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Người nam nhắc nhở '都这么晚了' (Đã muộn thế này rồi sao con còn ăn kẹo), người nữ đáp '不吃了，我现在就去刷牙洗脸' (Con không ăn nữa, bây giờ con đi đánh răng rửa mặt ngay). Buổi tối muộn đánh răng rửa mặt xong thì dự định tiếp theo là đi ngủ (睡觉)."}, "14": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nữ tự nói '我没想到坐公共汽车要花这么长时间' chứng tỏ cô ấy đi bằng xe buýt."}, "15": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nam nấu mì vì hôm nay là sinh nhật của người nữ ('过生日要吃面条')."}, "16": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nữ thừa nhận nhìn nhầm người trong vườn ('那是我看错了，那个人看上去真像你')."}, "17": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nữ nói rõ nguyên nhân '游泳时耳朵进水了' (bơi lội bị nước vào trong tai)."}, "18": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nam chọn thử chiếc màu xanh lam ('好，蓝色会让我的脸看上去更年轻些')."}, "19": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Người nữ cho biết '我感冒了，都快一个星期了' (em bị cảm cúm gần một tuần rồi)."}, "20": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Người nam bảo người nữ đi mua 2 vé máy bay và người nữ đáp '好的，我现在就去' (đi mua vé máy bay)."}, "21": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Lựa chọn đi tàu thủy theo câu hỏi ở câu C ('坐船或者坐火车都可以，你想怎么去？')."}, "22": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Hướng dẫn người tập cưỡi ngựa lần đầu ở câu B ('慢点儿，我这是第一次骑马')."}, "23": {"ans": "F", "explain": "Đáp án đúng là <strong>F</strong>: Mời cùng ăn cơm sau khi được khen cơm nấu trông ngon ở câu F ('这是你做的饭吗？看起来真好吃')."}, "24": {"ans": "D", "explain": "Đáp án đúng là <strong>D</strong>: Chúc mừng khi hay tin em trai đã đỗ đại học ở câu D ('经过高中三年的认真学习，弟弟终于考上了大学')."}, "25": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Giải thích lý do con gái vui vẻ sau câu hỏi A ('什么事让我们的女儿这么高兴？')."}, "26": {"ans": "B", "explain": "Đáp án đúng là <strong>B: 经过</strong> (đi qua): '经过黄河' (đi ngang qua sông Hoàng Hà)."}, "27": {"ans": "F", "explain": "Đáp án đúng là <strong>F: 哭</strong> (khóc): '小冬又哭了' (Tiểu Đông lại khóc rồi)."}, "28": {"ans": "A", "explain": "Đáp án đúng là <strong>A: 耳朵</strong> (đôi tai): Rửa mặt và rửa cả tai ('别忘了也把耳朵洗一下')."}, "29": {"ans": "C", "explain": "Đáp án đúng là <strong>C: 短</strong> (ngắn): Áo hơi ngắn đòi lấy chiếc áo dài hơn ('这件运动服有点儿短')."}, "30": {"ans": "D", "explain": "Đáp án đúng là <strong>D: 过</strong> (trải qua, đón): '这个周末你打算怎么过' (cuối tuần này bạn định trải qua thế nào)."}, "31": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Tác giả kể '我小时候住在中国最南边，一直没见过雪' (hồi nhỏ ở miền Nam chưa từng thấy tuyết)."}, "32": {"ans": "A", "explain": "Đáp án đúng là <strong>A</strong>: Đoạn văn khuyên '只要努力工作，这些东西早晚都会有的' (chỉ cần nỗ lực làm việc thì cái gì cũng sẽ có)."}, "33": {"ans": "C", "explain": "Đáp án đúng là <strong>C</strong>: Đoạn văn kể '“街道”就是河，船就是“公共汽车”' (đường là sông, thuyền là xe buýt, ra ngoài phải đi thuyền)."}, "34": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Tác giả giải thích '有了车以后，会更方便的' (sau khi có xe sẽ rất tiện lợi)."}, "35": {"ans": "B", "explain": "Đáp án đúng là <strong>B</strong>: Vào mùa đông nhiều loài chim phương Bắc bay về quê tác giả ở miền Nam trú đông ('老家冬天有很多鸟')."}};
 
     const userAnswers = {};
 

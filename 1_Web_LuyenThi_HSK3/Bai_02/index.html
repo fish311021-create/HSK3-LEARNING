@@ -902,68 +902,145 @@
       .lesson-nav-bar .nav-btn { order: 2; flex: 1; justify-content: center; font-size: 12px; padding: 7px 6px; }
     }
 
+  
+    /* TOP LESSON NAVIGATION BAR */
+    .lesson-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(13, 19, 34, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      border-radius: 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      flex-wrap: wrap;
+    }
+    .lesson-nav-bar .nav-left, .lesson-nav-bar .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lesson-nav-bar .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .lesson-nav-bar .nav-btn:hover:not(:disabled) {
+      background: var(--accent);
+      color: #04101e;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .lesson-nav-bar .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .lesson-nav-bar .nav-btn.btn-hub {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #04101e;
+      font-weight: 700;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+    .lesson-nav-bar .nav-btn.btn-hub:hover {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: #fff;
+    }
+    .lesson-nav-bar .nav-select-box {
+      flex: 1;
+      min-width: 240px;
+      max-width: 480px;
+      position: relative;
+    }
+    .lesson-nav-bar select {
+      width: 100%;
+      background: rgba(26, 34, 52, 0.95);
+      color: var(--text-main);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .lesson-nav-bar select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+    @media (max-width: 720px) {
+      .lesson-nav-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+      .lesson-nav-bar .nav-left, .lesson-nav-bar .nav-right { justify-content: space-between; width: 100%; }
+      .lesson-nav-bar .nav-select-box { max-width: 100%; width: 100%; }
+    }
+    /* HIDE / REMOVE FLOATING HAMBURGER AND SIDEBAR DRAWER */
+    .btn-hamburger, #btnHamburger, .sidebar-drawer, #sidebarDrawer, .drawer-overlay, #drawerOverlay {
+      display: none !important;
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- HAMBURGER BUTTON (☰) -->
-  <button class="btn-hamburger" id="btnHamburger" onclick="toggleDrawer()" title="Danh sách 20 bài học">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+  
 
-  <!-- DRAWER OVERLAY -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  
 
   <!-- SIDEBAR DRAWER -->
-  <aside class="sidebar-drawer" id="sidebarDrawer">
-    <div class="drawer-header">
-      <h3>HSK 3 - 20 BÀI HỌC</h3>
-      <button class="btn-close-drawer" onclick="closeDrawer()" title="Đóng menu">✕</button>
-    </div>
-    <div class="drawer-search-box">
-      <input type="text" id="searchLessonInput" placeholder="Tìm kiếm bài học..." oninput="filterDrawerLessons()">
-    </div>
-    <div class="drawer-content" id="drawerLessonList">
-      <!-- Generated via JS -->
-    </div>
-  </aside>
+  
 
   <div class="container" id="app">
     <!-- TOP LESSON NAVIGATION BAR -->
     <div class="lesson-nav-bar">
-      <a href="../Bai_01/index.html" class="nav-btn prev-btn" title="Quay lại bài 1">◀ Bài trước</a>
-      <div class="nav-select-box">
-        <select id="lessonNavSelect" onchange="if(this.value) window.location.href=this.value;">
-        <option value="../Bai_01/index.html">Bài 01: 周末你有什么打算？ (Cuối tuần bạn có dự định gì?)</option>
-        <option value="index.html" selected>Bài 02: 他什么时候回来？ (Khi nào anh ấy về?)</option>
-        <option value="../Bai_03/index.html">Bài 03: 桌子上放着很多饮料 (Trên bàn để rất nhiều đồ uống)</option>
-        <option value="../Bai_04/index.html">Bài 04: 她总是笑着跟客人说话 (Cô ấy luôn cười nói với khách)</option>
-        <option value="../Bai_05/index.html">Bài 05: 我最近越来越胖了 (Dạo này em ngày càng béo ra)</option>
-        <option value="../Bai_06/index.html">Bài 06: 怎么突然找不到了 (Sao tự nhiên lại không tìm thấy)</option>
-        <option value="../Bai_07/index.html">Bài 07: 我跟他都认识五年了 (Tôi và anh ấy quen nhau 5 năm rồi)</option>
-        <option value="../Bai_08/index.html">Bài 08: 你去哪儿我就去哪儿 (Em đi đâu anh đi theo đó)</option>
-        <option value="../Bai_09/index.html">Bài 09: 她的汉语说得跟中国人一样好 (Tiếng Trung của cô ấy nói hay như người Trung Quốc)</option>
-        <option value="../Bai_10/index.html">Bài 10: 数学比历史难多了 (Toán khó hơn Lịch sử nhiều)</option>
-        <option value="../Bai_11/index.html">Bài 11: 别忘了把空调关了 (Đừng quên tắt máy điều hòa)</option>
-        <option value="../Bai_12/index.html">Bài 12: 把重要的事写在笔记本上 (Hãy viết việc quan trọng vào sổ tay)</option>
-        <option value="../Bai_13/index.html">Bài 13: 我是走回来的 (Tôi đi bộ về đấy)</option>
-        <option value="../Bai_14/index.html">Bài 14: 你把水果拿过来 (Em mang hoa quả qua đây)</option>
-        <option value="../Bai_15/index.html">Bài 15: 其他都没什么问题 (Những thứ khác đều không vấn đề gì)</option>
-        <option value="../Bai_16/index.html">Bài 16: 我现在累得想睡觉 (Bây giờ tôi mệt đến mức chỉ muốn ngủ)</option>
-        <option value="../Bai_17/index.html">Bài 17: 谁都有办法看好病 (Ai cũng có cách chữa khỏi bệnh)</option>
-        <option value="../Bai_18/index.html">Bài 18: 我相信他们会同意的 (Tôi tin rằng họ sẽ đồng ý)</option>
-        <option value="../Bai_19/index.html">Bài 19: 你没看出来吗？ (Bạn không nhận ra à?)</option>
-        <option value="../Bai_20/index.html">Bài 20: 我被他影响了 (Tôi bị anh ấy ảnh hưởng)</option>
-        </select>
+      <div class="nav-left">
+        <a href="../../index.html" class="nav-btn btn-hub" title="Quay về Cổng Tổng HSK 3">🏠 Cổng Tổng</a>
+        <a href="../index.html" class="nav-btn" title="Quay về danh mục 20 bài">📚 Danh mục</a>
       </div>
-      <a href="../Bai_03/index.html" class="nav-btn next-btn" title="Chuyển sang bài 3">Bài tiếp ▶</a>
-      <button class="nav-btn drawer-btn" onclick="toggleDrawer()" title="Mở danh mục toàn bộ 20 bài">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        <span>20 Bài học</span>
-      </button>
+      <div class="nav-right" style="flex:1; justify-content:flex-end;">
+        <a href="../Bai_01/index.html" class="nav-btn prev-btn" title="Quay lại bài 1">◀</a>
+        <div class="nav-select-box">
+          <select id="lessonNavSelect" onchange="if(this.value) window.location.href=this.value;">
+            <option value="../Bai_01/index.html">Bài 01: 周末你有什么打算？ (Cuối tuần bạn có dự định gì?)</option>
+            <option value="index.html" selected>Bài 02: 他什么时候回来？ (Khi nào anh ấy về?)</option>
+            <option value="../Bai_03/index.html">Bài 03: 桌子上放着很多饮料 (Trên bàn để rất nhiều đồ uống)</option>
+            <option value="../Bai_04/index.html">Bài 04: 她总是笑着跟客人说话 (Cô ấy luôn cười nói với khách)</option>
+            <option value="../Bai_05/index.html">Bài 05: 我最近越来越胖了 (Dạo này em ngày càng béo ra)</option>
+            <option value="../Bai_06/index.html">Bài 06: 怎么突然找不到了 (Sao tự nhiên lại không tìm thấy)</option>
+            <option value="../Bai_07/index.html">Bài 07: 我跟他都认识五年了 (Tôi và anh ấy quen nhau 5 năm rồi)</option>
+            <option value="../Bai_08/index.html">Bài 08: 你去哪儿我就去哪儿 (Em đi đâu anh đi theo đó)</option>
+            <option value="../Bai_09/index.html">Bài 09: 她的汉语说得跟中国人一样好 (Tiếng Trung của cô ấy nói hay như người Trung Quốc)</option>
+            <option value="../Bai_10/index.html">Bài 10: 数学比历史难多了 (Toán khó hơn Lịch sử nhiều)</option>
+            <option value="../Bai_11/index.html">Bài 11: 别忘了把空调关了 (Đừng quên tắt máy điều hòa)</option>
+            <option value="../Bai_12/index.html">Bài 12: 把重要的事写在笔记本上 (Hãy viết việc quan trọng vào sổ tay)</option>
+            <option value="../Bai_13/index.html">Bài 13: 我是走回来的 (Tôi đi bộ về đấy)</option>
+            <option value="../Bai_14/index.html">Bài 14: 你把水果拿过来 (Em mang hoa quả qua đây)</option>
+            <option value="../Bai_15/index.html">Bài 15: 其他都没什么问题 (Những thứ khác đều không vấn đề gì)</option>
+            <option value="../Bai_16/index.html">Bài 16: 我现在累得想睡觉 (Bây giờ tôi mệt đến mức chỉ muốn ngủ)</option>
+            <option value="../Bai_17/index.html">Bài 17: 谁都有办法看好病 (Ai cũng có cách chữa khỏi bệnh)</option>
+            <option value="../Bai_18/index.html">Bài 18: 我相信他们会同意的 (Tôi tin rằng họ sẽ đồng ý)</option>
+            <option value="../Bai_19/index.html">Bài 19: 你没看出来吗？ (Bạn không nhận ra à?)</option>
+            <option value="../Bai_20/index.html">Bài 20: 我被他影响了 (Tôi bị anh ấy ảnh hưởng)</option>
+          </select>
+        </div>
+        <a href="../Bai_03/index.html" class="nav-btn next-btn" title="Chuyển sang bài 3">▶</a>
+      </div>
     </div>
+    <!-- END TOP LESSON NAVIGATION BAR -->
 
     <header>
       <div class="badge-course">Giáo trình chuẩn HSK 3 &bull; Bài 2</div>
@@ -1250,26 +1327,26 @@
         <div class="card" id="card-6">
           <span class="card-num">Câu 6</span>
           <div class="speaker-line">
-            <span class="interactive-text">怎么还没来？快到了吗？我们等了你半个小时了。</span>
-            <span class="pinyin-line">Zěnme hái méi lái? Kuài dào le ma? Wǒmen děng le nǐ bàn ge xiǎoshí le.</span>
-            <span class="trans-line">Sao vẫn chưa đến? Sắp tới chưa? Chúng tôi đã đợi bạn nửa tiếng rồi.</span>
+            <span class="interactive-text">乐乐，你出来的时候带把伞，外边下雨呢。</span>
+            <span class="pinyin-line">Lèle, nǐ chūlai de shíhou dài bǎ sǎn, wàibian xià yǔ ne.</span>
+            <span class="trans-line">Lạc Lạc, lúc con ra ngoài nhớ mang theo cái ô nhé, bên ngoài đang mưa đấy.</span>
           </div>
           <div style="margin: 10px 0 6px; font-weight: 700; color: #fbbf24;">
-            ★ 他到了。 (Anh ấy đã đến rồi.)
+            ★ 乐乐现在不在外边。 (Lạc Lạc hiện tại không ở bên ngoài.)
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 320px;">
             <div class="option-chip" onclick="selectOption(6, '√')"><span class="chip-letter">√</span> Đúng (√)</div>
             <div class="option-chip" onclick="selectOption(6, '×')"><span class="chip-letter">×</span> Sai (×)</div>
           </div>
           <div class="quiz-actions">
-            <button class="btn-check" onclick="checkQuiz(6, '×', 'Trong đoạn thoại người nói hỏi: sao vẫn chưa đến (怎么还没来), đã đợi nửa tiếng rồi -> Người đó CHƯA ĐẾN. Nhận định bảo đã đến là Sai.')">Kiểm tra</button>
+            <button class="btn-check" onclick="checkQuiz(6, '√', 'Trong câu nói người mẹ dặn \'你出来的时候\' (lúc con đi ra ngoài) chứng tỏ Lạc Lạc hiện tại vẫn ở trong nhà, chưa bước ra ngoài. Nhận định \'Lạc Lạc hiện tại không ở bên ngoài\' là Đúng.')">Kiểm tra</button>
             <button class="btn-reset" onclick="resetQuiz(6)">Làm lại</button>
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(6)">👁 Dịch câu &amp; Giải thích</button>
           </div>
           <div class="sentence-trans-box" id="transbox-6">
-            <div class="sentence-pinyin-full">Zěnme hái méi lái? Kuài dào le ma? Wǒmen děng le nǐ bàn ge xiǎoshí le. - Tā dào le.</div>
-            <strong>Dịch nghĩa:</strong> Sao vẫn chưa đến? Sắp tới chưa? Chúng tôi đã đợi bạn nửa tiếng rồi. - Nhận định: Anh ấy đã đến rồi.<br>
-            <strong>Giải thích:</strong> Đáp án đúng là <strong>× (Sai)</strong>.
+            <div class="sentence-pinyin-full">Lèle, nǐ chūlai de shíhou dài bǎ sǎn, wàibian xià yǔ ne. - Lèle xiànzài bú zài wàibian.</div>
+            <strong>Dịch nghĩa:</strong> Lạc Lạc, lúc con ra ngoài nhớ mang theo cái ô nhé, bên ngoài đang mưa đấy. - Nhận định: Lạc Lạc hiện tại không ở bên ngoài.<br>
+            <strong>Giải thích:</strong> Đáp án đúng là <strong>√ (Đúng)</strong>.
           </div>
           <div class="feedback-box" id="feedback-6"></div>
         </div>
@@ -1278,25 +1355,25 @@
         <div class="card" id="card-7">
           <span class="card-num">Câu 7</span>
           <div class="speaker-line">
-            <span class="interactive-text">刚才我在外边办事，没带手机。看见你打的电话，就马上打过来了。</span>
-            <span class="pinyin-line">Gāngcái wǒ zài wàibiān bànshì, méi dài shǒujī. Kànjiàn nǐ dǎ de diànhuà, jiù mǎshàng dǎ guòlái le.</span>
-            <span class="trans-line">Vừa nãy tôi ở ngoài làm việc, không mang theo điện thoại. Thấy cuộc gọi của bạn là lập tức gọi lại ngay.</span>
+            <span class="interactive-text">王经理，您别着急，我现在就上楼去。</span>
+            <span class="pinyin-line">Wáng jīnglǐ, nín bié zháojí, wǒ xiànzài jiù shàng lóu qù.</span>
+            <span class="trans-line">Giám đốc Vương, ngài đừng sốt ruột, bây giờ tôi lên lầu ngay đây.</span>
           </div>
           <div style="margin: 10px 0 6px; font-weight: 700; color: #fbbf24;">
-            ★ 他刚才一直在打电话。 (Vừa nãy anh ấy luôn gọi điện thoại.)
+            ★ 王经理在楼下。 (Giám đốc Vương đang ở dưới lầu.)
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 320px;">
             <div class="option-chip" onclick="selectOption(7, '√')"><span class="chip-letter">√</span> Đúng (√)</div>
             <div class="option-chip" onclick="selectOption(7, '×')"><span class="chip-letter">×</span> Sai (×)</div>
           </div>
           <div class="quiz-actions">
-            <button class="btn-check" onclick="checkQuiz(7, '×', 'Người nói nêu rõ vừa nãy không mang điện thoại (没带手机), chỉ gọi lại khi thấy cuộc gọi nhỡ. Nhận định bảo luôn gọi điện thoại là Sai.')">Kiểm tra</button>
+            <button class="btn-check" onclick="checkQuiz(7, '×', 'Người nói bảo \'我现在就上楼去\' (bây giờ tôi đi lên lầu ngay đây) để gặp Giám đốc Vương, chứng tỏ Giám đốc Vương đang ở trên lầu (楼上) chứ không phải ở dưới lầu (楼下). Nhận định là Sai.')">Kiểm tra</button>
             <button class="btn-reset" onclick="resetQuiz(7)">Làm lại</button>
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(7)">👁 Dịch câu &amp; Giải thích</button>
           </div>
           <div class="sentence-trans-box" id="transbox-7">
-            <div class="sentence-pinyin-full">Gāngcái wǒ zài wàibiān bànshì, méi dài shǒujī. Kànjiàn nǐ dǎ de diànhuà, jiù mǎshàng dǎ guòlái le.</div>
-            <strong>Dịch nghĩa:</strong> Vừa nãy tôi ở ngoài làm việc, không mang điện thoại. Thấy cuộc gọi của bạn là lập tức gọi lại ngay. - Nhận định: Vừa nãy anh ấy luôn gọi điện thoại.<br>
+            <div class="sentence-pinyin-full">Wáng jīnglǐ, nín bié zháojí, wǒ xiànzài jiù shàng lóu qù. - Wáng jīnglǐ zài lóu xià.</div>
+            <strong>Dịch nghĩa:</strong> Giám đốc Vương, ngài đừng sốt ruột, bây giờ tôi lên lầu ngay đây. - Nhận định: Giám đốc Vương đang ở dưới lầu.<br>
             <strong>Giải thích:</strong> Đáp án đúng là <strong>× (Sai)</strong>.
           </div>
           <div class="feedback-box" id="feedback-7"></div>
@@ -1306,25 +1383,25 @@
         <div class="card" id="card-8">
           <span class="card-num">Câu 8</span>
           <div class="speaker-line">
-            <span class="interactive-text">我喜欢看电视，也喜欢听音乐，但是最喜欢的还是运动。</span>
-            <span class="pinyin-line">Wǒ xǐhuan kàn diànshì, yě xǐhuan tīng yīnyuè, dànshì zuì xǐhuan de háishi yùndòng.</span>
-            <span class="trans-line">Tôi thích xem tivi, cũng thích nghe nhạc, nhưng thích nhất vẫn là thể thao vận động.</span>
+            <span class="interactive-text">你在这儿等我一下，我上去拿了钱就下来。</span>
+            <span class="pinyin-line">Nǐ zài zhèr děng wǒ yíxià, wǒ shàngqu ná le qián jiù xiàlai.</span>
+            <span class="trans-line">Bạn đợi tôi ở đây một chút, tôi đi lên lấy tiền rồi sẽ xuống ngay.</span>
           </div>
           <div style="margin: 10px 0 6px; font-weight: 700; color: #fbbf24;">
-            ★ 他最喜欢听音乐。 (Anh ấy thích nghe nhạc nhất.)
+            ★ 他已经到楼上了。 (Anh ấy đã lên đến trên lầu rồi.)
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 320px;">
             <div class="option-chip" onclick="selectOption(8, '√')"><span class="chip-letter">√</span> Đúng (√)</div>
             <div class="option-chip" onclick="selectOption(8, '×')"><span class="chip-letter">×</span> Sai (×)</div>
           </div>
           <div class="quiz-actions">
-            <button class="btn-check" onclick="checkQuiz(8, '×', 'Người nói nhấn mạnh thích nhất là thể thao vận động (最喜欢的还是运动) chứ không phải nghe nhạc. Nhận định là Sai.')">Kiểm tra</button>
+            <button class="btn-check" onclick="checkQuiz(8, '×', 'Người nói bảo \'我上去拿了钱就下来\' (tôi đi lên lấy tiền rồi xuống ngay), tức là hiện tại đang ở dưới chuẩn bị đi lên, chứ chưa lên tới lầu. Nhận định bảo đã lên đến trên lầu là Sai.')">Kiểm tra</button>
             <button class="btn-reset" onclick="resetQuiz(8)">Làm lại</button>
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(8)">👁 Dịch câu &amp; Giải thích</button>
           </div>
           <div class="sentence-trans-box" id="transbox-8">
-            <div class="sentence-pinyin-full">Wǒ xǐhuan kàn diànshì, yě xǐhuan tīng yīnyuè, dànshì zuì xǐhuan de háishi yùndòng. - Tā zuì xǐhuan tīng yīnyuè.</div>
-            <strong>Dịch nghĩa:</strong> Tôi thích xem tivi, cũng thích nghe nhạc, nhưng thích nhất vẫn là thể thao vận động. - Nhận định: Anh ấy thích nghe nhạc nhất.<br>
+            <div class="sentence-pinyin-full">Nǐ zài zhèr děng wǒ yíxià, wǒ shàngqu ná le qián jiù xiàlai. - Tā yǐjīng dào lóu shàng le.</div>
+            <strong>Dịch nghĩa:</strong> Bạn đợi tôi ở đây một chút, tôi đi lên lấy tiền rồi sẽ xuống ngay. - Nhận định: Anh ấy đã lên đến trên lầu rồi.<br>
             <strong>Giải thích:</strong> Đáp án đúng là <strong>× (Sai)</strong>.
           </div>
           <div class="feedback-box" id="feedback-8"></div>
@@ -1334,25 +1411,25 @@
         <div class="card" id="card-9">
           <span class="card-num">Câu 9</span>
           <div class="speaker-line">
-            <span class="interactive-text">到了饭馆，请大家先坐下来看看菜单，等小张来了再点菜。</span>
-            <span class="pinyin-line">Dào le fànguǎn, qǐng dàjiā xiān zuò xiàlai kànkan càidān, děng Xiǎo Zhāng lái le zài diǎncài.</span>
-            <span class="trans-line">Tới quán ăn rồi, xin mời mọi người hãy ngồi xuống xem thực đơn trước, đợi Tiểu Trương tới rồi hẵng gọi món.</span>
+            <span class="interactive-text">我们快点儿进去喝杯热咖啡吧，这儿太冷了。</span>
+            <span class="pinyin-line">Wǒmen kuài diǎnr jìnqu hē bēi rè kāfēi ba, zhèr tài lěng le.</span>
+            <span class="trans-line">Chúng ta mau đi vào trong uống cốc cà phê nóng đi, ở đây lạnh quá.</span>
           </div>
           <div style="margin: 10px 0 6px; font-weight: 700; color: #fbbf24;">
-            ★ 小张还没到饭馆。 (Tiểu Trương vẫn chưa tới quán ăn.)
+            ★ 他们现在在外边。 (Bọn họ hiện tại đang ở bên ngoài.)
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 320px;">
             <div class="option-chip" onclick="selectOption(9, '√')"><span class="chip-letter">√</span> Đúng (√)</div>
             <div class="option-chip" onclick="selectOption(9, '×')"><span class="chip-letter">×</span> Sai (×)</div>
           </div>
           <div class="quiz-actions">
-            <button class="btn-check" onclick="checkQuiz(9, '√', 'Câu nói rõ: đợi Tiểu Trương tới rồi mới gọi món (等小张来了再点菜) -> Tiểu Trương vẫn chưa tới quán ăn. Nhận định Đúng.')">Kiểm tra</button>
+            <button class="btn-check" onclick="checkQuiz(9, '√', 'Người nói giục \'快点儿进去\' (mau đi vào trong đi) và kêu \'这儿太冷了\' (ở đây lạnh quá), chứng tỏ hiện tại họ đang đứng ở ngoài trời (外边). Nhận định là Đúng.')">Kiểm tra</button>
             <button class="btn-reset" onclick="resetQuiz(9)">Làm lại</button>
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(9)">👁 Dịch câu &amp; Giải thích</button>
           </div>
           <div class="sentence-trans-box" id="transbox-9">
-            <div class="sentence-pinyin-full">Dào le fànguǎn, qǐng dàjiā xiān zuò xiàlai kànkan càidān, děng Xiǎo Zhāng lái le zài diǎncài.</div>
-            <strong>Dịch nghĩa:</strong> Tới quán ăn rồi, xin mời mọi người ngồi xuống xem thực đơn trước, đợi Tiểu Trương tới rồi gọi món. - Nhận định: Tiểu Trương vẫn chưa tới quán ăn.<br>
+            <div class="sentence-pinyin-full">Wǒmen kuài diǎnr jìnqu hē bēi rè kāfēi ba, zhèr tài lěng le. - Tāmen xiànzài zài wàibian.</div>
+            <strong>Dịch nghĩa:</strong> Chúng ta mau đi vào trong uống cốc cà phê nóng đi, ở đây lạnh quá. - Nhận định: Bọn họ hiện tại đang ở bên ngoài.<br>
             <strong>Giải thích:</strong> Đáp án đúng là <strong>√ (Đúng)</strong>.
           </div>
           <div class="feedback-box" id="feedback-9"></div>
@@ -1362,25 +1439,25 @@
         <div class="card" id="card-10">
           <span class="card-num">Câu 10</span>
           <div class="speaker-line">
-            <span class="interactive-text">我有点儿累了，不想走回去了。我们坐公共汽车吧。</span>
-            <span class="pinyin-line">Wǒ yǒudiǎnr lèi le, bù xiǎng zǒu huíqù le. Wǒmen zuò gōnggòng qìchē ba.</span>
-            <span class="trans-line">Tôi hơi mệt rồi, không muốn đi bộ về nữa đâu. Chúng mình đi xe buýt nhé.</span>
+            <span class="interactive-text">同学们，你们快过来，到树下坐坐。</span>
+            <span class="pinyin-line">Tóngxuémen, nǐmen kuài guòlai, dào shù xià zuòzuo.</span>
+            <span class="trans-line">Các em học sinh, các em mau lại đây, đến dưới gốc cây ngồi một lát.</span>
           </div>
           <div style="margin: 10px 0 6px; font-weight: 700; color: #fbbf24;">
-            ★ 他想走回去。 (Anh ấy muốn đi bộ về.)
+            ★ 同学们现在在树下。 (Các bạn học sinh hiện tại đang ở dưới gốc cây.)
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 320px;">
             <div class="option-chip" onclick="selectOption(10, '√')"><span class="chip-letter">√</span> Đúng (√)</div>
             <div class="option-chip" onclick="selectOption(10, '×')"><span class="chip-letter">×</span> Sai (×)</div>
           </div>
           <div class="quiz-actions">
-            <button class="btn-check" onclick="checkQuiz(10, '×', 'Người nói nêu rõ không muốn đi bộ về (不想走回去了), muốn đi xe buýt. Nhận định muốn đi bộ về là Sai.')">Kiểm tra</button>
+            <button class="btn-check" onclick="checkQuiz(10, '×', 'Thầy/cô gọi \'快过来，到树下坐坐\' (mau lại đây, đến dưới gốc cây ngồi), chứng tỏ học sinh hiện tại chưa ở dưới bóng cây mà đang ở chỗ khác. Nhận định là Sai.')">Kiểm tra</button>
             <button class="btn-reset" onclick="resetQuiz(10)">Làm lại</button>
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(10)">👁 Dịch câu &amp; Giải thích</button>
           </div>
           <div class="sentence-trans-box" id="transbox-10">
-            <div class="sentence-pinyin-full">Wǒ yǒudiǎnr lèi le, bù xiǎng zǒu huíqù le. Wǒmen zuò gōnggòng qìchē ba. - Tā xiǎng zǒu huíqù.</div>
-            <strong>Dịch nghĩa:</strong> Tôi hơi mệt rồi, không muốn đi bộ về nữa. Chúng mình đi xe buýt nhé. - Nhận định: Anh ấy muốn đi bộ về.<br>
+            <div class="sentence-pinyin-full">Tóngxuémen, nǐmen kuài guòlai, dào shù xià zuòzuo. - Tóngxuémen xiànzài zài shù xià.</div>
+            <strong>Dịch nghĩa:</strong> Các em học sinh, các em mau lại đây, đến dưới gốc cây ngồi một lát. - Nhận định: Các bạn học sinh hiện tại đang ở dưới gốc cây.<br>
             <strong>Giải thích:</strong> Đáp án đúng là <strong>× (Sai)</strong>.
           </div>
           <div class="feedback-box" id="feedback-10"></div>
@@ -1898,27 +1975,27 @@
           </div>
 
           <div style="margin-bottom: 10px; display:flex; align-items:flex-start; gap:8px;">
-            <span class="chip-letter" style="background:#64748b; color:#fff;">D</span>
+            <span class="chip-letter" style="background:var(--accent); color:#000;">D</span>
             <div>
-              <span class="interactive-text" style="font-size:16px; color:#94a3b8;">他正在开会，您半个小时以后再打，好吗？ (Ví dụ mẫu)</span>
+              <span class="interactive-text" style="font-size:16px;">那喝了这杯牛奶就睡觉吧。</span>
+              <button class="btn-trans-toggle" onclick="toggleSentenceTrans(this)" style="margin-left:8px; padding:2px 8px; font-size:11px;">👁 Dịch</button>
+              <div class="sentence-trans-box"><div class="sentence-pinyin-full">Nà hē le zhè bēi niúnǎi jiù shuìjiào ba.</div><div>Vậy uống ly sữa này rồi đi ngủ nhé.</div></div>
             </div>
           </div>
 
           <div style="margin-bottom: 10px; display:flex; align-items:flex-start; gap:8px;">
-            <span class="chip-letter" style="background:var(--accent); color:#000;">E</span>
+            <span class="chip-letter" style="background:#64748b; color:#fff;">E</span>
             <div>
-              <span class="interactive-text" style="font-size:16px;">你什么时候回家？</span>
-              <button class="btn-trans-toggle" onclick="toggleSentenceTrans(this)" style="margin-left:8px; padding:2px 8px; font-size:11px;">👁 Dịch</button>
-              <div class="sentence-trans-box"><div class="sentence-pinyin-full">Nǐ shénme shíhou huí jiā?</div><div>Khi nào bạn về nhà?</div></div>
+              <span class="interactive-text" style="font-size:16px; color:#94a3b8;">当然。我们先坐公共汽车，然后换地铁。 (Ví dụ mẫu: 例如：你知道怎么去那儿吗？)</span>
             </div>
           </div>
 
           <div style="display:flex; align-items:flex-start; gap:8px;">
             <span class="chip-letter" style="background:var(--accent); color:#000;">F</span>
             <div>
-              <span class="interactive-text" style="font-size:16px;">没关系，你上来吧，我们在家等你。</span>
+              <span class="interactive-text" style="font-size:16px;">请问，周明在吗？</span>
               <button class="btn-trans-toggle" onclick="toggleSentenceTrans(this)" style="margin-left:8px; padding:2px 8px; font-size:11px;">👁 Dịch</button>
-              <div class="sentence-trans-box"><div class="sentence-pinyin-full">Méi guānxi, nǐ shànglai ba, wǒmen zài jiā děng nǐ.</div><div>Không sao, bạn lên lầu đi, chúng tớ ở nhà đợi bạn.</div></div>
+              <div class="sentence-trans-box"><div class="sentence-pinyin-full">Qǐngwèn, Zhōu Míng zài ma?</div><div>Xin hỏi, Chu Minh có ở đấy không?</div></div>
             </div>
           </div>
         </div>
@@ -1926,19 +2003,19 @@
         <!-- Câu 21 -->
         <div class="card" id="q-21">
           <span class="card-num">Câu 21</span>
-          <div class="interactive-text">快点儿，大家都在等你呢。</div>
+          <div class="interactive-text">你每天进了办公室就坐在电脑前，身体能好吗？</div>
           <div class="sentence-footer">
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(this)">👁 Dịch cả câu</button>
             <div class="sentence-trans-box">
-              <div class="sentence-pinyin-full">Kuài diǎnr, dàjiā dōu zài děng nǐ ne.</div>
-              <div>Nhanh lên một chút, mọi người đều đang đợi cậu đấy.</div>
+              <div class="sentence-pinyin-full">Nǐ měitiān jìn le bàngōngshì jiù zuò zài diànnǎo qián, shēntǐ néng hǎo ma?</div>
+              <div>Cậu mỗi ngày hễ bước vào văn phòng là ngồi trước máy tính, sức khỏe làm sao tốt được?</div>
             </div>
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(auto-fit, minmax(65px, 1fr)); max-width: 420px; margin-top: 12px;">
             <div class="option-chip" onclick="selectOption('21', 'A')" data-q="21" data-val="A"><span class="chip-letter">A</span> A</div>
             <div class="option-chip" onclick="selectOption('21', 'B')" data-q="21" data-val="B"><span class="chip-letter">B</span> B</div>
             <div class="option-chip" onclick="selectOption('21', 'C')" data-q="21" data-val="C"><span class="chip-letter">C</span> C</div>
-            <div class="option-chip" onclick="selectOption('21', 'E')" data-q="21" data-val="E"><span class="chip-letter">E</span> E</div>
+            <div class="option-chip" onclick="selectOption('21', 'D')" data-q="21" data-val="D"><span class="chip-letter">D</span> D</div>
             <div class="option-chip" onclick="selectOption('21', 'F')" data-q="21" data-val="F"><span class="chip-letter">F</span> F</div>
           </div>
           <div class="quiz-actions">
@@ -1951,19 +2028,19 @@
         <!-- Câu 22 -->
         <div class="card" id="q-22">
           <span class="card-num">Câu 22</span>
-          <div class="interactive-text">我下午去办点儿事，办完就回去。</div>
+          <div class="interactive-text">妈，我今天太累了，不想看书了。</div>
           <div class="sentence-footer">
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(this)">👁 Dịch cả câu</button>
             <div class="sentence-trans-box">
-              <div class="sentence-pinyin-full">Wǒ xiàwǔ qù bàn diǎnr shì, bàn wán jiù huíqù.</div>
-              <div>Chiều nay tớ đi làm chút việc, làm xong là về ngay.</div>
+              <div class="sentence-pinyin-full">Mā, wǒ jīntiān tài lèi le, bù xiǎng kàn shū le.</div>
+              <div>Mẹ ơi, hôm nay con mệt quá rồi, không muốn đọc sách nữa.</div>
             </div>
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(auto-fit, minmax(65px, 1fr)); max-width: 420px; margin-top: 12px;">
             <div class="option-chip" onclick="selectOption('22', 'A')" data-q="22" data-val="A"><span class="chip-letter">A</span> A</div>
             <div class="option-chip" onclick="selectOption('22', 'B')" data-q="22" data-val="B"><span class="chip-letter">B</span> B</div>
             <div class="option-chip" onclick="selectOption('22', 'C')" data-q="22" data-val="C"><span class="chip-letter">C</span> C</div>
-            <div class="option-chip" onclick="selectOption('22', 'E')" data-q="22" data-val="E"><span class="chip-letter">E</span> E</div>
+            <div class="option-chip" onclick="selectOption('22', 'D')" data-q="22" data-val="D"><span class="chip-letter">D</span> D</div>
             <div class="option-chip" onclick="selectOption('22', 'F')" data-q="22" data-val="F"><span class="chip-letter">F</span> F</div>
           </div>
           <div class="quiz-actions">
@@ -1976,19 +2053,19 @@
         <!-- Câu 23 -->
         <div class="card" id="q-23">
           <span class="card-num">Câu 23</span>
-          <div class="interactive-text">昨晚没睡好吧？喝杯咖啡吧。</div>
+          <div class="interactive-text">他现在出去了，十点回来。</div>
           <div class="sentence-footer">
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(this)">👁 Dịch cả câu</button>
             <div class="sentence-trans-box">
-              <div class="sentence-pinyin-full">Zuówǎn méi shuì hǎo ba? Hē bēi kāfēi ba.</div>
-              <div>Tối qua ngủ không ngon hả? Uống cốc cà phê nhé.</div>
+              <div class="sentence-pinyin-full">Tā xiànzài chūqu le, shí diǎn huílái.</div>
+              <div>Anh ấy bây giờ ra ngoài rồi, 10 giờ mới về.</div>
             </div>
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(auto-fit, minmax(65px, 1fr)); max-width: 420px; margin-top: 12px;">
             <div class="option-chip" onclick="selectOption('23', 'A')" data-q="23" data-val="A"><span class="chip-letter">A</span> A</div>
             <div class="option-chip" onclick="selectOption('23', 'B')" data-q="23" data-val="B"><span class="chip-letter">B</span> B</div>
             <div class="option-chip" onclick="selectOption('23', 'C')" data-q="23" data-val="C"><span class="chip-letter">C</span> C</div>
-            <div class="option-chip" onclick="selectOption('23', 'E')" data-q="23" data-val="E"><span class="chip-letter">E</span> E</div>
+            <div class="option-chip" onclick="selectOption('23', 'D')" data-q="23" data-val="D"><span class="chip-letter">D</span> D</div>
             <div class="option-chip" onclick="selectOption('23', 'F')" data-q="23" data-val="F"><span class="chip-letter">F</span> F</div>
           </div>
           <div class="quiz-actions">
@@ -2001,19 +2078,19 @@
         <!-- Câu 24 -->
         <div class="card" id="q-24">
           <span class="card-num">Câu 24</span>
-          <div class="interactive-text">对不起，路上车太多，我来晚了。</div>
+          <div class="interactive-text">好，你等我一下，我现在就下去。</div>
           <div class="sentence-footer">
             <button class="btn-trans-toggle" onclick="toggleSentenceTrans(this)">👁 Dịch cả câu</button>
             <div class="sentence-trans-box">
-              <div class="sentence-pinyin-full">Duìbuqǐ, lùshang chē tài duō, wǒ lái wǎn le.</div>
-              <div>Xin lỗi, trên đường đông xe quá, tớ đến muộn.</div>
+              <div class="sentence-pinyin-full">Hǎo, nǐ děng wǒ yíxià, wǒ xiànzài jiù xiàqu.</div>
+              <div>Được, cậu đợi tớ một chút, tớ xuống ngay đây.</div>
             </div>
           </div>
           <div class="options-grid" style="grid-template-columns: repeat(auto-fit, minmax(65px, 1fr)); max-width: 420px; margin-top: 12px;">
             <div class="option-chip" onclick="selectOption('24', 'A')" data-q="24" data-val="A"><span class="chip-letter">A</span> A</div>
             <div class="option-chip" onclick="selectOption('24', 'B')" data-q="24" data-val="B"><span class="chip-letter">B</span> B</div>
             <div class="option-chip" onclick="selectOption('24', 'C')" data-q="24" data-val="C"><span class="chip-letter">C</span> C</div>
-            <div class="option-chip" onclick="selectOption('24', 'E')" data-q="24" data-val="E"><span class="chip-letter">E</span> E</div>
+            <div class="option-chip" onclick="selectOption('24', 'D')" data-q="24" data-val="D"><span class="chip-letter">D</span> D</div>
             <div class="option-chip" onclick="selectOption('24', 'F')" data-q="24" data-val="F"><span class="chip-letter">F</span> F</div>
           </div>
           <div class="quiz-actions">
@@ -2038,7 +2115,7 @@
             <div class="option-chip" onclick="selectOption('25', 'A')" data-q="25" data-val="A"><span class="chip-letter">A</span> A</div>
             <div class="option-chip" onclick="selectOption('25', 'B')" data-q="25" data-val="B"><span class="chip-letter">B</span> B</div>
             <div class="option-chip" onclick="selectOption('25', 'C')" data-q="25" data-val="C"><span class="chip-letter">C</span> C</div>
-            <div class="option-chip" onclick="selectOption('25', 'E')" data-q="25" data-val="E"><span class="chip-letter">E</span> E</div>
+            <div class="option-chip" onclick="selectOption('25', 'D')" data-q="25" data-val="D"><span class="chip-letter">D</span> D</div>
             <div class="option-chip" onclick="selectOption('25', 'F')" data-q="25" data-val="F"><span class="chip-letter">F</span> F</div>
           </div>
           <div class="quiz-actions">
@@ -2074,10 +2151,10 @@
               <span class="chip-letter" style="background:var(--accent); color:#000;">D</span> <strong class="interactive-text">辆</strong> <span style="font-size:12px; color:#94a3b8;">(liàng: chiếc xe)</span>
             </div>
             <div style="background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 10px; border: 1px solid var(--card-border);">
-              <span class="chip-letter" style="background:var(--accent); color:#000;">E</span> <strong class="interactive-text">拿</strong> <span style="font-size:12px; color:#94a3b8;">(ná: cầm, lấy)</span>
+              <span class="chip-letter" style="background:#64748b; color:#fff;">E</span> <strong class="interactive-text" style="color:#94a3b8;">声音</strong> <span style="font-size:12px; color:#94a3b8;">(shēngyīn: âm thanh - Ví dụ)</span>
             </div>
             <div style="background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 10px; border: 1px solid var(--card-border);">
-              <span class="chip-letter" style="background:var(--accent); color:#000;">F</span> <strong class="interactive-text">胖</strong> <span style="font-size:12px; color:#94a3b8;">(pàng: béo, mập)</span>
+              <span class="chip-letter" style="background:var(--accent); color:#000;">F</span> <strong class="interactive-text">拿</strong> <span style="font-size:12px; color:#94a3b8;">(ná: cầm, lấy)</span>
             </div>
           </div>
         </div>
@@ -2098,8 +2175,7 @@
             <div class="option-chip" onclick="selectOption('26', 'B', '办公室')" data-q="26" data-val="B"><span class="chip-letter">B</span> 办公室</div>
             <div class="option-chip" onclick="selectOption('26', 'C', '楼')" data-q="26" data-val="C"><span class="chip-letter">C</span> 楼</div>
             <div class="option-chip" onclick="selectOption('26', 'D', '辆')" data-q="26" data-val="D"><span class="chip-letter">D</span> 辆</div>
-            <div class="option-chip" onclick="selectOption('26', 'E', '拿')" data-q="26" data-val="E"><span class="chip-letter">E</span> 拿</div>
-            <div class="option-chip" onclick="selectOption('26', 'F', '胖')" data-q="26" data-val="F"><span class="chip-letter">F</span> 胖</div>
+            <div class="option-chip" onclick="selectOption('26', 'F', '拿')" data-q="26" data-val="F"><span class="chip-letter">F</span> 拿</div>
           </div>
           <div class="quiz-actions">
             <button class="btn-check" onclick="checkAnswer('26')">Kiểm tra đáp án</button>
@@ -2124,8 +2200,7 @@
             <div class="option-chip" onclick="selectOption('27', 'B', '办公室')" data-q="27" data-val="B"><span class="chip-letter">B</span> 办公室</div>
             <div class="option-chip" onclick="selectOption('27', 'C', '楼')" data-q="27" data-val="C"><span class="chip-letter">C</span> 楼</div>
             <div class="option-chip" onclick="selectOption('27', 'D', '辆')" data-q="27" data-val="D"><span class="chip-letter">D</span> 辆</div>
-            <div class="option-chip" onclick="selectOption('27', 'E', '拿')" data-q="27" data-val="E"><span class="chip-letter">E</span> 拿</div>
-            <div class="option-chip" onclick="selectOption('27', 'F', '胖')" data-q="27" data-val="F"><span class="chip-letter">F</span> 胖</div>
+            <div class="option-chip" onclick="selectOption('27', 'F', '拿')" data-q="27" data-val="F"><span class="chip-letter">F</span> 拿</div>
           </div>
           <div class="quiz-actions">
             <button class="btn-check" onclick="checkAnswer('27')">Kiểm tra đáp án</button>
@@ -2150,8 +2225,7 @@
             <div class="option-chip" onclick="selectOption('28', 'B', '办公室')" data-q="28" data-val="B"><span class="chip-letter">B</span> 办公室</div>
             <div class="option-chip" onclick="selectOption('28', 'C', '楼')" data-q="28" data-val="C"><span class="chip-letter">C</span> 楼</div>
             <div class="option-chip" onclick="selectOption('28', 'D', '辆')" data-q="28" data-val="D"><span class="chip-letter">D</span> 辆</div>
-            <div class="option-chip" onclick="selectOption('28', 'E', '拿')" data-q="28" data-val="E"><span class="chip-letter">E</span> 拿</div>
-            <div class="option-chip" onclick="selectOption('28', 'F', '胖')" data-q="28" data-val="F"><span class="chip-letter">F</span> 胖</div>
+            <div class="option-chip" onclick="selectOption('28', 'F', '拿')" data-q="28" data-val="F"><span class="chip-letter">F</span> 拿</div>
           </div>
           <div class="quiz-actions">
             <button class="btn-check" onclick="checkAnswer('28')">Kiểm tra đáp án</button>
@@ -2176,8 +2250,7 @@
             <div class="option-chip" onclick="selectOption('29', 'B', '办公室')" data-q="29" data-val="B"><span class="chip-letter">B</span> 办公室</div>
             <div class="option-chip" onclick="selectOption('29', 'C', '楼')" data-q="29" data-val="C"><span class="chip-letter">C</span> 楼</div>
             <div class="option-chip" onclick="selectOption('29', 'D', '辆')" data-q="29" data-val="D"><span class="chip-letter">D</span> 辆</div>
-            <div class="option-chip" onclick="selectOption('29', 'E', '拿')" data-q="29" data-val="E"><span class="chip-letter">E</span> 拿</div>
-            <div class="option-chip" onclick="selectOption('29', 'F', '胖')" data-q="29" data-val="F"><span class="chip-letter">F</span> 胖</div>
+            <div class="option-chip" onclick="selectOption('29', 'F', '拿')" data-q="29" data-val="F"><span class="chip-letter">F</span> 拿</div>
           </div>
           <div class="quiz-actions">
             <button class="btn-check" onclick="checkAnswer('29')">Kiểm tra đáp án</button>
@@ -2202,8 +2275,7 @@
             <div class="option-chip" onclick="selectOption('30', 'B', '办公室')" data-q="30" data-val="B"><span class="chip-letter">B</span> 办公室</div>
             <div class="option-chip" onclick="selectOption('30', 'C', '楼')" data-q="30" data-val="C"><span class="chip-letter">C</span> 楼</div>
             <div class="option-chip" onclick="selectOption('30', 'D', '辆')" data-q="30" data-val="D"><span class="chip-letter">D</span> 辆</div>
-            <div class="option-chip" onclick="selectOption('30', 'E', '拿')" data-q="30" data-val="E"><span class="chip-letter">E</span> 拿</div>
-            <div class="option-chip" onclick="selectOption('30', 'F', '胖')" data-q="30" data-val="F"><span class="chip-letter">F</span> 胖</div>
+            <div class="option-chip" onclick="selectOption('30', 'F', '拿')" data-q="30" data-val="F"><span class="chip-letter">F</span> 拿</div>
           </div>
           <div class="quiz-actions">
             <button class="btn-check" onclick="checkAnswer('30')">Kiểm tra đáp án</button>
@@ -2975,7 +3047,7 @@
     const MULTITONE = {};
 
     // ROBUST QUIZ DATA OBJECT
-    const QUIZ_DATA = {"21": {"ans": "C", "explain": "Đáp án đúng là C: 喂，我到你家楼下了。 (Giải thích: 'Nhanh lên, mọi người đang đợi cậu' đáp lại lời thông báo 'Alo, tớ tới dưới lầu nhà cậu rồi')."}, "22": {"ans": "E", "explain": "Đáp án đúng là E: 你什么时候回家？ (Giải thích: Hỏi 'Khi nào cậu về nhà?' thì trả lời 'Chiều tớ đi làm chút việc, xong là về ngay')."}, "23": {"ans": "B", "explain": "Đáp án đúng là B: 我的头怎么这么疼？ (Giải thích: Nói 'Đầu tớ sao đau thế này' nên người kia mới khuyên 'Tối qua ngủ không ngon hả? Uống cốc cà phê nhé')."}, "24": {"ans": "F", "explain": "Đáp án đúng là F: 没关系，你上来吧，我们在家等你。 (Giải thích: Đáp lại lời xin lỗi đến muộn do tắc đường: 'Không sao, cậu lên lầu đi, chúng tớ ở nhà đợi')."}, "25": {"ans": "A", "explain": "Đáp án đúng là A: 今天的题一点儿也不难。 (Giải thích: Người khen 'Bởi vì bạn chuẩn bị tốt nên mới thấy dễ' đối ứng với câu 'Đề thi hôm nay chẳng khó chút nào')."}, "26": {"ans": "B", "explain": "Đáp án đúng là B (办公室: văn phòng làm việc). '请你去他办公室一下': Mời cô tới văn phòng của ngài ấy một lát."}, "27": {"ans": "C", "explain": "Đáp án đúng là C (楼: lầu, tầng). '楼下': Dưới lầu. '楼下那个穿着白衣服的男人是谁': Người đàn ông mặc áo trắng dưới lầu kia là ai?"}, "28": {"ans": "A", "explain": "Đáp án đúng là A (难: khó). '一点儿也不难': Một chút cũng không khó."}, "29": {"ans": "E", "explain": "Đáp án đúng là E (拿: lấy, cầm). '我没带书，回去拿': Tớ quên không mang sách, quay về lấy."}, "30": {"ans": "D", "explain": "Đáp án đúng là D (辆: chiếc, cái). Lượng từ dùng cho xe cộ: '买哪辆': Mua chiếc nào?"}, "31": {"ans": "B", "explain": "Đáp án đúng là B (很累: rất mệt mỏi). Đoạn văn nêu: Trẻ em học từ thứ Hai đến thứ Sáu, cuối tuần cũng phải đi học thêm, '能不累吗' (bảo sao không mệt)."}, "32": {"ans": "C", "explain": "Đáp án đúng là C (时间别太长: thời gian đừng quá dài). Bác sĩ khuyên: '睡午觉的时间也不能太长，一个小时最好' (thời gian ngủ trưa không nên quá dài, 1 tiếng là tốt nhất)."}, "33": {"ans": "B", "explain": "Đáp án đúng là B (医生: bác sĩ). Trong bài người chồng nói: '那么多病人都等我' (biết bao nhiêu bệnh nhân đang đợi anh) -> Chồng làm nghề bác sĩ."}, "34": {"ans": "B", "explain": "Đáp án đúng là B (给丈夫打电话了: đã gọi điện thoại cho chồng). Trong bài nêu: '小丽告诉我，妻子打来电话，让我到了办公室就给她回电话'."}, "35": {"ans": "C", "explain": "Đáp án đúng là C (去过北方一次: đã từng đi miền Bắc một lần). Câu đầu tiên nêu rõ: '去年 12 月我带妻子去了一次北方'."}};
+    const QUIZ_DATA = {"21": {"ans": "B", "explain": "Đáp án đúng là B: 我的头怎么这么疼？ (Giải thích: B kêu 'Đầu tớ sao mà đau thế này?', người đối thoại nhắc nhở: 'Cậu mỗi ngày hễ bước vào văn phòng là ngồi trước máy tính, sức khỏe làm sao tốt được?')."}, "22": {"ans": "D", "explain": "Đáp án đúng là D: 那喝了这杯牛奶就睡觉吧。 (Giải thích: Con bảo 'Mẹ ơi, hôm nay con mệt quá rồi, không muốn đọc sách nữa', mẹ khuyên: 'Vậy uống ly sữa này rồi đi ngủ nhé')."}, "23": {"ans": "F", "explain": "Đáp án đúng là F: 请问，周明在吗？ (Giải thích: Người gọi hỏi 'Xin hỏi, Chu Minh có ở đấy không?', trả lời: 'Anh ấy bây giờ ra ngoài rồi, 10 giờ mới về')."}, "24": {"ans": "C", "explain": "Đáp án đúng là C: 喂，我到你家楼下了。 (Giải thích: Bạn gọi 'Alo, tớ tới dưới lầu nhà cậu rồi', đối phương đáp: 'Được, cậu đợi tớ một chút, tớ xuống ngay đây')."}, "25": {"ans": "A", "explain": "Đáp án đúng là A: 今天的题一点儿也不难。 (Giải thích: Người khen 'Bởi vì bạn chuẩn bị kỹ càng, cho nên mới cảm thấy rất dễ dàng' đối ứng với câu 'Đề thi hôm nay một chút cũng không khó')."}, "26": {"ans": "B", "explain": "Đáp án đúng là B (办公室: văn phòng làm việc). '请你去他办公室一下': Mời cô tới văn phòng của ngài ấy một lát."}, "27": {"ans": "C", "explain": "Đáp án đúng là C (楼: lầu, tầng). '楼下': Dưới lầu. '楼下那个穿着白衣服的男人是谁': Người đàn ông mặc áo trắng ở dưới lầu kia là ai?"}, "28": {"ans": "A", "explain": "Đáp án đúng là A (难: khó). '一点儿也不难': Một chút cũng không khó."}, "29": {"ans": "F", "explain": "Đáp án đúng là F (拿: lấy, cầm). '我没带书，回去拿': Tớ quên mang sách, quay về lấy."}, "30": {"ans": "D", "explain": "Đáp án đúng là D (辆: chiếc xe - lượng từ xe cộ). '买哪辆': Mua chiếc nào?"}, "31": {"ans": "B", "explain": "Đáp án đúng là B (很累: rất mệt mỏi). Đoạn văn nêu: Trẻ em học từ thứ Hai đến thứ Sáu, cuối tuần cũng phải đi học thêm, '能不累吗' (bảo sao không mệt)."}, "32": {"ans": "C", "explain": "Đáp án đúng là C (时间别太长: thời gian đừng quá dài). Bác sĩ khuyên: '睡午觉的时间也不能太长，一个小时最好' (thời gian ngủ trưa không nên quá dài, 1 tiếng là tốt nhất)."}, "33": {"ans": "B", "explain": "Đáp án đúng là B (医生: bác sĩ). Trong bài người chồng nói: '那么多病人都等我' (biết bao nhiêu bệnh nhân đang đợi anh) -> Chồng làm nghề bác sĩ."}, "34": {"ans": "B", "explain": "Đáp án đúng là B (给丈夫打电话了: đã gọi điện thoại cho chồng). Trong bài nêu: '小丽告诉我，妻子打来电话，让我到了办公室就给她回电话'."}, "35": {"ans": "C", "explain": "Đáp án đúng là C (去过北方一次: đã từng đi miền Bắc một lần). Câu đầu tiên nêu rõ: '去年 12 月我带妻子去了一次北方'."}};
 
     const userAnswers = {};
 

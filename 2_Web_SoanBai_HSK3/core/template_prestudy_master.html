@@ -7,7 +7,9 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@500;700;900&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  <!-- HanziWriter CDN for animated stroke order -->
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
   
   <style>
     :root {
@@ -42,7 +44,27 @@
       --success: #10b981;
       --success-glow: rgba(16, 185, 129, 0.25);
       --danger: #ef4444;
-      --chinese-font: "Noto Serif SC", "Songti SC", serif;
+
+      /* HIGH-READABILITY SANS-SERIF CHINESE TYPOGRAPHY */
+      --chinese-font: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --zh-title-size: 38px;
+      --zh-example-size: 17.5px;
+      --zh-dialogue-size: 20px;
+      --zh-quiz-size: 17px;
+    }
+
+    /* FONT SIZE SCALING MODES */
+    body.font-scale-large {
+      --zh-title-size: 44px;
+      --zh-example-size: 20px;
+      --zh-dialogue-size: 23px;
+      --zh-quiz-size: 19.5px;
+    }
+    body.font-scale-xlarge {
+      --zh-title-size: 50px;
+      --zh-example-size: 23px;
+      --zh-dialogue-size: 26px;
+      --zh-quiz-size: 22px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -67,10 +89,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.9);
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
+      border: 1.5px solid var(--card-border);
       padding: 10px 18px;
       border-radius: 18px;
       margin-bottom: 22px;
@@ -81,6 +103,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
     .nav-btn {
       display: inline-flex;
@@ -96,6 +119,7 @@
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
     .nav-btn:hover:not(:disabled) {
       background: var(--primary);
@@ -103,9 +127,59 @@
       border-color: var(--primary-dark);
       transform: translateY(-1px);
     }
+    .nav-btn.btn-hub {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #78350f;
+      font-weight: 800;
+      border-color: #d97706;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    .nav-btn.btn-hub:hover {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: #fff;
+    }
     .nav-btn:disabled {
-      opacity: 0.4;
+      opacity: 0.35;
       cursor: not-allowed;
+      border-color: #cbd5e1;
+      background: #f1f5f9;
+      color: #94a3b8;
+    }
+    .topbar-nav .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+      justify-content: center;
+      min-width: 260px;
+    }
+    .topbar-nav .nav-btn.prev-btn, .topbar-nav .nav-btn.next-btn {
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .topbar-nav .nav-select-box {
+      flex: 1;
+      min-width: 180px;
+      max-width: 440px;
+    }
+    .topbar-nav select {
+      width: 100%;
+      background: #ffffff;
+      color: #0f172a;
+      border: 1.5px solid rgba(245, 158, 11, 0.4);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .topbar-nav select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 12px var(--primary-glow);
     }
     .nav-btn.btn-exam {
       background: linear-gradient(135deg, #0284c7, #38bdf8);
@@ -123,6 +197,48 @@
       color: #000;
       border-color: transparent;
       box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    }
+
+    /* TOPBAR FONT SIZE CONTROLLER */
+    .font-size-ctrl {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      padding: 4px 8px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.06);
+    }
+    .fs-label {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #92400e;
+      margin-right: 2px;
+      white-space: nowrap;
+    }
+    .btn-fs {
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      font-weight: 800;
+      padding: 4px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.15s ease;
+      line-height: 1;
+    }
+    .btn-fs:hover {
+      background: #fef3c7;
+      color: #b45309;
+      border-color: #f59e0b;
+    }
+    .btn-fs.active {
+      background: #f59e0b;
+      color: #ffffff;
+      border-color: #d97706;
+      box-shadow: 0 2px 6px rgba(245, 158, 11, 0.35);
     }
 
     /* HEADER */
@@ -185,42 +301,48 @@
       margin: 0 auto;
     }
 
-    /* NAV TABS */
+    /* NAV TABS (PILL BAR STICKY) */
     .nav-tabs {
       display: flex;
       justify-content: center;
       gap: 10px;
       margin-bottom: 28px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      padding: 8px;
-      border-radius: 20px;
-      border: 1px solid var(--card-border);
+      position: sticky;
+      top: 15px;
+      z-index: 900;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      padding: 10px 18px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(245, 158, 11, 0.35);
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.14);
       flex-wrap: wrap;
     }
     .tab-btn {
-      background: transparent;
+      background: rgba(245, 158, 11, 0.06);
       color: var(--text-sub);
       border: 1px solid transparent;
-      padding: 10px 18px;
-      border-radius: 14px;
+      padding: 10px 22px;
+      border-radius: 30px;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.25s ease;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      white-space: nowrap;
     }
     .tab-btn:hover {
-      background: rgba(245, 158, 11, 0.1);
+      background: rgba(245, 158, 11, 0.16);
       color: var(--primary-dark);
     }
     .tab-btn.active {
-      background: linear-gradient(135deg, #f59e0b, #fbbf24);
-      color: #000;
+      background: linear-gradient(135deg, #fde047 0%, #facc15 50%, #f59e0b 100%);
+      color: #78350f;
       border-color: #d97706;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+      font-weight: 800;
     }
 
     /* TAB CONTENT */
@@ -299,10 +421,17 @@
     }
     .vocab-hanzi {
       font-family: var(--chinese-font);
-      font-size: 32px;
+      font-size: var(--zh-title-size);
       font-weight: 900;
       color: #0f172a;
       line-height: 1.2;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .vocab-hanzi:hover {
+      color: var(--primary-dark);
+      transform: scale(1.05);
     }
     .vocab-meta {
       display: flex;
@@ -311,8 +440,8 @@
       gap: 4px;
     }
     .vocab-py {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 17px;
+      font-weight: 800;
       color: #d97706;
     }
     .vocab-hv {
@@ -334,8 +463,8 @@
       margin-bottom: 8px;
     }
     .vocab-meaning {
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 15.5px;
+      font-weight: 800;
       color: #1e293b;
       margin-bottom: 12px;
       padding-bottom: 8px;
@@ -356,54 +485,102 @@
       margin-bottom: 14px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
     .example-line {
       background: #f8fafc;
-      padding: 6px 10px;
-      border-radius: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border-left: 3px solid #cbd5e1;
+      transition: all 0.2s ease;
+    }
+    .example-line:hover {
+      background: #fffdf5;
+      border-left-color: var(--primary);
     }
     .example-zh {
       font-family: var(--chinese-font);
+      font-size: var(--zh-example-size);
       font-weight: 700;
       color: #0f172a;
+      line-height: 1.55;
+      letter-spacing: 0.5px;
+    }
+    .example-py {
+      font-size: 13px;
+      color: #d97706;
+      font-weight: 600;
+      margin: 2px 0;
     }
     .example-vi {
-      font-size: 12.5px;
-      color: var(--text-muted);
+      font-size: 13px;
+      color: #475569;
+    }
+    .btn-zoom {
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      color: #92400e;
+      font-weight: 700;
+    }
+    .btn-zoom:hover {
+      background: #fef3c7;
+      border-color: #f59e0b;
     }
 
-    /* CANVAS MI ZI GE */
-    .canvas-container {
-      margin-top: auto;
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 12px;
-      text-align: center;
-      position: relative;
+    /* COLLAPSIBLE CHIẾT TỰ & STROKE ANIMATION PLAYER */
+    .vocab-details {
+      margin-bottom: 12px;
     }
-    .canvas-label {
+    .vocab-details summary {
+      cursor: pointer;
       font-size: 12px;
       font-weight: 700;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
+      color: #92400e;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-flex;
       align-items: center;
+      gap: 6px;
+      user-select: none;
+      transition: all 0.2s;
     }
-    .hanzi-canvas {
+    .vocab-details summary:hover {
+      background: #fde68a;
+      border-color: #f59e0b;
+    }
+    .vocab-details-content {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #475569;
       background: #fffdf5;
-      border: 2px dashed #f59e0b;
-      border-radius: 10px;
-      cursor: crosshair;
-      touch-action: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border-left: 3px solid #f59e0b;
+      line-height: 1.5;
     }
-    .canvas-tools {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 8px;
+    .stroke-player-wrapper {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(245, 158, 11, 0.3);
+    }
+    .stroke-anim-container {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      background: #fffdf5;
+      border: 1.5px solid #fde68a;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .stroke-char-target {
+      display: inline-block;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      margin: 4px;
     }
     .btn-tool {
       font-size: 12px;
@@ -541,27 +718,32 @@
     .matching-game-board {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 12px 18px;
+      max-width: 920px;
+      margin: 0 auto;
     }
     .matching-col {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      display: grid;
+      grid-auto-rows: 66px;
+      gap: 12px;
     }
     .match-item {
+      height: 66px;
+      box-sizing: border-box;
       background: #ffffff;
       border: 2px solid #e2e8f0;
       border-radius: 14px;
-      padding: 14px 18px;
-      font-size: 16px;
+      padding: 8px 16px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 58px;
       user-select: none;
+      line-height: 1.3;
+      overflow: hidden;
     }
     .match-item:hover {
       border-color: var(--primary);
@@ -604,7 +786,303 @@
       margin-left: 8px;
     }
 
+    /* ==================== SUBTAB 3: XƯỞNG GHÉP CHỮ HÁN ==================== */
+    .assembly-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      border: 1.5px solid rgba(245, 158, 11, 0.3);
+      padding: 12px 18px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.05);
+    }
+    .assembly-game-card {
+      background: #ffffff;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+    .asm-goal-box {
+      background: #fffdf5;
+      border: 2px dashed #fde68a;
+      border-radius: 20px;
+      padding: 20px 24px;
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .asm-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #78350f;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .asm-meaning {
+      font-size: 26px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .asm-pinyin-clue {
+      font-size: 16px;
+      font-weight: 700;
+      color: #d97706;
+      margin-bottom: 8px;
+    }
+    .asm-instruction {
+      font-size: 13.5px;
+      color: #64748b;
+    }
+    .asm-workbench {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .asm-slot-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .asm-slot {
+      width: 76px;
+      height: 76px;
+      border: 2.5px dashed #cbd5e1;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      font-family: var(--chinese-font);
+      font-size: 34px;
+      font-weight: 900;
+      color: #0f172a;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      user-select: none;
+    }
+    .asm-slot.filled {
+      border-style: solid;
+      border-color: #f59e0b;
+      background: #fffdf5;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.22);
+      transform: translateY(-2px);
+    }
+    .asm-slot.filled::after {
+      content: '✕';
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 20px;
+      height: 20px;
+      background: #ef4444;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .asm-slot.filled:hover::after {
+      opacity: 1;
+    }
+    .asm-slot.result-slot {
+      border-style: solid;
+      border-color: #10b981;
+      background: #f0fdf4;
+      color: #166534;
+      font-size: 38px;
+    }
+    .asm-operator {
+      font-size: 26px;
+      font-weight: 900;
+      color: #94a3b8;
+    }
+    .asm-action-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .asm-pool-wrapper {
+      margin-top: 10px;
+    }
+    .asm-pool-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .asm-pool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+    .asm-part-btn {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+      user-select: none;
+    }
+    .asm-part-btn:hover:not(:disabled) {
+      border-color: #f59e0b;
+      background: #fffdf5;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
+    }
+    .asm-part-btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    .asm-part-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      border-color: #e2e8f0;
+      background: #f1f5f9;
+    }
+    .asm-part-char {
+      font-family: var(--chinese-font);
+      font-size: 34px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.1;
+      display: block;
+    }
+    .asm-part-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      margin-top: 4px;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .asm-success-card {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+      border: 2px solid #10b981;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
+    }
+    .asm-success-top {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1.5px dashed #bbf7d0;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .asm-big-char {
+      font-family: var(--chinese-font);
+      font-size: 64px;
+      font-weight: 900;
+      color: #15803d;
+      line-height: 1;
+      background: #dcfce7;
+      padding: 6px 18px;
+      border-radius: 16px;
+      border: 2px solid #86efac;
+    }
+    .asm-success-py {
+      font-size: 20px;
+      font-weight: 800;
+      color: #d97706;
+    }
+    .asm-success-vi {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 2px 0 6px;
+    }
+    .asm-success-story {
+      font-size: 14.5px;
+      color: #166534;
+      line-height: 1.6;
+      background: #f0fdf4;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border-left: 4px solid #10b981;
+    }
+    .asm-success-example {
+      font-size: 14px;
+      color: #334155;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    .asm-hint-box {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      font-size: 13.5px;
+      color: #92400e;
+      font-weight: 600;
+      animation: modalFadeIn 0.2s ease;
+    }
+    @keyframes slotShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+    .slot-error {
+      animation: slotShake 0.4s ease;
+      border-color: #ef4444 !important;
+      background: #fee2e2 !important;
+    }
+
     /* ==================== MODULE 3: DIALOGUES & AI SHADOWING ==================== */
+    .dialogue-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(245, 158, 11, 0.3);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.06);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
     .dialogue-card {
       background: #ffffff;
       border-radius: 20px;
@@ -669,10 +1147,10 @@
     }
     .d-zh {
       font-family: var(--chinese-font);
-      font-size: 18px;
+      font-size: var(--zh-dialogue-size);
       font-weight: 700;
       color: #0f172a;
-      line-height: 1.6;
+      line-height: 1.65;
     }
     .d-py {
       font-size: 14px;
@@ -784,6 +1262,18 @@
     }
 
     /* MINI QUIZ */
+    .quiz-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fffdf5;
+      border: 1px solid #fde68a;
+      padding: 10px 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
     .quiz-card {
       background: #ffffff;
       border-radius: 16px;
@@ -796,6 +1286,12 @@
       font-weight: 700;
       color: #0f172a;
       margin-bottom: 12px;
+    }
+    .quiz-q-py {
+      font-size: 13.5px;
+      color: #d97706;
+      font-weight: 600;
+      margin-top: 4px;
     }
     .quiz-options {
       display: flex;
@@ -813,6 +1309,33 @@
       cursor: pointer;
       text-align: left;
       transition: all 0.2s;
+    }
+    .quiz-opt-main {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .quiz-opt-zh {
+      font-family: var(--chinese-font);
+      font-size: var(--zh-quiz-size);
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .quiz-opt-py {
+      font-size: 12.5px;
+      color: #d97706;
+      font-weight: 600;
+    }
+    .quiz-vi-toggle {
+      font-size: 12.5px;
+      color: #475569;
+      background: #f8fafc;
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-top: 4px;
+      line-height: 1.4;
+      display: none;
     }
     .quiz-opt:hover {
       background: #fffdf5;
@@ -834,6 +1357,194 @@
       color: #166534;
     }
 
+    /* ==================== ULTRA FOCUS MODAL ==================== */
+    .vocab-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+    .vocab-modal-backdrop.active {
+      display: flex;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .vocab-modal {
+      background: #ffffff;
+      border: 2px solid rgba(245, 158, 11, 0.4);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35);
+      padding: 28px;
+      position: relative;
+      animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlideUp {
+      from { transform: translateY(30px) scale(0.96); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: #f1f5f9;
+      border: none;
+      font-size: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover {
+      background: #fee2e2;
+      color: #ef4444;
+      transform: rotate(90deg);
+    }
+    .modal-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .modal-card-idx {
+      font-size: 12px;
+      font-weight: 800;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .modal-hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 2px solid #fef3c7;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .modal-hanzi-large {
+      font-family: var(--chinese-font);
+      font-size: 68px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.1;
+      letter-spacing: 2px;
+    }
+    .modal-meta-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-end;
+    }
+    .modal-py {
+      font-size: 26px;
+      font-weight: 800;
+      color: #d97706;
+    }
+    .modal-hv {
+      font-size: 15px;
+      font-weight: 700;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    .modal-meaning {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 16px;
+      background: #fffdf5;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+    }
+    .modal-stroke-box {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .modal-stroke-chars {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .modal-eg-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .modal-eg-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .modal-eg-line {
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    .modal-eg-line:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .modal-eg-zh {
+      font-family: var(--chinese-font);
+      font-size: 21px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.5;
+    }
+    .modal-eg-py {
+      font-size: 14px;
+      color: #d97706;
+      font-weight: 600;
+      margin: 2px 0;
+    }
+    .modal-eg-vi {
+      font-size: 14.5px;
+      color: #475569;
+    }
+    .modal-footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+    }
+
     footer {
       text-align: center;
       margin-top: 40px;
@@ -848,18 +1559,27 @@
     <!-- TOPBAR NAVIGATION -->
     <div class="topbar-nav">
       <div class="nav-left">
-        <a href="../../index.html" class="nav-btn" title="Về Cổng Học Tập Tổng Hợp">🏠 Cổng Tổng</a>
-        <a href="../index.html" class="nav-btn" title="Danh mục các bài soạn">📋 Danh mục Soạn Bài</a>
-        <select id="lessonSelectTop" class="nav-btn" onchange="if(this.value) window.location.href=this.value;" style="font-weight:700;">
-          <option value="../Bai_01/index.html">Bài 01: 周末你有什么打算？</option>
-          <option value="../Bai_02/index.html">Bài 02: 他什么时候回来？</option>
-          <option value="index.html" selected>Bài {{LESSON_NUM}}: {{LESSON_TITLE_ZH}}</option>
-          <!-- Additional lessons -->
-        </select>
+        <a href="../../index.html" class="nav-btn btn-hub" title="Quay về Cổng Tổng HSK 3">🏠 Cổng Tổng</a>
+        <a href="../index.html" class="nav-btn" title="Danh mục 20 bài soạn">📚 Danh mục</a>
+      </div>
+      <div class="nav-center">
+        {{PREV_LESSON_BTN}}
+        <div class="nav-select-box">
+          <select id="lessonNavSelect" onchange="if(this.value) window.location.href=this.value;">
+{{LESSON_NAV_OPTIONS}}
+          </select>
+        </div>
+        {{NEXT_LESSON_BTN}}
       </div>
       <div class="nav-right">
+        <div class="font-size-ctrl" title="Điều chỉnh cỡ chữ Hán toàn trang">
+          <span class="fs-label">🔠 Cỡ chữ:</span>
+          <button class="btn-fs active" id="btnFsNormal" onclick="setFontScale('normal')" title="Cỡ chữ chuẩn">A</button>
+          <button class="btn-fs" id="btnFsLarge" onclick="setFontScale('large')" title="Cỡ chữ lớn (+20%)">A+</button>
+          <button class="btn-fs" id="btnFsXLarge" onclick="setFontScale('xlarge')" title="Cỡ chữ cực lớn (+40%)">A++</button>
+        </div>
         <a href="../kiem_tra_tu_vung.html" class="nav-btn btn-arena" title="Đấu trường kiểm tra từ vựng tích lũy">🎯 Đấu Trường Từ Vựng</a>
-        <a href="{{EXAM_WEB_URL}}" class="nav-btn btn-exam" title="Chuyển sang làm bài tập đề thi HSK 3">🚀 Sang Luyện Đề Bài {{LESSON_NUM}}</a>
+        <a href="{{EXAM_WEB_URL}}" class="nav-btn btn-exam" title="Chuyển sang làm bài tập đề thi HSK 3">🚀 Luyện Đề Bài {{LESSON_NUM}}</a>
       </div>
     </div>
 
@@ -873,9 +1593,9 @@
 
     <!-- NAV TABS -->
     <nav class="nav-tabs">
-      <button class="tab-btn active" onclick="switchTab('tab-vocab')">🗂️ TỪ VỰNG &amp; VẼ HÁN TỰ</button>
-      <button class="tab-btn" onclick="switchTab('tab-games')">🃏 FLASHCARD &amp; 🧩 NỐI TỪ</button>
-      <button class="tab-btn" onclick="switchTab('tab-dialogues')">📖 4 BÀI KHÓA &amp; 🎙️ AI SHADOWING</button>
+      <button class="tab-btn active" onclick="switchTab('tab-vocab')">🗂️ TỪ VỰNG &amp; NÉT VIẾT</button>
+      <button class="tab-btn" onclick="switchTab('tab-games')">🎮 FLASHCARD &amp; MINIGAMES</button>
+      <button class="tab-btn" onclick="switchTab('tab-dialogues')">📖 4 BÀI KHÓA &amp; AI SHADOWING</button>
       <button class="tab-btn" onclick="switchTab('tab-grammar')">⚖️ XƯỞNG NGỮ PHÁP &amp; QUIZ</button>
     </nav>
 
@@ -883,10 +1603,10 @@
     <div id="tab-vocab" class="tab-content active">
       <section class="section-card">
         <div class="section-header">
-          <div class="section-title"><span>🗂️ Danh Sách Từ Vựng Mới &amp; Luyện Nét Hán Tự</span></div>
+          <div class="section-title"><span>🗂️ Danh Sách Từ Vựng Mới &amp; Bút Thuận Hán Tự</span></div>
           <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Trọn bộ từ vựng chuẩn SGK</span>
         </div>
-        <p class="section-desc">Mỗi từ vựng được phân tích sâu: Pinyin, Âm Hán Việt, 2 Câu ví dụ thực chiến (Đời sống &amp; Đề thi HSK), Mẹo nhớ chiết tự và Khung Canvas ô mễ để bạn dùng ngón tay/chuột luyện viết ngay trên màn hình:</p>
+        <p class="section-desc">Mỗi từ vựng được phân tích sâu: Pinyin, Âm Hán Việt, 2 Câu ví dụ thực chiến (Đời sống &amp; Đề thi HSK), Mẹo chiết tự (click mở xem) và Nút chạy từng nét viết Hán tự trực quan:</p>
         
         <div class="vocab-grid">
 {{VOCAB_CARDS_HTML}}
@@ -894,12 +1614,13 @@
       </section>
     </div>
 
-    <!-- ==================== TAB 2: FLASHCARD 3D & MINIGAME NỐI TỪ ==================== -->
+    <!-- ==================== TAB 2: FLASHCARD 3D & MINIGAMES ==================== -->
     <div id="tab-games" class="tab-content">
       <section class="section-card">
         <div class="subtabs-container">
           <button class="subtab-btn active" id="btnSubtabFC" onclick="switchSubtab('subtab-flashcard')">🃏 Flashcard 3D Lật Thẻ</button>
           <button class="subtab-btn" id="btnSubtabMatch" onclick="switchSubtab('subtab-matching')">🧩 Game Nối Từ 2 Cột</button>
+          <button class="subtab-btn" id="btnSubtabAssembly" onclick="switchSubtab('subtab-assembly')">🔨 Xưởng Ghép Chữ Hán</button>
         </div>
 
         <!-- 3D FLASHCARD -->
@@ -944,6 +1665,86 @@
             <div class="matching-col" id="colVietnamese"></div>
           </div>
         </div>
+
+        <!-- SUBTAB 3: XƯỞNG GHÉP HÁN TỰ (RADICAL LEGO STUDIO) -->
+        <div id="subtab-assembly" style="display:none;">
+          <div class="assembly-toolbar">
+            <div class="game-stat">🎯 Thử thách: <span id="asmCurrentIdx">1</span> / <span id="asmTotalCount">17</span></div>
+            <div class="game-stat">⭐ Điểm: <span id="asmScore">0</span></div>
+            <div class="game-stat">🔥 Chuỗi đúng: <span id="asmStreak">0</span></div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn-tool" onclick="showAssemblyHint()" id="btnAsmHint" style="background:#fef3c7; color:#92400e; font-weight:700;">💡 Gợi ý</button>
+              <button class="btn-tool" onclick="initAssemblyGame()" style="background:#fff; border-color:#cbd5e1; font-weight:700;">🔄 Chơi lại từ đầu</button>
+            </div>
+          </div>
+
+          <div class="assembly-game-card">
+            <!-- ACTIVE GAMEPLAY AREA -->
+            <div id="asmPlayArea">
+              <!-- Target Goal Prompt -->
+              <div class="asm-goal-box">
+                <span class="asm-badge">NHIỆM VỤ GHÉP CHỮ HÁN</span>
+                <div class="asm-meaning" id="asmTargetMeaning">Ý nghĩa tiếng Việt...</div>
+                <div class="asm-pinyin-clue" id="asmTargetPinyin">Pinyin: ...</div>
+                <p class="asm-instruction">Chọn đúng các mảnh ghép bộ thủ bên dưới để lắp ráp thành chữ Hán hoàn chỉnh:</p>
+              </div>
+
+              <!-- Feedback / Success Reveal Box -->
+              <div id="asmSuccessBox" class="asm-success-card" style="display:none;">
+                <div class="asm-success-top">
+                  <span class="asm-big-char" id="asmSuccessChar">甜</span>
+                  <div class="asm-success-meta">
+                    <div class="asm-success-py" id="asmSuccessPy">tián</div>
+                    <div class="asm-success-vi" id="asmSuccessVi">Ngọt, vị ngọt</div>
+                    <button class="btn-tool" onclick="playAssemblyAudio()" style="margin-top:4px;">🔊 Nghe phát âm</button>
+                  </div>
+                </div>
+                <div class="asm-success-story" id="asmSuccessStory">
+                  💡 <strong>Giải mã chiết tự:</strong> ...
+                </div>
+                <div class="asm-success-example" id="asmSuccessExample">
+                  🌟 <strong>Ví dụ:</strong> ...
+                </div>
+                <div style="margin-top:14px; text-align:right;">
+                  <button class="nav-btn btn-hub" onclick="nextAssemblyChallenge()" style="padding:10px 22px; font-size:14px;">Từ tiếp theo ➔</button>
+                </div>
+              </div>
+
+              <!-- Workshop Assembly Table -->
+              <div class="asm-workbench">
+                <div class="asm-slot-group" id="asmSlotsContainer">
+                  <!-- Dynamic slots: slot 1 + slot 2 = slot result -->
+                </div>
+
+                <div class="asm-action-row">
+                  <button class="nav-btn btn-arena" id="btnCheckAssembly" onclick="checkAssembly()">⚡ Ghép Chữ &amp; Kiểm Tra</button>
+                  <button class="btn-tool" onclick="clearAssemblySlots()">🧹 Xóa làm lại</button>
+                </div>
+              </div>
+
+              <!-- Parts Pool (Kho Linh Kiện) -->
+              <div class="asm-pool-wrapper">
+                <div class="asm-pool-title">📦 KHO LINH KIỆN BỘ THỦ (Click để đưa vào bàn ghép):</div>
+                <div class="asm-pool-grid" id="asmPoolGrid">
+                  <!-- Component buttons with large Hanzi radical & Vietnamese meaning -->
+                </div>
+              </div>
+
+              <div id="asmHintBox" class="asm-hint-box" style="display:none;"></div>
+            </div>
+
+            <!-- VICTORY SCREEN (CLEAN REPLAY CONTAINER) -->
+            <div id="asmVictoryView" style="display:none; text-align:center; padding:36px 16px;">
+              <div style="font-size:56px; margin-bottom:14px;">🏆🎉</div>
+              <h2 style="font-size:26px; font-weight:900; color:#15803d; margin-bottom:8px;">XUẤT SẮC! BẠN ĐÃ HOÀN THÀNH XƯỞNG GHÉP CHỮ HÁN!</h2>
+              <p style="font-size:15.5px; color:#334155; max-width:620px; margin:0 auto 20px; line-height:1.6;">
+                Bạn đã lắp ráp và giải mã thành công toàn bộ linh kiện chiết tự Hán tự trọng điểm chuẩn SGK của Bài {{LESSON_NUM}}. Trí nhớ hình ảnh của bạn về các bộ thủ đã được khắc sâu!
+              </p>
+              <div style="font-size:20px; font-weight:800; color:#b45309; margin-bottom:24px;">⭐ Tổng điểm: <span id="asmFinalScore">0</span> điểm</div>
+              <button class="nav-btn btn-hub" onclick="initAssemblyGame()" style="padding:12px 28px; font-size:15px;">🔄 Thử Thách Lại Lần Nữa</button>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -955,6 +1756,14 @@
           <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Audio gốc từ giáo trình</span>
         </div>
         <p class="section-desc">Nghe từng đoạn hội thoại theo phát âm chuẩn, bóc tách cấu trúc câu và luyện phát âm nhại giọng (Shadowing) bằng nút Micro để nhận diện giọng nói và chấm điểm % mức độ chính xác:</p>
+
+        <div class="dialogue-toolbar">
+          <span style="font-size:14px; font-weight:700; color:#334155;">🎛️ Chế độ xem bài khóa:</span>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn-tool" id="btnToggleDialoguePy" onclick="toggleDialoguePinyin()" style="font-weight:700;">🙈 Ẩn Pinyin</button>
+            <button class="btn-tool" id="btnToggleDialogueVi" onclick="toggleDialogueVi()" style="font-weight:700;">🙈 Ẩn Dịch Nghĩa</button>
+          </div>
+        </div>
 
 {{DIALOGUES_HTML}}
       </section>
@@ -971,7 +1780,10 @@
 {{GRAMMAR_HTML}}
 
         <div style="margin-top:30px; border-top:2px dashed #f59e0b; padding-top:24px;">
-          <h3 style="font-size:19px; font-weight:800; color:#1e293b; margin-bottom:16px;">📝 Mini Quiz Kiểm Tra Nhanh Ngữ Pháp (5 Câu)</h3>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+            <h3 style="font-size:19px; font-weight:800; color:#1e293b; margin:0;">📝 Mini Quiz Kiểm Tra Nhanh Ngữ Pháp (5 Câu)</h3>
+            <button class="btn-tool" id="btnToggleQuizVi" onclick="toggleQuizTranslation()" style="font-weight:700; background:#fef3c7; color:#92400e;">👁 Hiện Dịch Nghĩa Toàn Bộ</button>
+          </div>
 {{MINI_QUIZ_HTML}}
         </div>
       </section>
@@ -982,11 +1794,59 @@
     </footer>
   </div>
 
+  <!-- ULTRA FOCUS MODAL (PHÓNG TO THẺ TỪ VỰNG) -->
+  <div id="vocabModal" class="vocab-modal-backdrop" onclick="if(event.target===this) closeVocabModal();">
+    <div class="vocab-modal">
+      <button class="modal-close-btn" onclick="closeVocabModal()" title="Đóng (ESC)">✖</button>
+      
+      <div class="modal-badge-row">
+        <span class="modal-card-idx" id="modalCardIdx">TỪ VỰNG 1 / 17</span>
+        <span class="vocab-pos" id="modalPos" style="margin-bottom:0;">Từ loại</span>
+      </div>
+
+      <div class="modal-hero">
+        <div>
+          <div class="modal-hanzi-large" id="modalHanzi">汉字</div>
+        </div>
+        <div class="modal-meta-box">
+          <div class="modal-py" id="modalPy">Pinyin</div>
+          <div class="modal-hv" id="modalHv">Hán Việt</div>
+          <button class="btn-tool" onclick="playModalAudio()" style="margin-top:6px; font-weight:700;">🔊 Phát âm chuẩn</button>
+        </div>
+      </div>
+
+      <div class="modal-meaning" id="modalMeaning">🎯 Nghĩa tiếng Việt</div>
+
+      <div class="modal-stroke-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span style="font-size:13px; font-weight:800; color:#b45309;">✍️ Hoạt họa bút thuận cỡ lớn:</span>
+          <button class="btn-tool" onclick="replayModalStroke()" style="font-size:11.5px; padding:3px 10px;">🔄 Chạy lại nét</button>
+        </div>
+        <div class="modal-stroke-chars" id="modalStrokeChars"></div>
+        <div style="font-size:13px; color:#475569; margin-top:8px; text-align:left; background:#fff; padding:8px 12px; border-radius:8px;">
+          <strong style="color:#d97706;">💡 Chiết tự:</strong> <span id="modalRadicals"></span>
+        </div>
+      </div>
+
+      <div class="modal-eg-box">
+        <div class="modal-eg-title">📖 Câu ví dụ thực chiến (Cỡ lớn)</div>
+        <div id="modalEgLines"></div>
+      </div>
+
+      <div class="modal-footer-nav">
+        <button class="nav-btn" onclick="prevModalVocab()">◀ Từ trước (Phím ←)</button>
+        <span style="font-size:12.5px; color:#64748b;">Dùng phím ← / → để chuyển từ &bull; ESC để đóng</span>
+        <button class="nav-btn" onclick="nextModalVocab()">Từ tiếp ▶ (Phím →)</button>
+      </div>
+    </div>
+  </div>
+
   <!-- JAVASCRIPT LOGIC -->
   <script>
     // DATA INJECTION
     const VOCAB_DATA = {{VOCAB_JSON}};
     const MATCHING_DATA = {{MATCHING_JSON}};
+    const ASSEMBLY_DATA = {{ASSEMBLY_JSON}};
 
     // TAB SWITCHING
     function switchTab(tabId) {
@@ -1000,15 +1860,27 @@
 
     function switchSubtab(subId) {
       document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('subtab-flashcard').style.display = 'none';
-      document.getElementById('subtab-matching').style.display = 'none';
+      const fcTab = document.getElementById('subtab-flashcard');
+      const matchTab = document.getElementById('subtab-matching');
+      const asmTab = document.getElementById('subtab-assembly');
+      if (fcTab) fcTab.style.display = 'none';
+      if (matchTab) matchTab.style.display = 'none';
+      if (asmTab) asmTab.style.display = 'none';
+
       if (subId === 'subtab-flashcard') {
-        document.getElementById('btnSubtabFC').classList.add('active');
-        document.getElementById('subtab-flashcard').style.display = 'block';
-      } else {
-        document.getElementById('btnSubtabMatch').classList.add('active');
-        document.getElementById('subtab-matching').style.display = 'block';
+        const b = document.getElementById('btnSubtabFC');
+        if (b) b.classList.add('active');
+        if (fcTab) fcTab.style.display = 'block';
+      } else if (subId === 'subtab-matching') {
+        const b = document.getElementById('btnSubtabMatch');
+        if (b) b.classList.add('active');
+        if (matchTab) matchTab.style.display = 'block';
         if (!gameStarted) initMatchingGame();
+      } else if (subId === 'subtab-assembly') {
+        const b = document.getElementById('btnSubtabAssembly');
+        if (b) b.classList.add('active');
+        if (asmTab) asmTab.style.display = 'block';
+        if (!assemblyGameStarted) initAssemblyGame();
       }
     }
 
@@ -1022,84 +1894,71 @@
       window.speechSynthesis.speak(u);
     }
 
-    // ==================== CANVAS MI ZI GE ENGINE ====================
-    function initCanvasMiZiGe(canvas) {
-      const ctx = canvas.getContext('2d');
-      const w = canvas.width;
-      const h = canvas.height;
+    // ==================== HANZI STROKE ORDER ANIMATION ENGINE ====================
+    const activeWriters = {};
 
-      // Draw MiZiGe background
-      ctx.clearRect(0, 0, w, h);
-      ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([4, 4]);
+    function playStrokeAnim(num, zh, btnEl) {
+      const box = document.getElementById(`stroke-anim-${num}`);
+      const charsContainer = document.getElementById(`stroke-chars-${num}`);
+      if (!box || !charsContainer) return;
 
-      // Cross lines
-      ctx.beginPath();
-      ctx.moveTo(w/2, 0); ctx.lineTo(w/2, h);
-      ctx.moveTo(0, h/2); ctx.lineTo(w, h/2);
-      ctx.stroke();
+      if (box.style.display === 'block') {
+        box.style.display = 'none';
+        return;
+      }
 
-      // Diagonals
-      ctx.beginPath();
-      ctx.moveTo(0, 0); ctx.lineTo(w, h);
-      ctx.moveTo(w, 0); ctx.lineTo(0, h);
-      ctx.stroke();
+      box.style.display = 'block';
 
-      ctx.setLineDash([]);
+      // If already initialized for this card, replay animation
+      if (activeWriters[num] && activeWriters[num].length > 0) {
+        activeWriters[num].forEach(w => w.animateCharacter());
+        return;
+      }
+
+      charsContainer.innerHTML = '';
+      activeWriters[num] = [];
+
+      if (typeof HanziWriter === 'undefined') {
+        charsContainer.innerHTML = '<div style="font-size:13px; color:#d97706; padding:8px;">⚠️ Đang tải thư viện nét vẽ hoặc ngoại tuyến. Hãy thử lại khi có kết nối mạng!</div>';
+        return;
+      }
+
+      // Filter Chinese characters only
+      const cleanChars = zh.replace(/[^\u4e00-\u9fa5]/g, '').split('');
+      cleanChars.forEach((char, idx) => {
+        const charDiv = document.createElement('div');
+        charDiv.id = `writer-${num}-${idx}`;
+        charDiv.className = 'stroke-char-target';
+        charsContainer.appendChild(charDiv);
+
+        try {
+          const writer = HanziWriter.create(charDiv.id, char, {
+            width: 85,
+            height: 85,
+            padding: 5,
+            showOutline: true,
+            strokeAnimationSpeed: 1,
+            delayBetweenStrokes: 150,
+            strokeColor: '#0f172a',
+            radicalColor: '#d97706'
+          });
+          activeWriters[num].push(writer);
+          writer.animateCharacter();
+        } catch(err) {
+          console.error("HanziWriter initialization error:", err);
+        }
+      });
     }
 
-    function setupCanvasDrawing(canvas) {
-      initCanvasMiZiGe(canvas);
-      const ctx = canvas.getContext('2d');
-      let drawing = false;
-
-      function getPos(e) {
-        const rect = canvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        return {
-          x: (clientX - rect.left) * (canvas.width / rect.width),
-          y: (clientY - rect.top) * (canvas.height / rect.height)
-        };
+    function replayStrokeAnim(num) {
+      if (activeWriters[num] && activeWriters[num].length > 0) {
+        activeWriters[num].forEach(w => w.animateCharacter());
       }
-
-      function startDraw(e) {
-        e.preventDefault();
-        drawing = true;
-        const pos = getPos(e);
-        ctx.beginPath();
-        ctx.moveTo(pos.x, pos.y);
-      }
-
-      function moveDraw(e) {
-        if (!drawing) return;
-        e.preventDefault();
-        const pos = getPos(e);
-        ctx.lineWidth = 6;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        ctx.strokeStyle = '#0f172a';
-        ctx.lineTo(pos.x, pos.y);
-        ctx.stroke();
-      }
-
-      function stopDraw() {
-        drawing = false;
-      }
-
-      canvas.addEventListener('mousedown', startDraw);
-      canvas.addEventListener('mousemove', moveDraw);
-      window.addEventListener('mouseup', stopDraw);
-
-      canvas.addEventListener('touchstart', startDraw, { passive: false });
-      canvas.addEventListener('touchmove', moveDraw, { passive: false });
-      window.addEventListener('touchend', stopDraw);
     }
 
-    function clearCanvas(canvasId) {
-      const c = document.getElementById(canvasId);
-      if (c) initCanvasMiZiGe(c);
+    function closeStrokeAnim(num) {
+      const box = document.getElementById(`stroke-anim-${num}`);
+      if (box) box.style.display = 'none';
     }
 
     // ==================== FLASHCARD 3D LOGIC ====================
@@ -1293,53 +2152,369 @@
       }
     }
 
-    // ==================== AI SHADOWING SPEECH RECOGNITION ====================
-    function startShadowing(targetZh, badgeId, btnEl) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        alert("Trình duyệt của bạn chưa hỗ trợ Web Speech Recognition API. Khuyên dùng Google Chrome hoặc Microsoft Edge.");
+    // ==================== SUBTAB 3: XƯỞNG GHÉP HÁN TỰ (RADICAL LEGO FUSION) ====================
+    let assemblyGameStarted = false;
+    let asmCurrentIdx = 0;
+    let asmScore = 0;
+    let asmStreak = 0;
+    let asmSelectedParts = [];
+    let asmCurrentPuzzle = null;
+    let asmActivePuzzles = [];
+    let asmCurrentPoolParts = [];
+
+    // Thuật toán xáo trộn Fisher-Yates chống học vẹt
+    function shuffleArray(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function initAssemblyGame() {
+      assemblyGameStarted = true;
+      asmCurrentIdx = 0;
+      asmScore = 0;
+      asmStreak = 0;
+
+      // Xáo trộn ngẫu nhiên thứ tự 17 từ mỗi khi chơi
+      asmActivePuzzles = shuffleArray(ASSEMBLY_DATA);
+
+      const playArea = document.getElementById('asmPlayArea');
+      const victoryView = document.getElementById('asmVictoryView');
+      if (playArea) playArea.style.display = 'block';
+      if (victoryView) victoryView.style.display = 'none';
+
+      loadAssemblyPuzzle(0);
+    }
+
+    function loadAssemblyPuzzle(idx) {
+      if (!asmActivePuzzles || asmActivePuzzles.length === 0) {
+        asmActivePuzzles = shuffleArray(ASSEMBLY_DATA);
+      }
+      if (idx >= asmActivePuzzles.length) {
+        renderAssemblyVictory();
+        return;
+      }
+      asmCurrentIdx = idx;
+      asmCurrentPuzzle = asmActivePuzzles[idx];
+      asmSelectedParts = [];
+
+      // Xáo trộn ngẫu nhiên vị trí các mảnh ghép bộ thủ và linh kiện bẫy
+      const allParts = [...asmCurrentPuzzle.parts, ...(asmCurrentPuzzle.distractors || [])];
+      asmCurrentPoolParts = shuffleArray(allParts);
+
+      document.getElementById('asmCurrentIdx').textContent = idx + 1;
+      document.getElementById('asmTotalCount').textContent = asmActivePuzzles.length;
+      document.getElementById('asmScore').textContent = asmScore;
+      document.getElementById('asmStreak').textContent = asmStreak;
+
+      document.getElementById('asmTargetMeaning').textContent = asmCurrentPuzzle.vi;
+      document.getElementById('asmTargetPinyin').textContent = `Pinyin: ${asmCurrentPuzzle.py}`;
+
+      document.getElementById('asmSuccessBox').style.display = 'none';
+      const hintBox = document.getElementById('asmHintBox');
+      if (hintBox) hintBox.style.display = 'none';
+
+      renderAssemblySlots();
+      renderAssemblyPool();
+    }
+
+    function renderAssemblySlots() {
+      const container = document.getElementById('asmSlotsContainer');
+      if (!container || !asmCurrentPuzzle) return;
+      const neededCount = asmCurrentPuzzle.parts.length;
+
+      let html = '';
+      for (let i = 0; i < neededCount; i++) {
+        const part = asmSelectedParts[i];
+        if (part) {
+          html += `<div class="asm-slot filled" onclick="removeAssemblyPart(${i})" title="Bấm để gỡ mảnh ghép này">${part.char}</div>`;
+        } else {
+          html += `<div class="asm-slot empty" title="Ô ghép linh kiện ${i + 1}">?</div>`;
+        }
+        if (i < neededCount - 1) {
+          html += `<div class="asm-operator">+</div>`;
+        }
+      }
+      html += `<div class="asm-operator">➔</div>`;
+      html += `<div class="asm-slot result-slot" title="Hán tự hoàn chỉnh">?</div>`;
+
+      container.innerHTML = html;
+    }
+
+    function renderAssemblyPool() {
+      const poolGrid = document.getElementById('asmPoolGrid');
+      if (!poolGrid || !asmCurrentPuzzle || !asmCurrentPoolParts) return;
+
+      let html = '';
+      asmCurrentPoolParts.forEach((p, idx) => {
+        const isUsed = asmSelectedParts.some(sp => sp.char === p.char);
+        const escapedName = (p.name || '').replace(/'/g, "\\'");
+        html += `
+          <button class="asm-part-btn" id="asm-part-btn-${idx}" ${isUsed ? 'disabled' : ''} onclick="selectAssemblyPart('${p.char}', '${escapedName}')">
+            <span class="asm-part-char">${p.char}</span>
+            <span class="asm-part-name" title="${p.name}">${p.name}</span>
+          </button>
+        `;
+      });
+      poolGrid.innerHTML = html;
+    }
+
+    function selectAssemblyPart(char, name) {
+      if (!asmCurrentPuzzle) return;
+      if (asmSelectedParts.length >= asmCurrentPuzzle.parts.length) {
+        return;
+      }
+      asmSelectedParts.push({ char, name });
+      renderAssemblySlots();
+      renderAssemblyPool();
+
+      if (asmSelectedParts.length === asmCurrentPuzzle.parts.length) {
+        setTimeout(checkAssembly, 150);
+      }
+    }
+
+    function removeAssemblyPart(slotIdx) {
+      if (slotIdx >= 0 && slotIdx < asmSelectedParts.length) {
+        asmSelectedParts.splice(slotIdx, 1);
+        renderAssemblySlots();
+        renderAssemblyPool();
+      }
+    }
+
+    function clearAssemblySlots() {
+      asmSelectedParts = [];
+      if (asmCurrentPuzzle) {
+        const allParts = [...asmCurrentPuzzle.parts, ...(asmCurrentPuzzle.distractors || [])];
+        asmCurrentPoolParts = shuffleArray(allParts);
+      }
+      renderAssemblySlots();
+      renderAssemblyPool();
+    }
+
+    function checkAssembly() {
+      if (!asmCurrentPuzzle) return;
+      if (asmSelectedParts.length < asmCurrentPuzzle.parts.length) {
+        alert("Vui lòng chọn đủ các mảnh ghép trước khi kiểm tra!");
         return;
       }
 
-      const recognition = new SpeechRecognition();
-      recognition.lang = 'zh-CN';
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
+      const targetChars = asmCurrentPuzzle.parts.map(p => p.char).sort();
+      const selectedChars = asmSelectedParts.map(p => p.char).sort();
+      const isCorrect = JSON.stringify(targetChars) === JSON.stringify(selectedChars);
 
-      btnEl.classList.add('recording');
-      btnEl.textContent = '🔴 Đang nghe... Hãy nói ngay';
+      if (isCorrect) {
+        playBeep('correct');
+        asmScore += 10 + (asmStreak * 2);
+        asmStreak += 1;
+        document.getElementById('asmScore').textContent = asmScore;
+        document.getElementById('asmStreak').textContent = asmStreak;
 
-      recognition.onresult = function(event) {
-        btnEl.classList.remove('recording');
-        btnEl.textContent = '🎙️ Đọc lại câu này';
+        const resultSlot = document.querySelector('.asm-slot.result-slot');
+        if (resultSlot) resultSlot.textContent = asmCurrentPuzzle.target_zh;
 
-        const transcript = event.results[0][0].transcript.trim();
-        const cleanTarget = targetZh.replace(/[，。？！\s]/g, '');
-        const cleanSpoken = transcript.replace(/[，。？！\s]/g, '');
+        const successBox = document.getElementById('asmSuccessBox');
+        document.getElementById('asmSuccessChar').textContent = asmCurrentPuzzle.target_zh;
+        document.getElementById('asmSuccessPy').textContent = asmCurrentPuzzle.py;
+        document.getElementById('asmSuccessVi').textContent = asmCurrentPuzzle.vi;
+        document.getElementById('asmSuccessStory').innerHTML = `💡 <strong>Giải mã chiết tự:</strong> ${asmCurrentPuzzle.story}`;
+        document.getElementById('asmSuccessExample').innerHTML = `🌟 <strong>Ví dụ:</strong> ${asmCurrentPuzzle.example}`;
+        successBox.style.display = 'block';
 
-        // Calculate simple character match ratio
-        let matches = 0;
-        for (let char of cleanSpoken) {
-          if (cleanTarget.includes(char)) matches++;
+        speakText(asmCurrentPuzzle.target_zh);
+      } else {
+        playBeep('wrong');
+        asmStreak = 0;
+        document.getElementById('asmStreak').textContent = asmStreak;
+
+        document.querySelectorAll('.asm-slot.filled').forEach(slot => {
+          slot.classList.add('slot-error');
+          setTimeout(() => slot.classList.remove('slot-error'), 450);
+        });
+
+        const hintBox = document.getElementById('asmHintBox');
+        if (hintBox) {
+          hintBox.style.display = 'block';
+          const hintPrefix = asmCurrentPuzzle.story ? asmCurrentPuzzle.story.split('➔')[0] : '';
+          hintBox.innerHTML = `⚠️ <strong>Chưa chính xác:</strong> Các mảnh ghép này chưa đúng. Hãy bấm ô trên để đổi mảnh khác! <br><em>(Gợi ý: ${hintPrefix}...)</em>`;
         }
-        let score = Math.min(100, Math.round((matches / cleanTarget.length) * 100));
-        if (cleanTarget === cleanSpoken) score = 100;
+      }
+    }
 
-        const badge = document.getElementById(badgeId);
-        badge.className = 'accuracy-badge ' + (score >= 80 ? 'excellent' : 'good');
-        badge.innerHTML = `Độ chính xác: <strong>${score}%</strong> (Bạn nói: "${transcript}")`;
-      };
+    function showAssemblyHint() {
+      if (!asmCurrentPuzzle) return;
+      const hintBox = document.getElementById('asmHintBox');
+      if (hintBox) {
+        hintBox.style.display = 'block';
+        const hintPrefix = asmCurrentPuzzle.story ? asmCurrentPuzzle.story.split('➔')[0] : '';
+        hintBox.innerHTML = `💡 <strong>Gợi ý chiết tự:</strong> ${hintPrefix}...`;
+      }
+    }
 
-      recognition.onerror = function(event) {
+    function playAssemblyAudio() {
+      if (asmCurrentPuzzle) speakText(asmCurrentPuzzle.target_zh);
+    }
+
+    function nextAssemblyChallenge() {
+      loadAssemblyPuzzle(asmCurrentIdx + 1);
+    }
+
+    function renderAssemblyVictory() {
+      const playArea = document.getElementById('asmPlayArea');
+      const victoryView = document.getElementById('asmVictoryView');
+      const finalScore = document.getElementById('asmFinalScore');
+      if (playArea) playArea.style.display = 'none';
+      if (victoryView) victoryView.style.display = 'block';
+      if (finalScore) finalScore.textContent = asmScore;
+    }
+
+    // ==================== DIALOGUE TOGGLES ====================
+    let showDialoguePy = true;
+    let showDialogueVi = true;
+
+    function toggleDialoguePinyin() {
+      showDialoguePy = !showDialoguePy;
+      document.querySelectorAll('.d-py').forEach(el => {
+        el.style.display = showDialoguePy ? 'block' : 'none';
+      });
+      const btn = document.getElementById('btnToggleDialoguePy');
+      if (btn) btn.textContent = showDialoguePy ? '🙈 Ẩn Pinyin' : '👁 Hiện Pinyin';
+    }
+
+    function toggleDialogueVi() {
+      showDialogueVi = !showDialogueVi;
+      document.querySelectorAll('.d-vi').forEach(el => {
+        el.style.display = showDialogueVi ? 'block' : 'none';
+      });
+      const btn = document.getElementById('btnToggleDialogueVi');
+      if (btn) btn.textContent = showDialogueVi ? '🙈 Ẩn Dịch Nghĩa' : '👁 Hiện Dịch Nghĩa';
+    }
+
+    // ==================== AI SHADOWING SPEECH RECOGNITION ====================
+    let activeRecognition = null;
+
+    function startShadowing(targetZh, badgeId, btnEl) {
+      const badge = document.getElementById(badgeId);
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        if (badge) {
+          badge.style.display = 'inline-block';
+          badge.className = 'accuracy-badge good';
+          badge.innerHTML = `💡 Trình duyệt chưa hỗ trợ Web Speech API. Bấm 🔊 bên trên để nghe mẫu phát âm nhé!`;
+        }
+        speakText(targetZh);
+        return;
+      }
+
+      // If an existing recognition is in progress, stop it first
+      if (activeRecognition) {
+        try { activeRecognition.abort(); } catch(e){}
+        activeRecognition = null;
+      }
+
+      document.querySelectorAll('.btn-mic').forEach(b => {
+        b.classList.remove('recording');
+        b.textContent = '🎙️ Luyện Shadowing câu này';
+      });
+
+      try {
+        const recognition = new SpeechRecognition();
+        activeRecognition = recognition;
+        recognition.lang = 'zh-CN';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        btnEl.classList.add('recording');
+        btnEl.textContent = '🔴 Đang nghe... Hãy nói ngay';
+
+        if (badge) {
+          badge.style.display = 'inline-block';
+          badge.className = 'accuracy-badge';
+          badge.style.background = '#eff6ff';
+          badge.style.color = '#1d4ed8';
+          badge.innerHTML = '🎧 Đang lắng nghe giọng của bạn... Hãy nói to rõ câu tiếng Trung nhé!';
+        }
+
+        recognition.onresult = function(event) {
+          btnEl.classList.remove('recording');
+          btnEl.textContent = '🎙️ Luyện lại câu này';
+          activeRecognition = null;
+
+          const transcript = event.results[0][0].transcript.trim();
+          const cleanTarget = targetZh.replace(/[，。？！\s\d]/g, '');
+          const cleanSpoken = transcript.replace(/[，。？！\s\d]/g, '');
+
+          let matches = 0;
+          for (let char of cleanSpoken) {
+            if (cleanTarget.includes(char)) matches++;
+          }
+          let score = Math.min(100, Math.round((matches / Math.max(1, cleanTarget.length)) * 100));
+          if (cleanTarget === cleanSpoken) score = 100;
+
+          if (badge) {
+            badge.style.display = 'inline-block';
+            badge.className = 'accuracy-badge ' + (score >= 70 ? 'excellent' : 'good');
+            badge.style.background = score >= 70 ? '#dcfce7' : '#fef9c3';
+            badge.style.color = score >= 70 ? '#166534' : '#854d0e';
+            badge.innerHTML = `Độ chính xác: <strong>${score}%</strong> (Bạn nói: "${transcript}")`;
+          }
+        };
+
+        recognition.onerror = function(event) {
+          btnEl.classList.remove('recording');
+          btnEl.textContent = '🎙️ Luyện Shadowing câu này';
+          activeRecognition = null;
+
+          if (badge) {
+            badge.style.display = 'inline-block';
+            badge.className = 'accuracy-badge';
+            badge.style.background = '#fef3c7';
+            badge.style.color = '#92400e';
+            if (event.error === 'no-speech') {
+              badge.innerHTML = '⚠️ Chưa nhận được giọng nói. Bạn hãy bấm lại và đọc to hơn nhé!';
+            } else if (event.error === 'not-allowed') {
+              badge.innerHTML = '⚠️ Trình duyệt chưa cấp quyền Micro. Vui lòng bấm biểu tượng ổ khóa/micro trên thanh URL để cho phép.';
+            } else {
+              badge.innerHTML = `⚠️ Tạm dừng ghi âm (${event.error}). Bạn có thể bấm để thử lại!`;
+            }
+          }
+        };
+
+        recognition.onend = function() {
+          btnEl.classList.remove('recording');
+          if (btnEl.textContent.includes('Đang nghe')) {
+            btnEl.textContent = '🎙️ Luyện Shadowing câu này';
+          }
+          activeRecognition = null;
+        };
+
+        recognition.start();
+      } catch(err) {
+        console.warn("Speech recognition error:", err);
         btnEl.classList.remove('recording');
-        btnEl.textContent = '🎙️ Đọc lại câu này';
-        alert("Lỗi nhận diện âm thanh: " + event.error);
-      };
-
-      recognition.start();
+        btnEl.textContent = '🎙️ Luyện Shadowing câu này';
+        if (badge) {
+          badge.style.display = 'inline-block';
+          badge.className = 'accuracy-badge good';
+          badge.innerHTML = '⚠️ Không thể khởi động Micro. Hãy thử lại sau ít giây!';
+        }
+      }
     }
 
     // ==================== MINI QUIZ ENGINE ====================
+    let showQuizVi = false;
+    function toggleQuizTranslation() {
+      showQuizVi = !showQuizVi;
+      document.querySelectorAll('.quiz-vi-toggle').forEach(el => {
+        el.style.display = showQuizVi ? 'block' : 'none';
+      });
+      const btn = document.getElementById('btnToggleQuizVi');
+      if (btn) btn.textContent = showQuizVi ? '🙈 Ẩn Dịch Nghĩa Toàn Bộ' : '👁 Hiện Dịch Nghĩa Toàn Bộ';
+    }
+
     const userQuizAnswers = {};
     function selectQuizOpt(qId, optKey, btn) {
       userQuizAnswers[qId] = optKey;
@@ -1367,10 +2542,182 @@
       }
     }
 
+    // ==================== FONT SIZE CONTROLLER ====================
+    function setFontScale(scale) {
+      document.body.classList.remove('font-scale-large', 'font-scale-xlarge');
+      document.querySelectorAll('.btn-fs').forEach(b => b.classList.remove('active'));
+      
+      if (scale === 'large') {
+        document.body.classList.add('font-scale-large');
+        const b = document.getElementById('btnFsLarge');
+        if (b) b.classList.add('active');
+      } else if (scale === 'xlarge') {
+        document.body.classList.add('font-scale-xlarge');
+        const b = document.getElementById('btnFsXLarge');
+        if (b) b.classList.add('active');
+      } else {
+        const b = document.getElementById('btnFsNormal');
+        if (b) b.classList.add('active');
+      }
+
+      try {
+        localStorage.setItem('hsk3_font_scale', scale);
+      } catch(e){}
+    }
+
+    // ==================== ULTRA FOCUS MODAL ENGINE ====================
+    let currentModalIdx = 0;
+    let modalWriters = [];
+
+    function openVocabModal(idx) {
+      if (idx < 0 || idx >= VOCAB_DATA.length) return;
+      currentModalIdx = idx;
+      const item = VOCAB_DATA[idx];
+      if (!item) return;
+
+      const modal = document.getElementById('vocabModal');
+      if (!modal) return;
+
+      document.getElementById('modalCardIdx').textContent = `TỪ VỰNG ${item.num} / ${VOCAB_DATA.length}`;
+      document.getElementById('modalHanzi').textContent = item.zh;
+      document.getElementById('modalPy').textContent = item.py;
+      document.getElementById('modalHv').textContent = item.hv || '';
+      document.getElementById('modalPos').textContent = item.pos || '';
+      document.getElementById('modalMeaning').textContent = `🎯 ${item.vi}`;
+      document.getElementById('modalRadicals').textContent = item.radicals || 'Đang cập nhật';
+
+      // Render Examples
+      const egBox = document.getElementById('modalEgLines');
+      let egHtml = '';
+      if (item.eg1 && item.eg1.zh) {
+        egHtml += `
+          <div class="modal-eg-line">
+            <div class="modal-eg-zh">1. ${item.eg1.zh}</div>
+            <div class="modal-eg-py">${item.eg1.py || ''}</div>
+            <div class="modal-eg-vi">👉 ${item.eg1.vi || ''}</div>
+          </div>
+        `;
+      }
+      if (item.eg2 && item.eg2.zh) {
+        egHtml += `
+          <div class="modal-eg-line">
+            <div class="modal-eg-zh">2. ${item.eg2.zh}</div>
+            <div class="modal-eg-py">${item.eg2.py || ''}</div>
+            <div class="modal-eg-vi">👉 ${item.eg2.vi || ''}</div>
+          </div>
+        `;
+      }
+      if (item.expansion) {
+        egHtml += `
+          <div style="font-size:13.5px; color:#4338ca; background:#eef2ff; padding:8px 12px; border-radius:8px; border-left:3px solid #6366f1; margin-top:8px;">
+            <strong>⭐ Mở rộng:</strong> ${item.expansion}
+          </div>
+        `;
+      }
+      egBox.innerHTML = egHtml;
+
+      // Render HanziWriter in modal
+      const strokeContainer = document.getElementById('modalStrokeChars');
+      strokeContainer.innerHTML = '';
+      modalWriters = [];
+      if (typeof HanziWriter !== 'undefined') {
+        const cleanChars = item.zh.replace(/[^\u4e00-\u9fa5]/g, '').split('');
+        cleanChars.forEach((char, cIdx) => {
+          const charDiv = document.createElement('div');
+          charDiv.id = `modal-writer-${cIdx}`;
+          charDiv.style.cssText = 'background:#fff; border:1.5px solid #cbd5e1; border-radius:12px; padding:4px; box-shadow:0 4px 10px rgba(0,0,0,0.06);';
+          strokeContainer.appendChild(charDiv);
+          try {
+            const writer = HanziWriter.create(charDiv.id, char, {
+              width: 100,
+              height: 100,
+              padding: 6,
+              showOutline: true,
+              strokeAnimationSpeed: 1.2,
+              delayBetweenStrokes: 120,
+              strokeColor: '#0f172a',
+              radicalColor: '#d97706'
+            });
+            modalWriters.push(writer);
+            writer.animateCharacter();
+          } catch(e){}
+        });
+      }
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function replayModalStroke() {
+      modalWriters.forEach(w => w.animateCharacter());
+    }
+
+    function playModalAudio() {
+      const item = VOCAB_DATA[currentModalIdx];
+      if (item) speakText(item.zh);
+    }
+
+    function closeVocabModal() {
+      const modal = document.getElementById('vocabModal');
+      if (modal) modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function nextModalVocab() {
+      const nextIdx = (currentModalIdx + 1) % VOCAB_DATA.length;
+      openVocabModal(nextIdx);
+    }
+
+    function prevModalVocab() {
+      const prevIdx = (currentModalIdx - 1 + VOCAB_DATA.length) % VOCAB_DATA.length;
+      openVocabModal(prevIdx);
+    }
+
+    // Keyboard Shortcuts for Modal
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('vocabModal');
+      if (modal && modal.classList.contains('active')) {
+        if (e.key === 'Escape') closeVocabModal();
+        else if (e.key === 'ArrowRight') nextModalVocab();
+        else if (e.key === 'ArrowLeft') prevModalVocab();
+        else if (e.key === ' ' && e.target === document.body) {
+          e.preventDefault();
+          playModalAudio();
+        }
+      }
+    });
+
+    // DIALOGUE QUIZ HELPER
+    const userDialogueAnswers = {};
+    function selectDialogueCheck(dNum, optKey, btn) {
+      userDialogueAnswers[dNum] = optKey;
+      btn.parentElement.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+    function checkDialogueQuiz(dNum, correctAns) {
+      const selected = userDialogueAnswers[dNum];
+      if (!selected) {
+        alert("Vui lòng chọn một phương án!");
+        return;
+      }
+      const exp = document.getElementById(`d-exp-${dNum}`);
+      exp.style.display = 'block';
+      if (selected === correctAns) {
+        exp.style.background = '#dcfce7';
+        exp.style.color = '#166534';
+      } else {
+        exp.style.background = '#fee2e2';
+        exp.style.color = '#991b1b';
+      }
+    }
+
     // INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {
-      // Init all canvases
-      document.querySelectorAll('.hanzi-canvas').forEach(c => setupCanvasDrawing(c));
+      // Restore font scale
+      try {
+        const savedScale = localStorage.getItem('hsk3_font_scale');
+        if (savedScale) setFontScale(savedScale);
+      } catch(e){}
       // Init flashcard
       updateFlashcardUI();
     });

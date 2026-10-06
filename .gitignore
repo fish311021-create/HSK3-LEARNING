@@ -4,3 +4,6 @@ audio/
 __pycache__/
 *.bat
 server.py
+scratch/
+get_drive_ids_11_15.py
+inspect_drive_all.py

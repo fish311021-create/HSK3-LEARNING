@@ -591,11 +591,12 @@
     <!-- TOPBAR NAVIGATION -->
     <div class="topbar-nav">
       <div class="nav-left">
-        <a href="index.html" class="nav-btn">🏠 Trang Chủ Soạn Bài</a>
+        <a href="../index.html" class="nav-btn btn-hub" style="background:linear-gradient(135deg,#f59e0b,#fbbf24); color:#78350f; font-weight:800; border-color:#d97706;">🏠 Cổng Tổng HSK 3</a>
+        <a href="index.html" class="nav-btn">📚 Danh mục Soạn Bài</a>
         <a href="Bai_03/index.html" class="nav-btn" style="background:#fef3c7; color:#92400e; font-weight:700;">📖 Soạn Bài 3 SGK</a>
       </div>
       <div class="nav-right">
-        <a href="../1_Web_LuyenThi_HSK3/index.html" class="nav-btn btn-exam">🚀 Sang Web Luyện Đề Thi HSK 3</a>
+        <a href="../1_Web_LuyenThi_HSK3/index.html" class="nav-btn btn-exam">🚀 Sang Cổng 1: Luyện Thi HSK 3</a>
       </div>
     </div>
 
@@ -616,9 +617,8 @@
         </div>
         
         <div class="quick-actions">
-          <button class="btn-quick" onclick="quickSelect('bai3')">⭐ Chỉ Bài 3 (Đang soạn)</button>
-          <button class="btn-quick" onclick="quickSelect('1-3')">📚 Bài 1 đến Bài 3</button>
           <button class="btn-quick" onclick="quickSelect('1-5')">🎯 Bài 1 đến Bài 5</button>
+          <button class="btn-quick" onclick="quickSelect('1-10')" style="background:#fef3c7; color:#92400e; font-weight:700;">🌟 Bài 1 đến Bài 10 (Sẵn sàng)</button>
           <button class="btn-quick" onclick="quickSelect('all')">🏆 Chọn Tất Cả (Bài 1-20)</button>
           <button class="btn-quick" onclick="quickSelect('none')">🗑️ Bỏ chọn hết</button>
         </div>
@@ -846,12 +846,10 @@
 
     function quickSelect(type) {
       selectedLessons.clear();
-      if (type === 'bai3') {
-        selectedLessons.add(3);
-      } else if (type === '1-3') {
-        [1, 2, 3].forEach(n => selectedLessons.add(n));
-      } else if (type === '1-5') {
+      if (type === '1-5') {
         [1, 2, 3, 4, 5].forEach(n => selectedLessons.add(n));
+      } else if (type === '1-10') {
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(n => selectedLessons.add(n));
       } else if (type === 'all') {
         for (let i = 1; i <= 20; i++) selectedLessons.add(i);
       }

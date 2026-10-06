@@ -7,40 +7,63 @@ description: >-
 
 # HSK Lesson Builder (Quy trình chuẩn hóa chi tiết xây dựng Web học HSK tương tác)
 
-Tài liệu này là **quy chuẩn kỹ thuật và nội dung bắt buộc** khi xây dựng trang web tương tác cho các bài học HSK 3 (từ Bài 1 đến Bài 20), được đúc kết từ phiên bản chuẩn hoàn thiện của **Bài 1** (`New folder/index.html` và `HSK3_Bai1_LuyenNghe.html`).
+Tài liệu này là **quy chuẩn kỹ thuật và nội dung bắt buộc** khi xây dựng và vận hành các trang web học tiếng Trung HSK 3 trong toàn bộ dự án.
+
+Dự án HSK 3 được phân định rõ ràng thành **2 phân hệ chuyên biệt độc lập**:
+1. **Phân hệ 1: Web Luyện Thi HSK 3 (`1_Web_LuyenThi_HSK3/`)**:
+   - Bám sát **Sách Bài Tập** (`FILE TÀI LIỆU/HSK-3-BT.pdf`).
+   - Gồm 45 câu hỏi luyện thi chuẩn (20 câu Nghe + 10 câu Đọc Part 1, 2, 3 + 10 câu Viết Part 1, 2).
+   - Âm thanh: File `audio.mp3` nguyên vẹn của bài tập nghe.
+   - Giao diện Dark Cyan / Obsidian Blue (`#0b1220`, `#38bdf8`).
+2. **Phân hệ 2: Web Soạn Bài Trước HSK 3 (`2_Web_SoanBai_HSK3/`)**:
+   - Bám sát **Sách Giáo Khoa** (`FILE TÀI LIỆU/HSK 3 Sách giáo khoa.pdf`).
+   - Gồm 4 Tab: Từ Vựng & Bút Thuận Chiết Tự, Flashcard 3D & Xưởng Ghép Chữ Lego, **Mổ Xẻ 4 Bài Khóa SGK & AI Shadowing**, Xưởng Ngữ Pháp & Mini Quiz.
+   - Giao diện Sunshine Gold / Warm Amber (`#fffdf5`, `#f59e0b`, `#fbbf24`).
+   - Tham chiếu chi tiết: Xem skill `hsk-prestudy-builder`.
 
 ---
 
-## 1. Cấu trúc thư mục & Quy chuẩn tài nguyên mỗi bài học
+## 1. NGUYÊN TẮC BẤT KHẢ XÂM PHẠM VỀ TỪ VỰNG, BÀI KHÓA & FILE AUDIO (100% GROUND TRUTH)
 
-Mỗi bài học phải được đóng gói độc lập với đầy đủ tài nguyên cần thiết:
+> [!CRITICAL]
+> **TIÊU CHUẨN VÀNG: TỪ VỰNG, BÀI KHÓA VÀ AUDIO PHẢI CHUẨN XÁC 100% THEO SÁCH GIÁO KHOA GỐC:**
+> 1. **TỪ VỰNG CHUẨN 100% THEO BẢNG 生词 SGK**:
+>    - Danh sách từ mới của từng bài học bắt buộc đối chiếu trực tiếp với bảng `生词` ở cột bên phải bài khóa trong `FILE TÀI LIỆU/HSK 3 Sách giáo khoa.pdf`.
+>    - Tuyệt đối không bỏ sót từ ở cuối bài (như `搬` Bài 1, `疼` & `瘦` Bài 2), không lấy thừa từ bài khác (như `胖` ở Bài 5), không nhầm lẫn cấu trúc ngữ pháp thành từ vựng (như lẫn `一点儿`, `得多` ở Bài 10).
+>    - Đảm bảo đúng số lượng chuẩn: Bài 1 (15 từ), Bài 2 (18 từ), Bài 3 (17 từ), Bài 4 (16 từ), Bài 5 (13 từ), Bài 6 (15 từ), Bài 7 (12 từ), Bài 8 (17 từ), Bài 9 (13 từ), Bài 10 (15 từ).
+> 2. **TUYỆT ĐỐI KHÔNG BỊA ĐOẠN THOẠI**: Trong phân hệ Soạn Bài (`2_Web_SoanBai_HSK3`), toàn bộ 4 bài khóa của tất cả 20 bài học **BẮT BUỘC TRÍCH XUẤT NGUYÊN VĂN 100% TỪ `FILE TÀI LIỆU/HSK 3 Sách giáo khoa.pdf`**.
+>    - Tuyệt đối không tự sáng tác hội thoại mẫu từ danh sách từ vựng.
+>    - Đúng từng chữ Hán, dấu câu, tên nhân vật (như 小刚, 小丽, 周明, 周太太, 马可, 经理, 服务员...) và phiên âm Pinyin.
+> 3. **FILE AUDIO ĐỒNG BỘ 100%**:
+>    - File audio bài khóa phải trỏ đến `audio_textbook/Bai_XX/XX-Y.mp3`.
+>    - Các file này được tải về từ Google Drive chính thức của bộ giáo trình SGK HSK 3.
+>    - Đảm bảo người học khi bấm nghe sẽ nghe đúng từng từ, từng câu hiển thị trên màn hình để luyện Shadowing đạt hiệu quả cao nhất.
+> 4. **RANH GIỚI BẤT KHẢ XÂM PHẠM**:
+>    - Khi làm việc ở `2_Web_SoanBai_HSK3/`, tuyệt đối không chỉnh sửa file trong `1_Web_LuyenThi_HSK3/`.
+>    - Ngược lại, khi làm việc ở `1_Web_LuyenThi_HSK3/`, không can thiệp vào `2_Web_SoanBai_HSK3/`.
+
+---
+
+## 2. Cấu trúc thư mục & Quy chuẩn tài nguyên mỗi bài học (Phân hệ Luyện Thi)
+
+Mỗi bài học trong `1_Web_LuyenThi_HSK3/` phải được đóng gói độc lập với đầy đủ tài nguyên:
 
 ```text
 e:\HSK3/
-├── server.py                        # Máy chủ HTTP Range 206 (phục vụ tua audio tức thì)
-├── chay_web_server.bat              # File kích hoạt server cổng 8000 cho điện thoại/iPad
-├── char_dict_full.json              # Kho từ điển gốc 4.000+ chữ Hán
-├── Bai_XX/ (hoặc folder bài học)
-│   ├── index.html                   # Ứng dụng web Single-Page hoàn chỉnh của bài học
-│   ├── audio.mp3                    # File âm thanh MP3 tương ứng của bài học đó
-│   ├── pic_A.png                    # Tranh A cắt từ Sách bài tập (Phần 1 nghe)
-│   ├── pic_B.png                    # Tranh B cắt từ Sách bài tập
-│   ├── pic_C.png                    # Tranh C cắt từ Sách bài tập
-│   ├── pic_D.png                    # Tranh D cắt từ Sách bài tập (hoặc tranh ví dụ)
-│   ├── pic_E.png                    # Tranh E cắt từ Sách bài tập
-│   └── pic_F.png                    # Tranh F cắt từ Sách bài tập
-└── HSK3_BaiXX_LuyenNghe.html        # File web tại thư mục gốc để mở trực tiếp
+├── 1_Web_LuyenThi_HSK3/
+│   ├── Bai_XX/
+│   │   ├── index.html                   # Ứng dụng web Single-Page hoàn chỉnh của bài học
+│   │   ├── audio.mp3                    # File âm thanh MP3 tương ứng của bài học đó
+│   │   ├── pic_A.png ... pic_F.png      # 6 tranh cắt từ Sách bài tập (Phần 1 nghe)
+│   │   └── HSK3_BaiXX_LuyenNghe.html
+├── 2_Web_SoanBai_HSK3/
+│   ├── audio_textbook/Bai_XX/           # 4 file MP3 bài khóa cắt chuẩn từ SGK
+│   │   └── XX-1.mp3 ... XX-4.mp3
+│   ├── data/extracted_soan_bai_XX.py    # Dữ liệu học thuật 100% chuẩn SGK
+│   └── Bai_XX/index.html                # Web Soạn bài tương tác
+├── server.py                            # Máy chủ HTTP Range 206
+└── chay_web_server.bat                  # File kích hoạt server cổng 8000
 ```
-
-> [!IMPORTANT]
-> **TÀI NGUYÊN BẮT BUỘC RIÊNG BIỆT CHO MỖI BÀI HỌC:**
-> 1. **File nghe (`audio.mp3`):** Mỗi bài có file nghe riêng trích xuất từ đĩa nghe giáo trình HSK 3.
-> 2. **Bộ ảnh tranh (`pic_A.png` đến `pic_F.png`):** Phải dùng PyMuPDF (`fitz`) mở file `HSK-3-BT.pdf`, tìm đúng trang bài tập nghe Phần 1 của bài đó, cắt chính xác 6 ô tranh (A, B, C, D, E, F) và lưu ảnh chất lượng cao vào thư mục bài học.
-> 3. **Xác định mốc giây nghe:** Nghe trước file `audio.mp3` để lấy chính xác 5 mốc thời gian (Mở đầu, Phần 1, Phần 2, Phần 3, Phần 4).
-
----
-
-## 2. Chi tiết cấu trúc 4 Tab & Từng câu hỏi (Từ Câu 1 đến Câu 45)
 
 ---
 
