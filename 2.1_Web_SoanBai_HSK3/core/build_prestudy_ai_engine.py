@@ -160,16 +160,12 @@ def render_dialogues(dialogues_list, lesson_id):
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 {speaker}</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('{zh}')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('{zh}')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">{zh}</div>
                 <div class="d-py">{py}</div>
                 <div class="d-vi">{vi}</div>
                 <div class="d-analysis">💡 {analysis}</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('{zh}', '{badge_id}', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="{badge_id}"></span>
-                </div>
               </div>
             """
             lines_html.append(line_box)

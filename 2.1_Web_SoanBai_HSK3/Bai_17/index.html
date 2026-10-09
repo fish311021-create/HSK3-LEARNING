@@ -2015,7 +2015,7 @@
     <nav class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('tab-vocab')">🗂️ TỪ VỰNG &amp; NÉT VIẾT</button>
       <button class="tab-btn" onclick="switchTab('tab-games')">🎮 FLASHCARD &amp; MINIGAMES</button>
-      <button class="tab-btn" onclick="switchTab('tab-dialogues')">📖 4 BÀI KHÓA &amp; AI SHADOWING</button>
+      <button class="tab-btn" onclick="switchTab('tab-dialogues')">📖 4 BÀI KHÓA &amp; TRỢ LÝ AI</button>
       <button class="tab-btn" onclick="switchTab('tab-grammar')">⚖️ XƯỞNG NGỮ PHÁP &amp; QUIZ</button>
     </nav>
 
@@ -3051,10 +3051,10 @@
     <div id="tab-dialogues" class="tab-content">
       <section class="section-card">
         <div class="section-header">
-          <div class="section-title"><span>📖 4 Bài Khóa SGK &amp; 🎙️ Luyện Phát Âm AI Shadowing</span></div>
+          <div class="section-title"><span>📖 4 Bài Khóa SGK &amp; 🤖 Trợ Lý AI Vision</span></div>
           <span style="font-size:13px; font-weight:700; color:var(--primary-dark);">Audio gốc từ giáo trình</span>
         </div>
-        <p class="section-desc">Nghe từng đoạn hội thoại theo phát âm chuẩn, bóc tách cấu trúc câu và luyện phát âm nhại giọng (Shadowing) bằng nút Micro để nhận diện giọng nói và chấm điểm % mức độ chính xác:</p>
+        <p class="section-desc">Nghe từng đoạn hội thoại theo phát âm chuẩn SGK, bóc tách cấu trúc câu, đối chiếu bài khóa gốc và giải bài tập giáo viên bằng Trợ lý AI Vision:</p>
 
         <div class="dialogue-toolbar">
           <span style="font-size:14px; font-weight:700; color:#334155;">🎛️ Chế độ xem bài khóa:</span>
@@ -3090,76 +3090,56 @@
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 小丽</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('周经理，下个星期我可以请几天假吗？')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('周经理，下个星期我可以请几天假吗？')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">周经理，下个星期我可以请几天假吗？</div>
                 <div class="d-py">Zhōu jīnglǐ, xià ge xīngqī wǒ kěyǐ qǐng jǐ tiān jià ma?</div>
                 <div class="d-vi">Giám đốc Chu, tuần sau em có thể xin nghỉ mấy ngày được không ạ?</div>
                 <div class="d-analysis">💡 Cụm ly hợp '请假' chèn số từ và lượng từ vào giữa: '请几天假' (xin nghỉ mấy ngày).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('周经理，下个星期我可以请几天假吗？', 'acc-d1-l0', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d1-l0"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 周明</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('你有什么事？')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('你有什么事？')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">你有什么事？</div>
                 <div class="d-py">Nǐ yǒu shénme shì?</div>
                 <div class="d-vi">Cô có chuyện gì thế?</div>
                 <div class="d-analysis">💡 Đại từ '什么' dùng hỏi sự việc, lý do.</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('你有什么事？', 'acc-d1-l1', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d1-l1"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 小丽</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('我的一个老朋友结婚，我跟他两年没见了。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('我的一个老朋友结婚，我跟他两年没见了。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">我的一个老朋友结婚，我跟他两年没见了。</div>
                 <div class="d-py">Wǒ de yí ge lǎo péngyou jiéhūn, wǒ gēn tā liǎng nián méi jiàn le.</div>
                 <div class="d-vi">Một người bạn cũ của em kết hôn, em với bạn ấy hai năm nay chưa gặp nhau rồi.</div>
                 <div class="d-analysis">💡 Cấu trúc thời lượng phủ định: '两年没见了' (2 năm chưa gặp).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('我的一个老朋友结婚，我跟他两年没见了。', 'acc-d1-l2', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d1-l2"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 周明</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('你一共想请几天假？')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('你一共想请几天假？')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">你一共想请几天假？</div>
                 <div class="d-py">Nǐ yígòng xiǎng qǐng jǐ tiān jià?</div>
                 <div class="d-vi">Cô muốn xin nghỉ tổng cộng mấy ngày?</div>
                 <div class="d-analysis">💡 Phó từ '一共' (tổng cộng) nhấn mạnh số lượng toàn thể.</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('你一共想请几天假？', 'acc-d1-l3', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d1-l3"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 小丽</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('三天。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('三天。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">三天。</div>
                 <div class="d-py">Sān tiān.</div>
                 <div class="d-vi">Dạ ba ngày ạ.</div>
                 <div class="d-analysis">💡 Câu đáp ngắn gọn chỉ khoảng thời gian xin phép.</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('三天。', 'acc-d1-l4', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d1-l4"></span>
-                </div>
               </div>
             
           </div>
@@ -3267,91 +3247,67 @@
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 同事</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('小丽，那个高高的男人是你们公司的吗？你对他了解吗？')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('小丽，那个高高的男人是你们公司的吗？你对他了解吗？')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">小丽，那个高高的男人是你们公司的吗？你对他了解吗？</div>
                 <div class="d-py">Xiǎolì, nàge gāogāo de nánrén shì nǐmen gōngsī de ma? Nǐ duì tā liǎojiě ma?</div>
                 <div class="d-vi">Tiểu Lệ, người đàn ông cao dong dỏng đằng kia có phải người công ty cậu không? Cậu có hiểu rõ về anh ấy không?</div>
                 <div class="d-analysis">💡 Tính từ lặp lại '高高的' miêu tả dáng dấp, cấu trúc giới từ '对……了解' (hiểu rõ về ai).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('小丽，那个高高的男人是你们公司的吗？你对他了解吗？', 'acc-d2-l0', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d2-l0"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 小丽</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('我们过去是邻居，后来是大学同学，关系一直很不错。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('我们过去是邻居，后来是大学同学，关系一直很不错。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">我们过去是邻居，后来是大学同学，关系一直很不错。</div>
                 <div class="d-py">Wǒmen guòqù shì línjū, hòulái shì dàxué tóngxué, guānxì yìzhí hěn búcuò.</div>
                 <div class="d-vi">Trước đây bọn tớ là hàng xóm, sau này là bạn học đại học, mối quan hệ xưa nay luôn rất tốt.</div>
                 <div class="d-analysis">💡 Cặp từ thời gian '过去' (quá khứ/trước đây) và '后来' (về sau).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('我们过去是邻居，后来是大学同学，关系一直很不错。', 'acc-d2-l1', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d2-l1"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 同事</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('他一般喜欢做什么？')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('他一般喜欢做什么？')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">他一般喜欢做什么？</div>
                 <div class="d-py">Tā yìbān xǐhuan zuò shénme?</div>
                 <div class="d-vi">Anh ấy thường ngày thích làm gì?</div>
                 <div class="d-analysis">💡 Phó từ '一般' (thông thường, bình thường).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('他一般喜欢做什么？', 'acc-d2-l2', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d2-l2"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 小丽</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('他有很多爱好，唱歌、画画儿、踢足球，什么都会。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('他有很多爱好，唱歌、画画儿、踢足球，什么都会。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">他有很多爱好，唱歌、画画儿、踢足球，什么都会。</div>
                 <div class="d-py">Tā yǒu hěn duō àihào, chànggē, huàhuàr, tī zúqiú, shénme dōu huì.</div>
                 <div class="d-vi">Anh ấy có rất nhiều sở thích, hát hò, vẽ tranh, đá bóng, cái gì cũng biết tuốt.</div>
                 <div class="d-analysis">💡 Trọng điểm đại từ nghi vấn phiếm chỉ toàn bộ: '什么都会' (cái gì cũng biết).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('他有很多爱好，唱歌、画画儿、踢足球，什么都会。', 'acc-d2-l3', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d2-l3"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 同事</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('真的？那你介绍我们认识认识吧。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('真的？那你介绍我们认识认识吧。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">真的？那你介绍我们认识认识吧。</div>
                 <div class="d-py">Zhēn de? Nà nǐ jièshào wǒmen rènshi rènshi ba.</div>
                 <div class="d-vi">Thật á? Thế cậu giới thiệu cho bọn tớ làm quen nhận biết chút đi.</div>
                 <div class="d-analysis">💡 Trọng điểm động từ hai âm tiết lặp lại dạng ABAB: '认识认识' (làm quen tìm hiểu một chút).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('真的？那你介绍我们认识认识吧。', 'acc-d2-l4', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d2-l4"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 小丽</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('不行，现在他是我丈夫。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('不行，现在他是我丈夫。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">不行，现在他是我丈夫。</div>
                 <div class="d-py">Bù xíng, xiànzài tā shì wǒ zhàngfu.</div>
                 <div class="d-vi">Không được đâu, giờ anh ấy là chồng tớ rồi!</div>
                 <div class="d-analysis">💡 Câu chốt hóm hỉnh, bất ngờ khẳng định quan hệ vợ chồng.</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('不行，现在他是我丈夫。', 'acc-d2-l5', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d2-l5"></span>
-                </div>
               </div>
             
           </div>
@@ -3459,76 +3415,56 @@
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 周太太</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('最近我觉得哪儿都不舒服，你带我去医院检查检查吧。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('最近我觉得哪儿都不舒服，你带我去医院检查检查吧。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">最近我觉得哪儿都不舒服，你带我去医院检查检查吧。</div>
                 <div class="d-py">Zuìjìn wǒ juéde nǎr dōu bù shūfu, nǐ dài wǒ qù yīyuàn jiǎnchá jiǎncha ba.</div>
                 <div class="d-vi">Dạo này em cảm thấy chỗ nào trong người cũng khó chịu, anh đưa em tới bệnh viện kiểm tra chút đi.</div>
                 <div class="d-analysis">💡 Đại từ phiếm chỉ '哪儿都不舒服' (chỗ nào cũng không khỏe), động từ lặp lại '检查检查'.</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('最近我觉得哪儿都不舒服，你带我去医院检查检查吧。', 'acc-d3-l0', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d3-l0"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 周明</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('不用去医院，谁都有办法看好你的“病”。我问你，你多久没运动了？')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('不用去医院，谁都有办法看好你的“病”。我问你，你多久没运动了？')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">不用去医院，谁都有办法看好你的“病”。我问你，你多久没运动了？</div>
                 <div class="d-py">Bú yòng qù yīyuàn, shéi dōu yǒu bànfǎ kànhǎo nǐ de 'bìng'. Wǒ wèn nǐ, nǐ duō jiǔ méi yùndòng le?</div>
                 <div class="d-vi">Chẳng cần tới bệnh viện đâu, ai cũng có cách chữa khỏi 'bệnh' của em. Anh hỏi em, em bao lâu rồi không vận động?</div>
                 <div class="d-analysis">💡 Đại từ phiếm chỉ: '谁都有办法' (ai cũng có cách), bổ ngữ kết quả '看好' (chữa khỏi).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('不用去医院，谁都有办法看好你的“病”。我问你，你多久没运动了？', 'acc-d3-l1', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d3-l1"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 周太太</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('我三年没运动了。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('我三年没运动了。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">我三年没运动了。</div>
                 <div class="d-py">Wǒ sān nián méi yùndòng le.</div>
                 <div class="d-vi">Em ba năm rồi chưa tập tành gì.</div>
                 <div class="d-analysis">💡 Thời lượng: '三年没运动了' (3 năm không tập thể thao).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('我三年没运动了。', 'acc-d3-l2', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d3-l2"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 周明</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('谁都知道运动对身体好。但是你吃饱了就睡。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('谁都知道运动对身体好。但是你吃饱了就睡。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">谁都知道运动对身体好。但是你吃饱了就睡。</div>
                 <div class="d-py">Shéi dōu zhīdào yùndòng duì shēntǐ hǎo. Dànshì nǐ chī bǎo le jiù shuì.</div>
                 <div class="d-vi">Ai cũng biết vận động có lợi cho sức khỏe. Nhưng em thì cứ ăn no xong là lăn ra ngủ.</div>
                 <div class="d-analysis">💡 Cấu trúc liên tiếp '……了就……' (ăn no là ngủ), tính từ '饱' (no).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('谁都知道运动对身体好。但是你吃饱了就睡。', 'acc-d3-l3', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d3-l3"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 周太太</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('为了健康，我真应该多锻炼锻炼了。从明天起，我决定每天去长跑。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('为了健康，我真应该多锻炼锻炼了。从明天起，我决定每天去长跑。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">为了健康，我真应该多锻炼锻炼了。从明天起，我决定每天去长跑。</div>
                 <div class="d-py">Wèile jiànkāng, wǒ zhēn yīnggāi duō duànliàn duànlian le. Cóng míngtiān qǐ, wǒ juédìng měi tiān qù chángpǎo.</div>
                 <div class="d-vi">Vì sức khỏe, em thật sự nên năng rèn luyện thân thể nhiều hơn. Bắt đầu từ ngày mai, em quyết định ngày nào cũng chạy bền.</div>
                 <div class="d-analysis">💡 Giới từ chỉ mục đích '为了健康', động từ lặp lại '锻炼锻炼', động từ '决定' (quyết định).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('为了健康，我真应该多锻炼锻炼了。从明天起，我决定每天去长跑。', 'acc-d3-l4', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d3-l4"></span>
-                </div>
               </div>
             
           </div>
@@ -3636,46 +3572,34 @@
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 课文</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('“运动很重要”这句话谁都懂。但是你知道怎么运动吗？第一，要选择“对”的时间。一般来说，早上9点是最好的时间，冬天要再晚一些。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('“运动很重要”这句话谁都懂。但是你知道怎么运动吗？第一，要选择“对”的时间。一般来说，早上9点是最好的时间，冬天要再晚一些。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">“运动很重要”这句话谁都懂。但是你知道怎么运动吗？第一，要选择“对”的时间。一般来说，早上9点是最好的时间，冬天要再晚一些。</div>
                 <div class="d-py">'Yùndòng hěn zhòngyào' zhè jù huà shéi dōu dǒng. Dànshì nǐ zhīdào zěnme yùndòng ma? Dì-yī, yào xuǎnzé 'duì' de shíjiān. Yìbān lái shuō, zǎoshang jiǔ diǎn shì zuì hǎo de shíjiān, dōngtiān yào zài wǎn yìxiē.</div>
                 <div class="d-vi">Câu nói 'vận động rất quan trọng' thì ai cũng hiểu. Nhưng bạn có biết tập luyện thế nào không? Thứ nhất, phải chọn thời gian 'đúng'. Nói chung, 9 giờ sáng là thời gian tốt nhất, mùa đông thì nên muộn hơn một chút.</div>
                 <div class="d-analysis">💡 Đại từ phiếm chỉ '谁都懂' (ai cũng hiểu), số thứ tự '第一', từ vựng '选择' (lựa chọn), '冬天' (mùa đông).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('“运动很重要”这句话谁都懂。但是你知道怎么运动吗？第一，要选择“对”的时间。一般来说，早上9点是最好的时间，冬天要再晚一些。', 'acc-d4-l0', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d4-l0"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 课文</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('第二，要选择“对”的地点，公园、山上、游泳馆，这些地方都可以运动。第三，必须要根据自己的健康情况运动。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('第二，要选择“对”的地点，公园、山上、游泳馆，这些地方都可以运动。第三，必须要根据自己的健康情况运动。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">第二，要选择“对”的地点，公园、山上、游泳馆，这些地方都可以运动。第三，必须要根据自己的健康情况运动。</div>
                 <div class="d-py">Dì-èr, yào xuǎnzé 'duì' de dìdiǎn, gōngyuán, shānshàng, yóuyǒngguǎn, zhèxiē dìfang dōu kěyǐ yùndòng. Dì-sān, bìxū yào gēnjù zìjǐ de jiànkāng qíngkuàng yùndòng.</div>
                 <div class="d-vi">Thứ hai, phải chọn địa điểm 'thích hợp': công viên, trên núi, bể bơi, những nơi này đều có thể tập luyện. Thứ ba, nhất định phải căn cứ vào tình hình sức khỏe của chính mình để vận động.</div>
                 <div class="d-analysis">💡 Từ vựng quan trọng: '必须' (bắt buộc/cần phải), '根据' (căn cứ vào), '情况' (tình hình).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('第二，要选择“对”的地点，公园、山上、游泳馆，这些地方都可以运动。第三，必须要根据自己的健康情况运动。', 'acc-d4-l1', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d4-l1"></span>
-                </div>
               </div>
             
               <div class="d-line">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                   <span class="d-speaker">👤 课文</span>
-                  <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('如果你很久没爬山或者游泳了，运动一会儿就一定要休息休息。还要记得刚运动完口渴的时候，不要马上喝水。')">🔊 Nghe câu</button>
+                  <button class="btn-tool" style="font-size:11.5px; padding:3px 10px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('如果你很久没爬山或者游泳了，运动一会儿就一定要休息休息。还要记得刚运动完口渴的时候，不要马上喝水。')">🔊 Nghe câu</button>
                 </div>
                 <div class="d-zh">如果你很久没爬山或者游泳了，运动一会儿就一定要休息休息。还要记得刚运动完口渴的时候，不要马上喝水。</div>
                 <div class="d-py">Rúguǒ nǐ hěn jiǔ méi páshān huòzhě yóuyǒng le, yùndòng yíhuìr jiù yídìng yào xiūxi xiūxi. Hái yào jìde gāng yùndòng wán kǒu kě de shíhou, bú yào mǎshàng hē shuǐ.</div>
                 <div class="d-vi">Nếu bạn đã lâu không leo núi hoặc bơi lội, vận động một lát thì nhất định phải nghỉ ngơi đôi chút. Lại còn phải nhớ lúc vừa tập xong thấy khát nước, chớ vội uống nước ngay.</div>
                 <div class="d-analysis">💡 Động từ lặp lại '休息休息', liên từ '或者', từ vựng '口渴' (khát nước).</div>
-                <div class="shadowing-box">
-                  <button class="btn-mic" onclick="startShadowing('如果你很久没爬山或者游泳了，运动一会儿就一定要休息休息。还要记得刚运动完口渴的时候，不要马上喝水。', 'acc-d4-l2', this)">🎙️ Luyện Shadowing câu này</button>
-                  <span class="accuracy-badge" id="acc-d4-l2"></span>
-                </div>
               </div>
             
           </div>
@@ -4630,392 +4554,7 @@
       if (btn) btn.textContent = showDialogueVi ? '🙈 Ẩn Dịch Nghĩa' : '👁 Hiện Dịch Nghĩa';
     }
 
-    // ==================== AI SHADOWING SPEECH RECOGNITION (CROSS-PLATFORM & IOS SAFARI BULLETPROOF) ====================
-    let activeMediaRecorder = null;
-    let activeAudioStream = null;
-    let activeAudioChunks = [];
-    let activeRecordingBtn = null;
-    let activeRecordingBadge = null;
-    let activeRecordingTargetZh = '';
-    let recordingTimeoutTimer = null;
-
-    function cleanZh(str) {
-      return (str || '').replace(/[，。？！、\s\d\.\,\?\!\:\;：；“”"''（）\(\)]/g, '').trim();
-    }
-
-    function calculateShadowingScore(target, spoken) {
-      const cleanTarget = cleanZh(target);
-      const cleanSpoken = cleanZh(spoken);
-      if (!cleanSpoken) return 0;
-      if (cleanTarget === cleanSpoken) return 100;
-
-      // Levenshtein edit distance
-      const m = cleanTarget.length, n = cleanSpoken.length;
-      const dp = Array.from({length: m + 1}, () => new Array(n + 1).fill(0));
-      for (let i = 0; i <= m; i++) dp[i][0] = i;
-      for (let j = 0; j <= n; j++) dp[0][j] = j;
-      for (let i = 1; i <= m; i++) {
-        for (let j = 1; j <= n; j++) {
-          if (cleanTarget[i - 1] === cleanSpoken[j - 1]) {
-            dp[i][j] = dp[i - 1][j - 1];
-          } else {
-            dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1);
-          }
-        }
-      }
-      const dist = dp[m][n];
-      const maxLen = Math.max(m, n, 1);
-      const score = Math.max(0, Math.round((1 - dist / maxLen) * 100));
-      return score;
-    }
-
-    function getSupportedAudioMimeType() {
-      if (typeof MediaRecorder === 'undefined') return '';
-      const types = [
-        'audio/mp4',
-        'audio/aac',
-        'audio/webm;codecs=opus',
-        'audio/webm',
-        'audio/ogg'
-      ];
-      for (const t of types) {
-        if (typeof MediaRecorder.isTypeSupported === 'function' && MediaRecorder.isTypeSupported(t)) {
-          return t;
-        }
-      }
-      return '';
-    }
-
-    function resetAllMicButtons() {
-      if (recordingTimeoutTimer) {
-        clearTimeout(recordingTimeoutTimer);
-        recordingTimeoutTimer = null;
-      }
-      if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
-        try { activeMediaRecorder.stop(); } catch(e){}
-      }
-      if (activeAudioStream) {
-        try { activeAudioStream.getTracks().forEach(t => t.stop()); } catch(e){}
-        activeAudioStream = null;
-      }
-      activeMediaRecorder = null;
-      activeAudioChunks = [];
-      activeRecordingBtn = null;
-      activeRecordingBadge = null;
-      activeRecordingTargetZh = '';
-
-      document.querySelectorAll('.btn-mic').forEach(b => {
-        b.classList.remove('recording');
-        if (b.textContent.includes('Đang thu') || b.textContent.includes('Đang nghe') || b.textContent.includes('Đang phân tích') || b.textContent.includes('Đang chấm')) {
-          b.textContent = '🎙️ Luyện Shadowing câu này';
-        }
-      });
-    }
-
-    function stopAndGradeShadowing() {
-      if (recordingTimeoutTimer) {
-        clearTimeout(recordingTimeoutTimer);
-        recordingTimeoutTimer = null;
-      }
-      if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
-        if (activeRecordingBtn) {
-          activeRecordingBtn.textContent = '⏳ Đang phân tích giọng đọc...';
-          activeRecordingBtn.classList.remove('recording');
-        }
-        if (activeRecordingBadge) {
-          activeRecordingBadge.style.display = 'inline-block';
-          activeRecordingBadge.className = 'accuracy-badge';
-          activeRecordingBadge.style.background = '#eff6ff';
-          activeRecordingBadge.style.color = '#1d4ed8';
-          activeRecordingBadge.innerHTML = '⏳ <strong>Đang nghe và chấm điểm phát âm của bạn...</strong>';
-        }
-        try {
-          activeMediaRecorder.stop();
-        } catch(e) {
-          console.warn('Stop recorder error:', e);
-        }
-      }
-    }
-
-    async function sendAudioToGeminiForGrading(audioBlob, targetZh, badge, btnEl) {
-      const apiKey = (typeof getGeminiApiKey === 'function' ? getGeminiApiKey() : (window.DEFAULT_GEMINI_API_KEY || ''));
-      const model = (typeof getGeminiModel === 'function' ? getGeminiModel() : (window.DEFAULT_GEMINI_MODEL || 'gemini-flash-lite-latest'));
-      const blobUrl = URL.createObjectURL(audioBlob);
-
-      const reader = new FileReader();
-      reader.readAsDataURL(audioBlob);
-      reader.onloadend = async function() {
-        try {
-          const base64Data = (reader.result || '').split(',')[1];
-          if (!base64Data || audioBlob.size < 400) {
-            btnEl.classList.remove('recording');
-            btnEl.textContent = '🎙️ Luyện Shadowing câu này';
-            if (badge) {
-              badge.style.display = 'inline-block';
-              badge.className = 'accuracy-badge';
-              badge.style.background = '#fef3c7';
-              badge.style.color = '#92400e';
-              badge.innerHTML = '⚠️ Chưa thu được âm thanh rõ ràng. Bạn hãy bấm lại nút micro và đọc to rõ nhé!';
-            }
-            return;
-          }
-
-          const actualMime = audioBlob.type || getSupportedAudioMimeType() || 'audio/mp4';
-          const prompt = `Nhiệm vụ: Chép chính tả (transcribe) trung thực và khách quan 100% âm thanh trong file audio này.
-Quy tắc nghiêm ngặt:
-1. Bạn KHÔNG được tự ý suy đoán theo bất kỳ câu mẫu nào. Hãy nghe thật kỹ những gì người nói phát âm.
-2. Nếu người nói đọc tiếng Trung, hãy ghi đúng chữ Hán (transcribed_zh) và phiên âm Pinyin có dấu thanh điệu (transcribed_py).
-3. Nếu người nói đọc câu khác hoàn toàn, đọc tiếng Việt, tiếng Anh, hoặc tạp âm, hãy ghi đúng những gì bạn nghe được vào transcribed_zh.
-4. Nếu file âm thanh chỉ có tiếng ồn, thở dài hoặc im lặng, đặt transcribed_zh = "", transcribed_py = "".
-
-Trả về DUY NHẤT một chuỗi JSON chuẩn thuần túy (không bọc trong markdown):
-{
-  "transcribed_zh": "nội dung chữ nghe được trong audio",
-  "transcribed_py": "Pinyin có dấu nếu là tiếng Trung"
-}`;
-
-          const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{
-                parts: [
-                  {
-                    inlineData: {
-                      mimeType: actualMime,
-                      data: base64Data
-                    }
-                  },
-                  { text: prompt }
-                ]
-              }],
-              generationConfig: {
-                responseMimeType: 'application/json',
-                temperature: 0.0
-              }
-            })
-          });
-
-          if (!resp.ok) {
-            throw new Error(`API Lỗi HTTP ${resp.status}`);
-          }
-
-          const resData = await resp.json();
-          let rawJson = resData.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '{}';
-          if (rawJson.startsWith('```json')) rawJson = rawJson.replace(/^```json\s*/, '').replace(/\s*```$/, '');
-          else if (rawJson.startsWith('```')) rawJson = rawJson.replace(/^```\s*/, '').replace(/\s*```$/, '');
-
-          const evalResult = JSON.parse(rawJson);
-          renderShadowingAiResult(badge, btnEl, evalResult, targetZh, blobUrl);
-
-        } catch(err) {
-          console.warn('Audio assessment fallback error:', err);
-          btnEl.classList.remove('recording');
-          btnEl.textContent = '🎙️ Luyện lại câu này';
-          if (badge) {
-            badge.style.display = 'inline-block';
-            badge.className = 'accuracy-badge good';
-            badge.style.background = '#fef9c3';
-            badge.style.color = '#854d0e';
-            badge.innerHTML = `
-              <div style="line-height:1.55; text-align:left;">
-                <strong style="color:#854d0e; font-size:13px;">✅ Đã thu âm giọng đọc của bạn thành công!</strong>
-                <div style="margin-top:6px; padding:8px 10px; background:#ffffff; border:1px solid #fde68a; border-radius:10px;">
-                  <div style="font-size:11.5px; font-weight:700; color:#1e293b; margin-bottom:5px; display:flex; align-items:center; justify-content:space-between;">
-                    <span>🎙️ Nghe lại giọng đọc của bạn:</span>
-                    <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('${targetZh}')">🔊 Nghe mẫu SGK</button>
-                  </div>
-                  <audio controls preload="auto" src="${blobUrl}" style="width:100%; height:36px; display:block;"></audio>
-                </div>
-              </div>
-            `;
-          }
-        }
-      };
-    }
-
-    function renderShadowingAiResult(badge, btnEl, evalResult, targetZh, blobUrl) {
-      btnEl.classList.remove('recording');
-      btnEl.textContent = '🎙️ Luyện lại câu này';
-
-      const zh = (evalResult.transcribed_zh || evalResult.recognized_zh || '').trim();
-      const py = (evalResult.transcribed_py || evalResult.recognized_py || '').trim();
-      
-      // Calculate true mathematical similarity score (Levenshtein distance)
-      const score = calculateShadowingScore(targetZh, zh);
-
-      let comment = '';
-      let badgeClass = 'warning';
-      let badgeBg = '#fee2e2';
-      let badgeColor = '#991b1b';
-      let ratingLabel = 'Cần luyện thêm 💪';
-
-      if (score === 100) {
-        badgeClass = 'excellent';
-        badgeBg = '#dcfce7';
-        badgeColor = '#166534';
-        ratingLabel = 'Rất chuẩn xác! 🏆';
-        comment = 'Phát âm tuyệt vời! Khớp chính xác 100% câu mẫu SGK.';
-      } else if (score >= 75) {
-        badgeClass = 'excellent';
-        badgeBg = '#dcfce7';
-        badgeColor = '#166534';
-        ratingLabel = 'Rất tốt! ⭐';
-        comment = `Rất tốt! Bạn phát âm đúng hầu hết câu (${score}%). Tiếp tục phát huy!`;
-      } else if (score >= 45) {
-        badgeClass = 'good';
-        badgeBg = '#fef9c3';
-        badgeColor = '#854d0e';
-        ratingLabel = 'Khá tốt 👍';
-        comment = `Khá tốt (${score}%). Bạn phát âm được một số từ, hãy nghe mẫu và thử lại nhé!`;
-      } else if (score > 0) {
-        comment = `Độ trùng khớp thấp (${score}%). Bạn đọc: "${zh}". Hãy đối chiếu câu mẫu SGK nhé!`;
-      } else {
-        if (!zh) {
-          comment = '⚠️ Chưa thu được giọng nói rõ ràng. Bạn hãy đưa mic lại gần miệng và đọc to hơn nhé!';
-        } else {
-          comment = `⚠️ Câu bạn đọc ("${zh}") hoàn toàn không khớp với câu mẫu SGK ("${targetZh}"). Hãy đọc đúng câu mẫu nhé!`;
-        }
-      }
-
-      if (badge) {
-        badge.style.display = 'inline-block';
-        badge.className = 'accuracy-badge ' + badgeClass;
-        badge.style.background = badgeBg;
-        badge.style.color = badgeColor;
-        badge.innerHTML = `
-          <div style="line-height:1.55; text-align:left;">
-            <div style="font-size:13.5px; font-weight:800; margin-bottom:4px;">
-              🎯 Điểm phát âm: <span style="font-size:16px;">${score}%</span> &bull; ${ratingLabel}
-            </div>
-            ${zh ? `
-              <div style="font-size:13px; color:#0f172a; margin-bottom:3px;">
-                🗣️ <strong>Máy nghe được:</strong> <span style="font-family:var(--chinese-font); font-weight:700;">${zh}</span>
-                ${py ? `<span style="color:#b45309; font-weight:600; margin-left:4px;">(${py})</span>` : ''}
-              </div>
-            ` : `
-              <div style="font-size:12.5px; color:#b45309; margin-bottom:3px;">⚠️ Chưa nhận diện được chữ Hán rõ ràng trong bản thu.</div>
-            `}
-            <div style="font-size:12px; color:#334155; margin-bottom:6px;">
-              💡 <strong>Nhận xét:</strong> ${comment}
-            </div>
-
-            <!-- BẢN GHI ÂM CỦA BẠN (PLAYER NATIVE & ĐỐI CHIẾU MẪU) -->
-            <div style="margin-top:8px; padding:8px 12px; background:rgba(255,255,255,0.95); border:1px solid #cbd5e1; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
-              <div style="font-size:12px; font-weight:800; color:#1e293b; margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px;">
-                <span>🎙️ Bản ghi âm giọng đọc của bạn:</span>
-                <button class="btn-tool" style="font-size:11px; padding:2px 8px; background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe; font-weight:700;" onclick="speakText('${targetZh}')">
-                  🔊 Nghe mẫu chuẩn SGK
-                </button>
-              </div>
-              <audio controls preload="auto" src="${blobUrl}" style="width:100%; height:36px; border-radius:8px; outline:none; display:block;"></audio>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    function startShadowing(targetZh, badgeId, btnEl) {
-      const badge = document.getElementById(badgeId);
-
-      // If user taps the active button while recording -> Stop and evaluate immediately!
-      if (btnEl.classList.contains('recording')) {
-        stopAndGradeShadowing();
-        return;
-      }
-
-      // Reset any previous active recording on other buttons
-      resetAllMicButtons();
-
-      // Check browser MediaDevices support
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        if (badge) {
-          badge.style.display = 'inline-block';
-          badge.className = 'accuracy-badge good';
-          badge.innerHTML = `💡 Trình duyệt này chưa hỗ trợ Micro qua MediaDevices. Vui lòng mở trang web bằng trình duyệt <strong>Safari</strong> (iPhone) hoặc <strong>Chrome</strong> (Android) qua HTTPS để sử dụng tính năng luyện phát âm nhé! Bấm 🔊 để nghe phát âm mẫu SGK.`;
-        }
-        speakText(targetZh);
-        return;
-      }
-
-      if (badge) {
-        badge.style.display = 'inline-block';
-        badge.className = 'accuracy-badge';
-        badge.style.background = '#eff6ff';
-        badge.style.color = '#1d4ed8';
-        badge.innerHTML = '🎤 Đang kích hoạt Micro... Vui lòng bấm <strong>Cho phép (Allow)</strong> nếu máy hỏi!';
-      }
-
-      navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
-          activeAudioStream = stream;
-          activeAudioChunks = [];
-          activeRecordingBtn = btnEl;
-          activeRecordingBadge = badge;
-          activeRecordingTargetZh = targetZh;
-
-          const mimeType = getSupportedAudioMimeType();
-          const options = mimeType ? { mimeType } : {};
-          let recorder = null;
-          try {
-            recorder = new MediaRecorder(stream, options);
-          } catch(e) {
-            recorder = new MediaRecorder(stream);
-          }
-          activeMediaRecorder = recorder;
-
-          recorder.ondataavailable = e => {
-            if (e.data && e.data.size > 0) {
-              activeAudioChunks.push(e.data);
-            }
-          };
-
-          recorder.onstop = () => {
-            const streamTracks = stream.getTracks();
-            streamTracks.forEach(t => t.stop());
-            activeAudioStream = null;
-
-            const actualType = activeAudioChunks[0]?.type || mimeType || 'audio/mp4';
-            const audioBlob = new Blob(activeAudioChunks, { type: actualType });
-
-            sendAudioToGeminiForGrading(audioBlob, activeRecordingTargetZh, activeRecordingBadge, activeRecordingBtn);
-          };
-
-          recorder.start();
-
-          btnEl.classList.add('recording');
-          btnEl.textContent = '⏹️ Đang thu âm... Bấm để nộp bài';
-
-          if (badge) {
-            badge.className = 'accuracy-badge';
-            badge.style.background = '#fef2f2';
-            badge.style.color = '#b91c1c';
-            badge.innerHTML = '🔴 <strong>Đang thu âm giọng đọc của bạn...</strong> Hãy đọc to, rõ câu tiếng Trung, đọc xong bấm nút để nộp bài!';
-          }
-
-          // Auto stop after 15 seconds max
-          recordingTimeoutTimer = setTimeout(() => {
-            if (btnEl.classList.contains('recording')) {
-              stopAndGradeShadowing();
-            }
-          }, 15000);
-        })
-        .catch(err => {
-          console.warn('getUserMedia error:', err);
-          resetAllMicButtons();
-          if (badge) {
-            badge.style.display = 'inline-block';
-            badge.className = 'accuracy-badge warning';
-            badge.style.background = '#fef2f2';
-            badge.style.color = '#991b1b';
-            if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-              badge.innerHTML = '⚠️ <strong>Chưa cấp quyền Micro:</strong> Trên iPhone, bạn chạm vào biểu tượng <strong>aA</strong> hoặc <strong>🔒</strong> trên thanh địa chỉ Safari, chọn <strong>Cài đặt trang web > Micrô > Cho phép (Allow)</strong> để luyện nói nhé!';
-            } else {
-              badge.innerHTML = `⚠️ Không thể mở Micro (${err.name || err.message}). Vui lòng kiểm tra thiết bị mic của bạn!`;
-            }
-          }
-        });
-    }
+    // (Chức năng Shadowing đã được tinh giản theo yêu cầu)
 
     // ==================== MINI QUIZ ENGINE ====================
     let showQuizVi = false;
@@ -5742,9 +5281,8 @@ Trả về JSON:
                 <div class="ai-ans-py">${quickSpeechPy}</div>
                 <div class="ai-ans-vi">👉 ${quickSpeechVi}</div>
                 <div class="ai-ans-actions">
-                  <button class="btn-tool" style="font-size:11.5px;" onclick="speakText('${quickSpeechZh.replace(/'/g, "\\'")}')">🔊 Nghe</button>
-                  <button class="btn-mic" style="font-size:11.5px; padding:4px 10px;" onclick="startShadowing('${quickSpeechZh.replace(/'/g, "\\'")}', 'badge-${qId}-short', this)">🎙️ Luyện nói</button>
-                  <span class="accuracy-badge" id="badge-${qId}-short" style="font-size:11px;"></span>
+                  <button class="btn-tool" style="font-size:12px; padding:3px 12px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('${quickSpeechZh.replace(/'/g, "\\'")}')">🔊 Nghe phát âm</button>
+                  
                 </div>
               </div>
 
@@ -5757,9 +5295,8 @@ Trả về JSON:
                 <div class="ai-ans-py">${fullSpeechPy}</div>
                 <div class="ai-ans-vi">👉 ${fullSpeechVi}</div>
                 <div class="ai-ans-actions">
-                  <button class="btn-tool" style="font-size:11.5px;" onclick="speakText('${fullSpeechZh.replace(/'/g, "\\'")}')">🔊 Nghe</button>
-                  <button class="btn-mic" style="font-size:11.5px; padding:4px 10px;" onclick="startShadowing('${fullSpeechZh.replace(/'/g, "\\'")}', 'badge-${qId}-full', this)">🎙️ Luyện nói</button>
-                  <span class="accuracy-badge" id="badge-${qId}-full" style="font-size:11px;"></span>
+                  <button class="btn-tool" style="font-size:12px; padding:3px 12px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:700; border-radius:6px; cursor:pointer;" onclick="speakText('${fullSpeechZh.replace(/'/g, "\\'")}')">🔊 Nghe phát âm</button>
+                  
                 </div>
               </div>
             </div>
