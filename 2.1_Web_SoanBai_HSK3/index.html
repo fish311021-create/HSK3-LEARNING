@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSK 3 - Trung Tâm Soạn Bài Trước (Pre-Study Studio)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #fffdf5;
+      --bg-ambient: radial-gradient(130% 110% at 50% -5%, #fef9c3 0%, #fefce8 30%, #fffdf7 70%, #ffffff 100%);
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-border: rgba(245, 158, 11, 0.28);
+      --card-border-glow: rgba(251, 191, 36, 0.55);
+      --text-main: #0f172a;
+      --text-sub: #334155;
+      --text-muted: #64748b;
+      
+      /* SUNSHINE YELLOW PALETTE */
+      --primary: #f59e0b;
+      --primary-bright: #fbbf24;
+      --primary-yellow: #fde047;
+      --primary-vibrant: #eab308;
+      --primary-dark: #b45309;
+      --primary-glow: rgba(251, 191, 36, 0.35);
+      --primary-light: #fef9c3;
+      --primary-soft: #fefce8;
+      
+      --accent-blue: #0284c7;
+      --accent-teal: #0d9488;
+      --accent-purple: #7c3aed;
+      --accent-coral: #ea580c;
+      --success: #10b981;
+      --danger: #ef4444;
+      --chinese-font: "Noto Serif SC", "Songti SC", serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-ambient);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* TOPBAR */
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      border-radius: 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.08);
+      flex-wrap: wrap;
+    }
+    .topbar-nav .nav-left, .topbar-nav .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    .nav-btn.btn-exam {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    /* HERO HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 38px 24px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 26px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 16px 40px rgba(217, 119, 6, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 200px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .badge-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--primary-dark);
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      max-width: 720px;
+      margin: 0 auto 20px;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-action-arena {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #fde047 0%, #facc15 50%, #f59e0b 100%);
+      color: #78350f;
+      padding: 12px 28px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid #d97706;
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+      transition: all 0.25s ease;
+    }
+    .btn-action-arena:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.45);
+    }
+
+    /* MODULES HIGHLIGHT */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .module-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s;
+    }
+    .module-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .module-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .module-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .module-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border-radius: 22px;
+      border: 1px solid var(--card-border);
+      padding: 28px 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.06);
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* LESSONS LIST */
+    .lessons-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .lesson-item-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .lesson-item-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.12);
+    }
+    .lesson-item-card.active-ready {
+      border-color: #f59e0b;
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%);
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+    }
+    .lic-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .lic-badge {
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+    .lic-badge.ready {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+    .lic-badge.prep {
+      background: #f1f5f9;
+      color: #64748b;
+    }
+    .lic-num {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+    .lic-zh {
+      font-family: var(--chinese-font);
+      font-size: 22px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .lic-vi {
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 14px;
+    }
+    .lic-meta {
+      font-size: 12.5px;
+      color: #64748b;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- TOPBAR -->
+    <div class="topbar-nav">
+      <div class="nav-left">
+        <a href="../index.html" class="nav-btn btn-hub" style="background:linear-gradient(135deg,#f59e0b,#fbbf24); color:#78350f; font-weight:800; border-color:#d97706;">🏠 Cổng Tổng HSK 3</a>
+        <span style="font-size:13px; font-weight:700; color:var(--text-sub);">📁 2.1_Web_SoanBai_HSK3/ (Tích hợp AI)</span>
+      </div>
+      <div class="nav-right">
+        <a href="kiem_tra_tu_vung.html" class="nav-btn btn-arena" style="background:linear-gradient(135deg,#f59e0b,#eab308); color:#000; font-weight:700;">🎯 Đấu Trường Từ Vựng</a>
+        <a href="../1_Web_LuyenThi_HSK3/index.html" class="nav-btn btn-exam">🚀 Sang Cổng 1: Luyện Thi HSK 3</a>
+      </div>
+    </div>
+
+    <!-- HERO HEADER -->
+    <header>
+      <div class="badge-hero">✨ HSK 3 PRE-STUDY STUDIO &bull; SOẠN BÀI CHUẨN SGK</div>
+      <h1>Trung Tâm Soạn Bài Trước HSK 3</h1>
+      <p class="subtitle">Trang bị toàn diện kiến thức trước khi lên lớp: Từ vựng thực chiến, Ô mễ tập viết nét, Minigame nối từ, Audio SGK &amp; Luyện phát âm AI Shadowing</p>
+      
+      <div class="hero-actions">
+        <a href="kiem_tra_tu_vung.html" class="btn-action-arena">
+          <span>🎯 Đấu Trường Kiểm Tra Từ Vựng</span>
+          <span style="font-size:14px; font-weight:800; margin-left:4px;">▶</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- 4 MODULES OVERVIEW -->
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon">✍️</div>
+        <div class="module-title">1. Từ Vựng &amp; Ô Mễ Vẽ Nét</div>
+        <div class="module-desc">Phân tích chiết tự, bút thuận, 2 câu ví dụ thực tế và khung canvas ô mễ để bạn dùng ngón tay/chuột viết chữ ngay trên màn hình.</div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon">🃏</div>
+        <div class="module-title">2. Flashcard 3D &amp; Nối Từ</div>
+        <div class="module-desc">Thẻ lật 3D có phát âm và trò chơi ghép nối 2 cột đối kháng tính giờ, có chế độ bật/tắt Pinyin giúp ghi nhớ mặt chữ siêu tốc.</div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon">🎙️</div>
+        <div class="module-title">3. 4 Bài Khóa &amp; AI Shadowing</div>
+        <div class="module-desc">Tích hợp file audio chuẩn từ Sách Giáo Khoa, phân tích ngữ cảnh từng câu và Micro nhận diện giọng nói chấm điểm % độ chuẩn xác.</div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon">⚖️</div>
+        <div class="module-title">4. Xưởng Ngữ Pháp &amp; Bẫy Thi</div>
+        <div class="module-desc">Bóc tách công thức vàng, phân biệt cặp từ dễ nhầm lẫn (还是 vs 或者) và 5 câu mini quiz kiểm tra phản xạ tránh bẫy HSK 3.</div>
+      </div>
+    </div>
+
+    <!-- LESSON CATALOG -->
+    <section class="section-card" id="catalog">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">📚 Danh Mục 20 Bài Soạn Chuẩn Giáo Trình HSK 3</h2>
+          <span style="font-size:13.5px; color:var(--text-sub);">Các Bài 01 đến 15 đã hoàn thiện 100% dữ liệu chuẩn SGK và tính năng tương tác sẵn sàng học</span>
+        </div>
+      </div>
+
+      <div class="lessons-list">
+        <!-- BÀI 1: COMPLETED -->
+        <a href="Bai_01/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 01</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">周末你有什么打算？</div>
+          <div class="lic-vi">Cuối tuần bạn có dự định gì?</div>
+          <div class="lic-meta">
+            <span>14 Từ vựng &bull; 4 Bài khóa &bull; Bổ ngữ 好</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 2: COMPLETED -->
+        <a href="Bai_02/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 02</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">他什么时候回来？</div>
+          <div class="lic-vi">Khi nào anh ấy quay về?</div>
+          <div class="lic-meta">
+            <span>16 Từ vựng &bull; 4 Bài khóa &bull; Bổ ngữ 来/去</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 3: COMPLETED -->
+        <a href="Bai_03/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 03</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">桌子上放着很多饮料</div>
+          <div class="lic-vi">Trên bàn để rất nhiều đồ uống</div>
+          <div class="lic-meta">
+            <span>17 Từ vựng &bull; 4 Bài khóa &bull; Ngữ pháp 着</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 4: COMPLETED -->
+        <a href="Bai_04/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 04</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">她总是笑着跟客人说话</div>
+          <div class="lic-vi">Cô ấy luôn cười nói với khách</div>
+          <div class="lic-meta">
+            <span>16 Từ vựng &bull; 4 Bài khóa &bull; Ngữ pháp 又...又...</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 5: COMPLETED -->
+        <a href="Bai_05/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 05</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">我最近越来越胖了</div>
+          <div class="lic-vi">Dạo này em ngày càng béo ra</div>
+          <div class="lic-meta">
+            <span>14 Từ vựng &bull; 4 Bài khóa &bull; Cấu trúc 越来越</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 6: COMPLETED -->
+        <a href="Bai_06/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 06</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">怎么突然找不到了</div>
+          <div class="lic-vi">Sao bỗng dưng lại không tìm thấy?</div>
+          <div class="lic-meta">
+            <span>15 Từ vựng &bull; 4 Bài khóa &bull; Bổ ngữ khả năng</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 7: COMPLETED -->
+        <a href="Bai_07/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 07</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">我跟他都认识五年了</div>
+          <div class="lic-vi">Tôi và anh ấy quen nhau 5 năm rồi</div>
+          <div class="lic-meta">
+            <span>12 Từ vựng &bull; 4 Bài khóa &bull; Bổ ngữ thời lượng</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 8: COMPLETED -->
+        <a href="Bai_08/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 08</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">你去哪儿我就去哪儿</div>
+          <div class="lic-vi">Em đi đâu anh đi theo đó</div>
+          <div class="lic-meta">
+            <span>17 Từ vựng &bull; 4 Bài khóa &bull; Nghi vấn từ ... 就 ...</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 9: COMPLETED -->
+        <a href="Bai_09/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 09</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">她的汉语说得跟中国人一样好</div>
+          <div class="lic-vi">Tiếng Trung của cô ấy nói như người Trung Quốc</div>
+          <div class="lic-meta">
+            <span>13 Từ vựng &bull; 4 Bài khóa &bull; Cấu trúc 跟...一样</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 10: COMPLETED -->
+        <a href="Bai_10/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 10</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">数学比历史难多了</div>
+          <div class="lic-vi">Toán khó hơn Lịch sử nhiều</div>
+          <div class="lic-meta">
+            <span>11 Từ vựng &bull; 4 Bài khóa &bull; Câu so sánh 比</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 11: COMPLETED -->
+        <a href="Bai_11/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 11</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">别忘了把空调关了</div>
+          <div class="lic-vi">Đừng quên tắt máy điều hòa</div>
+          <div class="lic-meta">
+            <span>19 Từ vựng &bull; 4 Bài khóa &bull; Câu chữ 把 (1) &amp; 左右</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 12: COMPLETED -->
+        <a href="Bai_12/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 12</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">把重要的东西放在我这儿吧</div>
+          <div class="lic-vi">Hãy để những thứ quan trọng ở chỗ tôi</div>
+          <div class="lic-meta">
+            <span>14 Từ vựng &bull; 4 Bài khóa &bull; 才 / 就 &amp; Câu chữ 把 (2)</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 13: COMPLETED -->
+        <a href="Bai_13/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 13</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">我是走回来的</div>
+          <div class="lic-vi">Tôi đi bộ về đấy</div>
+          <div class="lic-meta">
+            <span>15 Từ vựng &bull; 4 Bài khóa &bull; Bổ ngữ hướng kép &amp; 一边……一边……</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 14: COMPLETED -->
+        <a href="Bai_14/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 14</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">你把水果拿过来</div>
+          <div class="lic-vi">Em mang hoa quả qua đây</div>
+          <div class="lic-meta">
+            <span>17 Từ vựng &bull; 4 Bài khóa &bull; Câu chữ 把 (3) &amp; 先……再……然后……</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 15: COMPLETED -->
+        <a href="Bai_15/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 15</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">其他都没什么问题</div>
+          <div class="lic-vi">Những thứ khác đều không vấn đề gì</div>
+          <div class="lic-meta">
+            <span>21 Từ vựng &bull; 4 Bài khóa &bull; 除了……以外 &amp; 什么 phiếm chỉ</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 16: COMPLETED -->
+        <a href="Bai_16/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 16</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">我现在累得下了班就想睡觉</div>
+          <div class="lic-vi">Giờ tôi mệt đến mức tan ca chỉ muốn đi ngủ</div>
+          <div class="lic-meta">
+            <span>16 Từ vựng &bull; 4 Bài khóa &bull; Bổ ngữ trạng thái 得 &amp; 一……就……</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 17: COMPLETED -->
+        <a href="Bai_17/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 17</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">谁都有办法看好你的“病”</div>
+          <div class="lic-vi">Ai cũng có cách chữa khỏi “bệnh” của bạn</div>
+          <div class="lic-meta">
+            <span>16 Từ vựng &bull; 4 Bài khóa &bull; Đại từ phiếm chỉ 谁/什么 &amp; Bổ ngữ kết quả 好</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 18: COMPLETED -->
+        <a href="Bai_18/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 18</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">我相信他们会同意的</div>
+          <div class="lic-vi">Tôi tin chắc rằng họ sẽ đồng ý</div>
+          <div class="lic-meta">
+            <span>19 Từ vựng &bull; 4 Bài khóa &bull; Cấu trúc nhấn mạnh khẳng định ……的</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 19: COMPLETED -->
+        <a href="Bai_19/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 19</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">你没看出来吗？</div>
+          <div class="lic-vi">Bạn không nhận ra à?</div>
+          <div class="lic-meta">
+            <span>14 Từ vựng &bull; 4 Bài khóa &bull; Bổ ngữ xu hướng mở rộng &amp; Kiêm ngữ 使/叫/让</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+
+        <!-- BÀI 20: COMPLETED -->
+        <a href="Bai_20/index.html" class="lesson-item-card active-ready">
+          <div class="lic-top">
+            <span class="lic-num">BÀI 20</span>
+            <span class="lic-badge ready">✅ SẴN SÀNG HỌC</span>
+          </div>
+          <div class="lic-zh">我被他影响了。</div>
+          <div class="lic-vi">Mình chịu ảnh hưởng từ anh ấy.</div>
+          <div class="lic-meta">
+            <span>14 Từ vựng &bull; 4 Bài khóa &bull; Câu chữ 被 &amp; Cấu trúc 只有……才……</span>
+            <span style="color:#b45309; font-weight:700;">Học ngay ▶</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

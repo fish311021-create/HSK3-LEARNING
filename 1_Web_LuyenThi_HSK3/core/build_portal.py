@@ -485,7 +485,7 @@ def generate_web1_landing_page():
         <span style="font-size:13px; font-weight:700; color:var(--text-sub);">📁 1_Web_LuyenThi_HSK3/</span>
       </div>
       <div style="display:flex; align-items:center; gap:8px;">
-        <a href="../2_Web_SoanBai_HSK3/index.html" class="nav-btn" style="color:#fbbf24; border-color:rgba(245, 158, 11, 0.4);">📖 Sang Cổng 2: Soạn Bài Trước</a>
+        <a href="../2.1_Web_SoanBai_HSK3/index.html" class="nav-btn" style="color:#fbbf24; border-color:rgba(245, 158, 11, 0.4);">🤖 Sang Cổng 2: Soạn Bài (AI 2.1)</a>
       </div>
     </div>
 
