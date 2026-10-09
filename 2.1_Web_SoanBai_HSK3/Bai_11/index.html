@@ -4797,9 +4797,14 @@
       if (btn) btn.textContent = showDialogueVi ? '🙈 Ẩn Dịch Nghĩa' : '👁 Hiện Dịch Nghĩa';
     }
 
-    // ==================== AI SHADOWING SPEECH RECOGNITION ====================
-    let activeRecognition = null;
-    let activeBtn = null;
+    // ==================== AI SHADOWING SPEECH RECOGNITION (CROSS-PLATFORM & IOS SAFARI BULLETPROOF) ====================
+    let activeMediaRecorder = null;
+    let activeAudioStream = null;
+    let activeAudioChunks = [];
+    let activeRecordingBtn = null;
+    let activeRecordingBadge = null;
+    let activeRecordingTargetZh = '';
+    let recordingTimeoutTimer = null;
 
     function cleanZh(str) {
       return (str || '').replace(/[，。？！、\s\d\.\,\?\!\:\;：；“”"''（）\(\)]/g, '').trim();
@@ -4831,176 +4836,352 @@
       return score;
     }
 
+    function getSupportedAudioMimeType() {
+      if (typeof MediaRecorder === 'undefined') return '';
+      const types = [
+        'audio/mp4',
+        'audio/aac',
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/ogg'
+      ];
+      for (const t of types) {
+        if (typeof MediaRecorder.isTypeSupported === 'function' && MediaRecorder.isTypeSupported(t)) {
+          return t;
+        }
+      }
+      return '';
+    }
+
+    function resetAllMicButtons() {
+      if (recordingTimeoutTimer) {
+        clearTimeout(recordingTimeoutTimer);
+        recordingTimeoutTimer = null;
+      }
+      if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
+        try { activeMediaRecorder.stop(); } catch(e){}
+      }
+      if (activeAudioStream) {
+        try { activeAudioStream.getTracks().forEach(t => t.stop()); } catch(e){}
+        activeAudioStream = null;
+      }
+      activeMediaRecorder = null;
+      activeAudioChunks = [];
+      activeRecordingBtn = null;
+      activeRecordingBadge = null;
+      activeRecordingTargetZh = '';
+
+      document.querySelectorAll('.btn-mic').forEach(b => {
+        b.classList.remove('recording');
+        if (b.textContent.includes('Đang thu') || b.textContent.includes('Đang nghe') || b.textContent.includes('Đang phân tích') || b.textContent.includes('Đang chấm')) {
+          b.textContent = '🎙️ Luyện Shadowing câu này';
+        }
+      });
+    }
+
+    function stopAndGradeShadowing() {
+      if (recordingTimeoutTimer) {
+        clearTimeout(recordingTimeoutTimer);
+        recordingTimeoutTimer = null;
+      }
+      if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
+        if (activeRecordingBtn) {
+          activeRecordingBtn.textContent = '⏳ Đang phân tích giọng đọc...';
+          activeRecordingBtn.classList.remove('recording');
+        }
+        if (activeRecordingBadge) {
+          activeRecordingBadge.style.display = 'inline-block';
+          activeRecordingBadge.className = 'accuracy-badge';
+          activeRecordingBadge.style.background = '#eff6ff';
+          activeRecordingBadge.style.color = '#1d4ed8';
+          activeRecordingBadge.innerHTML = '⏳ <strong>Đang nghe và chấm điểm phát âm của bạn...</strong>';
+        }
+        try {
+          activeMediaRecorder.stop();
+        } catch(e) {
+          console.warn('Stop recorder error:', e);
+        }
+      }
+    }
+
+    async function sendAudioToGeminiForGrading(audioBlob, targetZh, badge, btnEl) {
+      const apiKey = (typeof getGeminiApiKey === 'function' ? getGeminiApiKey() : (window.DEFAULT_GEMINI_API_KEY || ''));
+      const model = (typeof getGeminiModel === 'function' ? getGeminiModel() : (window.DEFAULT_GEMINI_MODEL || 'gemini-flash-lite-latest'));
+      const blobUrl = URL.createObjectURL(audioBlob);
+
+      const reader = new FileReader();
+      reader.readAsDataURL(audioBlob);
+      reader.onloadend = async function() {
+        try {
+          const base64Data = (reader.result || '').split(',')[1];
+          if (!base64Data || audioBlob.size < 400) {
+            btnEl.classList.remove('recording');
+            btnEl.textContent = '🎙️ Luyện Shadowing câu này';
+            if (badge) {
+              badge.style.display = 'inline-block';
+              badge.className = 'accuracy-badge';
+              badge.style.background = '#fef3c7';
+              badge.style.color = '#92400e';
+              badge.innerHTML = '⚠️ Chưa thu được âm thanh rõ ràng. Bạn hãy bấm lại nút micro và đọc to rõ nhé!';
+            }
+            return;
+          }
+
+          const actualMime = audioBlob.type || getSupportedAudioMimeType() || 'audio/mp4';
+          const prompt = `Nhiệm vụ: Chép chính tả (transcribe) trung thực và khách quan 100% âm thanh trong file audio này.
+Quy tắc nghiêm ngặt:
+1. Bạn KHÔNG được tự ý suy đoán theo bất kỳ câu mẫu nào. Hãy nghe thật kỹ những gì người nói phát âm.
+2. Nếu người nói đọc tiếng Trung, hãy ghi đúng chữ Hán (transcribed_zh) và phiên âm Pinyin có dấu thanh điệu (transcribed_py).
+3. Nếu người nói đọc câu khác hoàn toàn, đọc tiếng Việt, tiếng Anh, hoặc tạp âm, hãy ghi đúng những gì bạn nghe được vào transcribed_zh.
+4. Nếu file âm thanh chỉ có tiếng ồn, thở dài hoặc im lặng, đặt transcribed_zh = "", transcribed_py = "".
+
+Trả về DUY NHẤT một chuỗi JSON chuẩn thuần túy (không bọc trong markdown):
+{
+  "transcribed_zh": "nội dung chữ nghe được trong audio",
+  "transcribed_py": "Pinyin có dấu nếu là tiếng Trung"
+}`;
+
+          const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{
+                parts: [
+                  {
+                    inlineData: {
+                      mimeType: actualMime,
+                      data: base64Data
+                    }
+                  },
+                  { text: prompt }
+                ]
+              }],
+              generationConfig: {
+                responseMimeType: 'application/json',
+                temperature: 0.0
+              }
+            })
+          });
+
+          if (!resp.ok) {
+            throw new Error(`API Lỗi HTTP ${resp.status}`);
+          }
+
+          const resData = await resp.json();
+          let rawJson = resData.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '{}';
+          if (rawJson.startsWith('```json')) rawJson = rawJson.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+          else if (rawJson.startsWith('```')) rawJson = rawJson.replace(/^```\s*/, '').replace(/\s*```$/, '');
+
+          const evalResult = JSON.parse(rawJson);
+          renderShadowingAiResult(badge, btnEl, evalResult, targetZh, blobUrl);
+
+        } catch(err) {
+          console.warn('Audio assessment fallback error:', err);
+          btnEl.classList.remove('recording');
+          btnEl.textContent = '🎙️ Luyện lại câu này';
+          if (badge) {
+            badge.style.display = 'inline-block';
+            badge.className = 'accuracy-badge good';
+            badge.style.background = '#fef9c3';
+            badge.style.color = '#854d0e';
+            badge.innerHTML = `
+              <div style="line-height:1.55; text-align:left;">
+                <strong style="color:#854d0e; font-size:13px;">✅ Đã thu âm giọng đọc của bạn thành công!</strong>
+                <div style="margin-top:6px; padding:8px 10px; background:#ffffff; border:1px solid #fde68a; border-radius:10px;">
+                  <div style="font-size:11.5px; font-weight:700; color:#1e293b; margin-bottom:5px; display:flex; align-items:center; justify-content:space-between;">
+                    <span>🎙️ Nghe lại giọng đọc của bạn:</span>
+                    <button class="btn-tool" style="font-size:11px; padding:2px 8px;" onclick="speakText('${targetZh}')">🔊 Nghe mẫu SGK</button>
+                  </div>
+                  <audio controls preload="auto" src="${blobUrl}" style="width:100%; height:36px; display:block;"></audio>
+                </div>
+              </div>
+            `;
+          }
+        }
+      };
+    }
+
+    function renderShadowingAiResult(badge, btnEl, evalResult, targetZh, blobUrl) {
+      btnEl.classList.remove('recording');
+      btnEl.textContent = '🎙️ Luyện lại câu này';
+
+      const zh = (evalResult.transcribed_zh || evalResult.recognized_zh || '').trim();
+      const py = (evalResult.transcribed_py || evalResult.recognized_py || '').trim();
+      
+      // Calculate true mathematical similarity score (Levenshtein distance)
+      const score = calculateShadowingScore(targetZh, zh);
+
+      let comment = '';
+      let badgeClass = 'warning';
+      let badgeBg = '#fee2e2';
+      let badgeColor = '#991b1b';
+      let ratingLabel = 'Cần luyện thêm 💪';
+
+      if (score === 100) {
+        badgeClass = 'excellent';
+        badgeBg = '#dcfce7';
+        badgeColor = '#166534';
+        ratingLabel = 'Rất chuẩn xác! 🏆';
+        comment = 'Phát âm tuyệt vời! Khớp chính xác 100% câu mẫu SGK.';
+      } else if (score >= 75) {
+        badgeClass = 'excellent';
+        badgeBg = '#dcfce7';
+        badgeColor = '#166534';
+        ratingLabel = 'Rất tốt! ⭐';
+        comment = `Rất tốt! Bạn phát âm đúng hầu hết câu (${score}%). Tiếp tục phát huy!`;
+      } else if (score >= 45) {
+        badgeClass = 'good';
+        badgeBg = '#fef9c3';
+        badgeColor = '#854d0e';
+        ratingLabel = 'Khá tốt 👍';
+        comment = `Khá tốt (${score}%). Bạn phát âm được một số từ, hãy nghe mẫu và thử lại nhé!`;
+      } else if (score > 0) {
+        comment = `Độ trùng khớp thấp (${score}%). Bạn đọc: "${zh}". Hãy đối chiếu câu mẫu SGK nhé!`;
+      } else {
+        if (!zh) {
+          comment = '⚠️ Chưa thu được giọng nói rõ ràng. Bạn hãy đưa mic lại gần miệng và đọc to hơn nhé!';
+        } else {
+          comment = `⚠️ Câu bạn đọc ("${zh}") hoàn toàn không khớp với câu mẫu SGK ("${targetZh}"). Hãy đọc đúng câu mẫu nhé!`;
+        }
+      }
+
+      if (badge) {
+        badge.style.display = 'inline-block';
+        badge.className = 'accuracy-badge ' + badgeClass;
+        badge.style.background = badgeBg;
+        badge.style.color = badgeColor;
+        badge.innerHTML = `
+          <div style="line-height:1.55; text-align:left;">
+            <div style="font-size:13.5px; font-weight:800; margin-bottom:4px;">
+              🎯 Điểm phát âm: <span style="font-size:16px;">${score}%</span> &bull; ${ratingLabel}
+            </div>
+            ${zh ? `
+              <div style="font-size:13px; color:#0f172a; margin-bottom:3px;">
+                🗣️ <strong>Máy nghe được:</strong> <span style="font-family:var(--chinese-font); font-weight:700;">${zh}</span>
+                ${py ? `<span style="color:#b45309; font-weight:600; margin-left:4px;">(${py})</span>` : ''}
+              </div>
+            ` : `
+              <div style="font-size:12.5px; color:#b45309; margin-bottom:3px;">⚠️ Chưa nhận diện được chữ Hán rõ ràng trong bản thu.</div>
+            `}
+            <div style="font-size:12px; color:#334155; margin-bottom:6px;">
+              💡 <strong>Nhận xét:</strong> ${comment}
+            </div>
+
+            <!-- BẢN GHI ÂM CỦA BẠN (PLAYER NATIVE & ĐỐI CHIẾU MẪU) -->
+            <div style="margin-top:8px; padding:8px 12px; background:rgba(255,255,255,0.95); border:1px solid #cbd5e1; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+              <div style="font-size:12px; font-weight:800; color:#1e293b; margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px;">
+                <span>🎙️ Bản ghi âm giọng đọc của bạn:</span>
+                <button class="btn-tool" style="font-size:11px; padding:2px 8px; background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe; font-weight:700;" onclick="speakText('${targetZh}')">
+                  🔊 Nghe mẫu chuẩn SGK
+                </button>
+              </div>
+              <audio controls preload="auto" src="${blobUrl}" style="width:100%; height:36px; border-radius:8px; outline:none; display:block;"></audio>
+            </div>
+          </div>
+        `;
+      }
+    }
+
     function startShadowing(targetZh, badgeId, btnEl) {
       const badge = document.getElementById(badgeId);
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-      if (!SpeechRecognition) {
+      // If user taps the active button while recording -> Stop and evaluate immediately!
+      if (btnEl.classList.contains('recording')) {
+        stopAndGradeShadowing();
+        return;
+      }
+
+      // Reset any previous active recording on other buttons
+      resetAllMicButtons();
+
+      // Check browser MediaDevices support
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         if (badge) {
           badge.style.display = 'inline-block';
           badge.className = 'accuracy-badge good';
-          badge.innerHTML = `💡 Trình duyệt này chưa hỗ trợ nhận diện giọng nói (Web Speech API). Nếu bạn dùng iPhone, hãy mở web bằng trình duyệt <strong>Safari</strong>; nếu dùng Android, hãy mở bằng <strong>Chrome</strong> (tránh mở bên trong ứng dụng Zalo/Facebook/Messenger). Bấm 🔊 bên trên để nghe phát âm mẫu nhé!`;
+          badge.innerHTML = `💡 Trình duyệt này chưa hỗ trợ Micro qua MediaDevices. Vui lòng mở trang web bằng trình duyệt <strong>Safari</strong> (iPhone) hoặc <strong>Chrome</strong> (Android) qua HTTPS để sử dụng tính năng luyện phát âm nhé! Bấm 🔊 để nghe phát âm mẫu SGK.`;
         }
         speakText(targetZh);
         return;
       }
 
-      // If user taps the active button while recording -> Stop and evaluate immediately!
-      if (btnEl.classList.contains('recording') && activeRecognition) {
-        btnEl.textContent = '⏳ Đang chấm điểm...';
-        try {
-          activeRecognition.stop();
-        } catch(e) {
-          try { activeRecognition.abort(); } catch(err){}
-        }
-        return;
+      if (badge) {
+        badge.style.display = 'inline-block';
+        badge.className = 'accuracy-badge';
+        badge.style.background = '#eff6ff';
+        badge.style.color = '#1d4ed8';
+        badge.innerHTML = '🎤 Đang kích hoạt Micro... Vui lòng bấm <strong>Cho phép (Allow)</strong> nếu máy hỏi!';
       }
 
-      // If another recognition instance was running, abort it
-      if (activeRecognition) {
-        try { activeRecognition.abort(); } catch(e){}
-        activeRecognition = null;
-      }
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+          activeAudioStream = stream;
+          activeAudioChunks = [];
+          activeRecordingBtn = btnEl;
+          activeRecordingBadge = badge;
+          activeRecordingTargetZh = targetZh;
 
-      document.querySelectorAll('.btn-mic').forEach(b => {
-        b.classList.remove('recording');
-        b.textContent = '🎙️ Luyện Shadowing câu này';
-      });
-
-      try {
-        const recognition = new SpeechRecognition();
-        activeRecognition = recognition;
-        activeBtn = btnEl;
-        recognition.lang = 'zh-CN';
-        recognition.continuous = false;
-        recognition.interimResults = true;
-        recognition.maxAlternatives = 1;
-
-        btnEl.classList.add('recording');
-        btnEl.textContent = '⏹️ Đang nghe... Bấm để nộp bài';
-
-        if (badge) {
-          badge.style.display = 'inline-block';
-          badge.className = 'accuracy-badge';
-          badge.style.background = '#eff6ff';
-          badge.style.color = '#1d4ed8';
-          badge.innerHTML = '🎧 Đang lắng nghe... Bạn hãy nói to rõ câu tiếng Trung (nói xong có thể bấm nút để nộp bài ngay)!';
-        }
-
-        let accumulatedTranscript = '';
-        let hasProcessed = false;
-
-        function finishAndGrade(spoken) {
-          if (hasProcessed) return;
-          hasProcessed = true;
-
-          btnEl.classList.remove('recording');
-          btnEl.textContent = '🎙️ Luyện lại câu này';
-          activeRecognition = null;
-
-          const transcript = (spoken || '').trim();
-          if (!transcript) {
-            if (badge) {
-              badge.className = 'accuracy-badge';
-              badge.style.background = '#fef3c7';
-              badge.style.color = '#92400e';
-              badge.innerHTML = '⚠️ Đã dừng nghe nhưng chưa nhận diện được âm thanh rõ ràng. Bạn hãy bấm lại, giữ điện thoại gần miệng và đọc to rõ từng chữ nhé!';
-            }
-            return;
+          const mimeType = getSupportedAudioMimeType();
+          const options = mimeType ? { mimeType } : {};
+          let recorder = null;
+          try {
+            recorder = new MediaRecorder(stream, options);
+          } catch(e) {
+            recorder = new MediaRecorder(stream);
           }
+          activeMediaRecorder = recorder;
 
-          const score = calculateShadowingScore(targetZh, transcript);
+          recorder.ondataavailable = e => {
+            if (e.data && e.data.size > 0) {
+              activeAudioChunks.push(e.data);
+            }
+          };
+
+          recorder.onstop = () => {
+            const streamTracks = stream.getTracks();
+            streamTracks.forEach(t => t.stop());
+            activeAudioStream = null;
+
+            const actualType = activeAudioChunks[0]?.type || mimeType || 'audio/mp4';
+            const audioBlob = new Blob(activeAudioChunks, { type: actualType });
+
+            sendAudioToGeminiForGrading(audioBlob, activeRecordingTargetZh, activeRecordingBadge, activeRecordingBtn);
+          };
+
+          recorder.start();
+
+          btnEl.classList.add('recording');
+          btnEl.textContent = '⏹️ Đang thu âm... Bấm để nộp bài';
 
           if (badge) {
-            badge.style.display = 'inline-block';
-            badge.className = 'accuracy-badge ' + (score >= 70 ? 'excellent' : (score >= 40 ? 'good' : 'warning'));
-            badge.style.background = score >= 70 ? '#dcfce7' : (score >= 40 ? '#fef9c3' : '#fee2e2');
-            badge.style.color = score >= 70 ? '#166534' : (score >= 40 ? '#854d0e' : '#991b1b');
-            badge.innerHTML = `Độ chính xác: <strong>${score}%</strong> (Máy nghe được: "${transcript}")`;
-          }
-        }
-
-        recognition.onresult = function(event) {
-          let interimTranscript = '';
-          let finalTranscript = '';
-          let isFinal = false;
-
-          for (let i = 0; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-              finalTranscript += event.results[i][0].transcript;
-              isFinal = true;
-            } else {
-              interimTranscript += event.results[i][0].transcript;
-            }
-          }
-
-          const currentText = (finalTranscript || interimTranscript).trim();
-          if (currentText) {
-            accumulatedTranscript = currentText;
-            if (badge && !hasProcessed) {
-              badge.innerHTML = `🗣️ Đang nghe: <em>"${currentText}"</em>... (Bấm nút khi nói xong)`;
-            }
-          }
-
-          if (isFinal && currentText) {
-            finishAndGrade(currentText);
-          }
-        };
-
-        recognition.onerror = function(event) {
-          btnEl.classList.remove('recording');
-          btnEl.textContent = '🎙️ Luyện Shadowing câu này';
-          activeRecognition = null;
-
-          if (badge && !hasProcessed) {
-            badge.style.display = 'inline-block';
             badge.className = 'accuracy-badge';
-            badge.style.background = '#fef3c7';
-            badge.style.color = '#92400e';
-            if (event.error === 'no-speech') {
-              badge.innerHTML = '⚠️ Chưa thu được giọng nói. Bạn hãy bấm lại nút micro, đưa điện thoại lại gần và đọc to hơn nhé!';
-            } else if (event.error === 'not-allowed') {
-              badge.innerHTML = '⚠️ Chưa cấp quyền Micro. Trên điện thoại, bạn chạm vào biểu tượng 🔒 hoặc ⚙️ trên thanh địa chỉ URL để BẬT Micro (Nếu dùng iPhone, hãy đảm bảo Cài đặt > Bàn phím > "Bật Đọc chính tả" đang bật).';
-            } else if (event.error === 'network') {
-              badge.innerHTML = '⚠️ Lỗi kết nối dịch vụ giọng nói trực tuyến. Vui lòng kiểm tra lại kết nối Wifi/4G!';
+            badge.style.background = '#fef2f2';
+            badge.style.color = '#b91c1c';
+            badge.innerHTML = '🔴 <strong>Đang thu âm giọng đọc của bạn...</strong> Hãy đọc to, rõ câu tiếng Trung, đọc xong bấm nút để nộp bài!';
+          }
+
+          // Auto stop after 15 seconds max
+          recordingTimeoutTimer = setTimeout(() => {
+            if (btnEl.classList.contains('recording')) {
+              stopAndGradeShadowing();
+            }
+          }, 15000);
+        })
+        .catch(err => {
+          console.warn('getUserMedia error:', err);
+          resetAllMicButtons();
+          if (badge) {
+            badge.style.display = 'inline-block';
+            badge.className = 'accuracy-badge warning';
+            badge.style.background = '#fef2f2';
+            badge.style.color = '#991b1b';
+            if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+              badge.innerHTML = '⚠️ <strong>Chưa cấp quyền Micro:</strong> Trên iPhone, bạn chạm vào biểu tượng <strong>aA</strong> hoặc <strong>🔒</strong> trên thanh địa chỉ Safari, chọn <strong>Cài đặt trang web > Micrô > Cho phép (Allow)</strong> để luyện nói nhé!';
             } else {
-              badge.innerHTML = `⚠️ Thu âm dừng (${event.error}). Bạn bấm nút để thử lại nhé!`;
+              badge.innerHTML = `⚠️ Không thể mở Micro (${err.name || err.message}). Vui lòng kiểm tra thiết bị mic của bạn!`;
             }
           }
-        };
-
-        recognition.onend = function() {
-          btnEl.classList.remove('recording');
-          if (btnEl.textContent.includes('Đang nghe') || btnEl.textContent.includes('Đang chấm điểm')) {
-            btnEl.textContent = '🎙️ Luyện Shadowing câu này';
-          }
-          activeRecognition = null;
-
-          if (!hasProcessed) {
-            if (accumulatedTranscript) {
-              finishAndGrade(accumulatedTranscript);
-            } else {
-              if (badge) {
-                badge.className = 'accuracy-badge';
-                badge.style.background = '#fef3c7';
-                badge.style.color = '#92400e';
-                badge.innerHTML = '⚠️ Đã dừng nghe nhưng chưa nhận diện được câu nói rõ ràng. Bạn hãy bấm lại và đọc to rõ từng chữ nhé!';
-              }
-            }
-          }
-        };
-
-        recognition.start();
-      } catch(err) {
-        console.warn("Speech recognition error:", err);
-        btnEl.classList.remove('recording');
-        btnEl.textContent = '🎙️ Luyện Shadowing câu này';
-        if (badge) {
-          badge.style.display = 'inline-block';
-          badge.className = 'accuracy-badge good';
-          badge.innerHTML = '⚠️ Không thể khởi động Micro. Vui lòng mở trang web trực tiếp bằng trình duyệt Safari (iPhone) hoặc Chrome (Android) để hỗ trợ tốt nhất!';
-        }
-      }
+        });
     }
 
     // ==================== MINI QUIZ ENGINE ====================
