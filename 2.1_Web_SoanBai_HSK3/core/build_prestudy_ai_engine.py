@@ -174,43 +174,6 @@ def render_dialogues(dialogues_list, lesson_id):
             """
             lines_html.append(line_box)
 
-        # Build check question
-        q_text = cq.get("question") or cq.get("q") or ""
-        options = cq.get("options", [])
-        ans = cq.get("ans", "A")
-        explain = cq.get("explain", "")
-
-        opt_buttons = []
-        for o_idx, opt in enumerate(options):
-            if isinstance(opt, dict):
-                opt_letter = opt.get("key", chr(65 + o_idx))
-                opt_label = f"{opt.get('zh', '')} ({opt.get('py', '')}) - {opt.get('vi', '')}" if opt.get('vi') else opt.get('zh', '')
-            else:
-                opt_letter = chr(65 + o_idx)
-                opt_label = str(opt)
-            opt_buttons.append(f"""
-              <button class="quiz-opt" onclick="selectDialogueCheck('{d_num}', '{opt_letter}', this)">
-                <strong>{opt_letter}.</strong> {opt_label}
-              </button>
-            """)
-
-        cq_html = f"""
-          <div style="margin-top:18px; background:#fffbeb; border:1px solid #fde68a; border-radius:14px; padding:16px;">
-            <div style="font-weight:800; font-size:14.5px; color:#92400e; margin-bottom:10px;">
-              ❓ Câu hỏi hiểu bài: {q_text}
-            </div>
-            <div class="quiz-options" style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-              {"".join(opt_buttons)}
-            </div>
-            <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
-              <button class="nav-btn btn-arena" style="padding:6px 14px; font-size:13px;" onclick="checkDialogueQuiz('{d_num}', '{ans}')">Kiểm tra đáp án</button>
-              <div id="d-exp-{d_num}" style="display:none; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px;">
-                💡 <strong>Giải thích:</strong> {explain}
-              </div>
-            </div>
-          </div>
-        """
-
         # AI Assistant Box for this dialogue (Zero demo buttons rule)
         ai_box_html = f"""
           <!-- AI QUESTION ASSISTANT FOR DIALOGUE {d_num} -->
@@ -312,8 +275,6 @@ def render_dialogues(dialogues_list, lesson_id):
           <div class="dialogue-lines">
             {"".join(lines_html)}
           </div>
-
-          {cq_html}
 
           {ai_box_html}
         </div>
