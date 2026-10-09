@@ -4803,21 +4803,17 @@
           }
 
           const mimeType = audioBlob.type || 'audio/webm';
-          const prompt = `Bạn là chuyên gia thẩm âm và giám khảo chấm thi phát âm tiếng Trung HSK 3 chuẩn Bắc Kinh.
-Người học đang luyện nói câu chuẩn SGK sau: "${targetZh}".
-Nhiệm vụ của bạn:
-1. Nghe kỹ phát âm trong file âm thanh người học vừa thu âm.
-2. Nhận diện chữ Hán người học phát âm (recognized_zh). Nếu chỉ có tiếng ồn hoặc không có giọng nói, để chuỗi rỗng "".
-3. Chuyển thành Pinyin có dấu thanh điệu đầy đủ (recognized_py).
-4. Chấm điểm độ chính xác phát âm (score) từ 0 đến 100 dựa trên: thanh điệu (tones), vận mẫu (finals), thanh mẫu (initials) và độ lưu loát. Nếu im lặng hoặc không đọc, đặt score = 0.
-5. Nhận xét ngắn gọn 1-2 câu bằng tiếng Việt (comment): khen ngợi nếu phát âm tốt, hoặc chỉ rõ chữ nào bị sai thanh điệu (ví dụ: thanh 1 đọc thành thanh 4, hoặc biến điệu thanh 3).
+          const prompt = `Nhiệm vụ: Chép chính tả (transcribe) trung thực và khách quan 100% âm thanh trong file audio này.
+Quy tắc nghiêm ngặt:
+1. Bạn KHÔNG được tự ý suy đoán theo bất kỳ câu mẫu nào. Hãy nghe thật kỹ những gì người nói phát âm.
+2. Nếu người nói đọc tiếng Trung, hãy ghi đúng chữ Hán (transcribed_zh) và phiên âm Pinyin có dấu thanh điệu (transcribed_py).
+3. Nếu người nói đọc câu khác hoàn toàn, đọc tiếng Việt, tiếng Anh, hoặc tạp âm, hãy ghi đúng những gì bạn nghe được vào transcribed_zh.
+4. Nếu file âm thanh chỉ có tiếng ồn, thở dài hoặc im lặng, đặt transcribed_zh = "", transcribed_py = "".
 
-Trả về DUY NHẤT một chuỗi JSON chuẩn (không bọc trong markdown):
+Trả về DUY NHẤT một chuỗi JSON chuẩn thuần túy (không bọc trong markdown):
 {
-  "recognized_zh": "chữ Hán máy nghe được",
-  "recognized_py": "Pinyin có dấu",
-  "score": 85,
-  "comment": "nhận xét phát âm"
+  "transcribed_zh": "nội dung chữ nghe được trong audio",
+  "transcribed_py": "Pinyin có dấu nếu là tiếng Trung"
 }`;
 
           const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
@@ -4837,7 +4833,7 @@ Trả về DUY NHẤT một chuỗi JSON chuẩn (không bọc trong markdown):
               }],
               generationConfig: {
                 responseMimeType: 'application/json',
-                temperature: 0.1
+                temperature: 0.0
               }
             })
           });
@@ -4886,26 +4882,44 @@ Trả về DUY NHẤT một chuỗi JSON chuẩn (không bọc trong markdown):
       btnEl.classList.remove('recording');
       btnEl.textContent = '🎙️ Luyện lại câu này';
 
-      const score = Math.max(0, Math.min(100, Math.round(evalResult.score || 0)));
-      const zh = evalResult.recognized_zh || '';
-      const py = evalResult.recognized_py || '';
-      const comment = evalResult.comment || 'Đã hoàn thành lượt đọc.';
+      const zh = (evalResult.transcribed_zh || evalResult.recognized_zh || '').trim();
+      const py = (evalResult.transcribed_py || evalResult.recognized_py || '').trim();
+      
+      // Calculate true mathematical similarity score (Levenshtein distance)
+      const score = calculateShadowingScore(targetZh, zh);
 
+      let comment = '';
       let badgeClass = 'warning';
       let badgeBg = '#fee2e2';
       let badgeColor = '#991b1b';
       let ratingLabel = 'Cần luyện thêm 💪';
 
-      if (score >= 75) {
+      if (score === 100) {
         badgeClass = 'excellent';
         badgeBg = '#dcfce7';
         badgeColor = '#166534';
         ratingLabel = 'Rất chuẩn xác! 🏆';
+        comment = 'Phát âm tuyệt vời! Khớp chính xác 100% câu mẫu SGK.';
+      } else if (score >= 75) {
+        badgeClass = 'excellent';
+        badgeBg = '#dcfce7';
+        badgeColor = '#166534';
+        ratingLabel = 'Rất tốt! ⭐';
+        comment = `Rất tốt! Bạn phát âm đúng hầu hết câu (${score}%). Tiếp tục phát huy!`;
       } else if (score >= 45) {
         badgeClass = 'good';
         badgeBg = '#fef9c3';
         badgeColor = '#854d0e';
         ratingLabel = 'Khá tốt 👍';
+        comment = `Khá tốt (${score}%). Máy nghe được một số từ khớp, một số chữ phát âm chưa rõ. Hãy bấm nghe mẫu SGK và thử lại nhé!`;
+      } else if (score > 0) {
+        comment = `Độ trùng khớp thấp (${score}%). Bạn đọc: "${zh}". Hãy chú ý nhìn kỹ mặt chữ câu mẫu nhé!`;
+      } else {
+        if (!zh) {
+          comment = '⚠️ Chưa thu được giọng nói rõ ràng. Bạn hãy đưa mic lại gần miệng và đọc to hơn nhé!';
+        } else {
+          comment = `⚠️ Câu bạn đọc ("${zh}") hoàn toàn không khớp với câu mẫu SGK ("${targetZh}"). Hãy đọc đúng câu mẫu nhé!`;
+        }
       }
 
       if (badge) {
@@ -4927,7 +4941,7 @@ Trả về DUY NHẤT một chuỗi JSON chuẩn (không bọc trong markdown):
               <div style="font-size:12.5px; color:#b45309; margin-bottom:3px;">⚠️ Chưa nhận diện được chữ Hán rõ ràng trong bản thu.</div>
             `}
             <div style="font-size:12.5px; color:#334155; margin-bottom:6px;">
-              💡 <strong>Nhận xét AI:</strong> ${comment}
+              💡 <strong>Nhận xét:</strong> ${comment}
             </div>
 
             <!-- BẢN GHI ÂM CỦA BẠN (PLAYER NATIVE & ĐỐI CHIẾU MẪU) -->
